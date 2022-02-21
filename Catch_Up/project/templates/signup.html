@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +21,7 @@
 <div class="container">
 	
 	<div class="row">
-	<form name = "signup" method = "POST" action="dashboard_static.html" onsubmit="return validateForm()"> <!--need to update action-->
+	<form name = "signup" method = "POST" action="/insertUser" onsubmit="return validateForm()"> <!--need to update action-->
 	
 	<div class="form-group">
     <h1>Sign Up</h1>
@@ -38,7 +39,7 @@
     </div>
     <div class="form-group">
         <label for="email">Email:</label>
-        <input type="text" class="form-control" placeholder="Enter Email" id="email" name="emailid" required>
+        <input type="text" class="form-control" placeholder="Enter Email" id="email" name="email" required>
     </div>
     <div class="form-group">
       <label for="pwd">Password:</label>
@@ -51,34 +52,34 @@
     <div>
     <label for="gender" >Gender: </label>
         <label>
-        <input type="radio" id="male" name="gender" required> Male </label> 
+        <input type="radio" id="male" name="gender" value='male' required> Male </label> 
 		
         <label>  
-        <input type="radio" id="female" name="gender"> Female  </label>
+        <input type="radio" id="female" name="gender" value="female"> Female  </label>
 		
         <label>
-        <input type="radio" id="other" name="gender"> Other </label>
+        <input type="radio" id="other" name="gender" value="other"> Other </label>
         
     </div>
     <div>
         <label for="category">Category:</label>
             <label>
-            <input type="radio" id="student" name="category" required> Student </label> 
+            <input type="radio" id="student" name="category" value="student" required> Student </label> 
             
             <label>
-            <input type="radio" id="faculty" name="category"> Faculty </label>
+            <input type="radio" id="faculty" name="category" value="faculty"> Faculty </label>
             
             <label>
-            <input type="radio" id="recruiter" name="category"> Recruiter </label>
+            <input type="radio" id="recruiter" name="category" value="recruiter"> Recruiter </label>
             
             <label>
-            <input type="radio" id="other" name="category"> Other </label>
+            <input type="radio" id="other" name="category" value='other'> Other </label>
             
     </div>
     <br>
     <button type="submit" class="btn btn-primary">Confirm</button>
 	<button type="reset" class="btn btn-secondary">Reset</button><br/>
-		<a href="login.html" class="btn btn-link" role="button">Already a User?</a>
+		<a href="/login" class="btn btn-link" role="button">Already a User?</a>
   </form>
   </div>
 </div>
