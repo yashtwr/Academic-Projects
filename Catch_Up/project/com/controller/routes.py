@@ -22,7 +22,7 @@ def userLogin():
 def login():
 	if request.method == "POST":
 		# getting input with name = fname in HTML form
-		userId = request.form['username']
+		email = request.form['email']
 		# getting input with name = lname in HTML form
 		password = request.form['password']
 
@@ -30,7 +30,7 @@ def login():
 		loginDAO = LoginDAO()
 
 
-		loginVO.userId = userId
+		loginVO.email = email
 		loginVO.password = password
 
 		lst = loginDAO.validateLogin(loginVO)
@@ -38,7 +38,7 @@ def login():
 		if len(lst) == 0:
 			return render_template("login.html") + "<h1> login failed</h1>"
 		else:
-			return render_template("dashboard.html", userId = userId) 
+			return render_template("dashboard.html", email = email) 
 	return render_template("login.html")
 
 @app.route('/signup', methods =["GET"])
@@ -51,29 +51,39 @@ def userSignup():
 @app.route('/insertUser', methods =["GET", "POST"])
 def signup():
 
+	# getting input with name = lname in HTML form
+	firstname = request.form['firstname']
+	# getting input with name = lname in HTML form
+	lastname = request.form['lastname']
 	# getting input with name = fname in HTML form
-	userId = request.form['username']
+	email = request.form['email']
 	# getting input with name = lname in HTML form
 	password = request.form['password']
+	# getting input with name = lname in HTML form
+	gender = request.form['gender']
+	# getting input with name = lname in HTML form
+	category = request.form['category']
+	
 	loginVO = LoginVO()
 	loginDAO = LoginDAO()
 
-	loginVO.userId = userId
+
+	loginVO.firstname = firstname 
+	loginVO.lastname = lastname
+	loginVO.email = email
 	loginVO.password = password
-	lst = loginDAO.validateLogin(loginVO)
+	loginVO.gender = gender
+	loginVO.category = category
+
+	lst = loginDAO.validateUser(loginVO)
 	lst = [i.as_dict for i in lst]
 	if len(lst) == 0:
-		print('inside signup')
+
 		loginDAO.insertLogin(loginVO)
 		return render_template("login.html")
 	else:
 		return render_template("signup.html") + "<h1> user already exists</h1>"
-	'''
-	if username == "jay" and password == "soni":
-		return render_template("dashboard.html", username = username)
-	else:
-		return render_template("login.html") + "<h1> login failed</h1>"
-	'''
+	
 	return render_template("login.html")
 
 
@@ -88,22 +98,21 @@ def forgotPassword():
 def updatePassword():
 
 	# getting input with name = fname in HTML form
-	userId = request.form['username']
+	email = request.form['email']
 	# getting input with name = lname in HTML form
 	password = request.form['password']
 	loginVO = LoginVO()
 	loginDAO = LoginDAO()
 
-	loginVO.userId = userId
+	loginVO.email = email
 	lst = loginDAO.validateUser(loginVO)
 	lst = [i.as_dict for i in lst]
 
 	if len(lst) == 0:
-		print('inside if condition============================================================')
+		
 		return render_template("forgot_password.html") + "please enter valid user name"
 	else:
-		print(userId + " "+ password)
-		loginVO.userId = userId
+		loginVO.email = email
 		loginVO.password = password
 		loginDAO.updatePassword(loginVO)
 		return render_template("login.html") + "<h1> password updated successfully.</h1>"
