@@ -36,7 +36,7 @@ def login():
 		lst = loginDAO.validateLogin(loginVO)
 		lst = [i.as_dict for i in lst]
 		if len(lst) == 0:
-			return render_template("login.html") + "<h1> login failed</h1>"
+			return render_template("login.html", msg = "Login Failed!")
 		else:
 			return render_template("dashboard.html", email = email) 
 	return render_template("login.html")
@@ -82,7 +82,7 @@ def signup():
 		loginDAO.insertLogin(loginVO)
 		return render_template("login.html")
 	else:
-		return render_template("signup.html") + "<h1> user already exists</h1>"
+		return render_template("signup.html", msg = "User already exists!")
 	
 	return render_template("login.html")
 
