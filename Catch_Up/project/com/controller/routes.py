@@ -1,7 +1,9 @@
 # importing Flask and other modules
 from flask import Flask, request, render_template
 from project.com.vo.LoginVO import LoginVO
+from project.com.vo.SignUpVO import SignUpVO
 from project.com.dao.LoginDAO import LoginDAO
+from project.com.dao.SignUpDAO import SignUpDAO
 
 
 from project import app
@@ -28,7 +30,6 @@ def login():
 
 		loginVO = LoginVO()
 		loginDAO = LoginDAO()
-
 
 		loginVO.email = email
 		loginVO.password = password
@@ -64,27 +65,24 @@ def signup():
 	# getting input with name = lname in HTML form
 	category = request.form['category']
 	
-	loginVO = LoginVO()
-	loginDAO = LoginDAO()
+	signupVO = SignUpVO()
+	signupDAO = SignUpDAO()
 
+	signupVO.firstname = firstname 
+	signupVO.lastname = lastname
+	signupVO.email = email
+	signupVO.password = password
+	signupVO.gender = gender
+	signupVO.category = category
 
-	loginVO.firstname = firstname 
-	loginVO.lastname = lastname
-	loginVO.email = email
-	loginVO.password = password
-	loginVO.gender = gender
-	loginVO.category = category
-
-	lst = loginDAO.validateUser(loginVO)
+	lst = signupDAO.validateUser(signupVO)
 	lst = [i.as_dict for i in lst]
 	if len(lst) == 0:
 
-		loginDAO.insertLogin(loginVO)
+		signupDAO.insertUser(signupVO)
 		return render_template("login.html")
 	else:
 		return render_template("signup.html", msg = "User already exists!")
-	
-	return render_template("login.html")
 
 
 @app.route('/forgotPassword', methods =["GET"])
@@ -116,4 +114,3 @@ def updatePassword():
 		loginVO.password = password
 		loginDAO.updatePassword(loginVO)
 		return render_template("login.html") + "<h1> password updated successfully.</h1>"
-	return render_template("login.html")
