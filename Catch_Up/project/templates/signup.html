@@ -24,9 +24,11 @@
 	
 	<div class="form-group">
     <h1>Sign Up</h1>
+     {% if msg %}
     <div class="alert alert-danger" role="alert">
       {{msg}}
     </div>
+    {% endif%}
     <p>Please fill in this form to create an account.</p>
 	</div>
 	
