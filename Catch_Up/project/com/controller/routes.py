@@ -67,6 +67,8 @@ def signup():
 	
 	signupVO = SignUpVO()
 	signupDAO = SignUpDAO()
+	loginVO = LoginVO()
+	loginDAO = LoginDAO()
 
 	signupVO.firstname = firstname 
 	signupVO.lastname = lastname
@@ -75,11 +77,15 @@ def signup():
 	signupVO.gender = gender
 	signupVO.category = category
 
+	loginVO.email = email
+	loginVO.password = password
+
 	lst = signupDAO.validateUser(signupVO)
+
 	lst = [i.as_dict for i in lst]
 	if len(lst) == 0:
-
 		signupDAO.insertUser(signupVO)
+		loginDAO.insertLogin(loginVO)
 		return render_template("login.html")
 	else:
 		return render_template("signup.html", msg = "User already exists!")
