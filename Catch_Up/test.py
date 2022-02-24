@@ -33,11 +33,11 @@ class FlaskTestCases(unittest.TestCase):
         response = tester.get('/signup', content_type='html/text')
         self.assertTrue(b'Sign Up' in response.data)
 
-    # def test_correct_signup(self):
-    #     tester = app.test_client(self)
-    #     tester.get('/signup',content_type='html/text')
-    #     response = tester.post('/insertUser',data=dict(firstname="admin", lastname="tester", email="admin@uwaterloo.ca", password="12345678", confirmpassword="12345678", gender="female", category="student"), follow_redirects=True)
-    #     self.assertIn(b'Login with your new password', response.data)
+    def test_correct_signup(self):
+        tester = app.test_client(self)
+        tester.get('/signup',content_type='html/text')
+        response = tester.post('/insertUser',data=dict(firstname="admin", lastname="tester", email="admin@uwaterloo.ca", password="12345678", confirmpassword="12345678", gender="female", category="student"), follow_redirects=True)
+        self.assertTrue(response.request.path, "/login")
 
     def test_forgotPassword(self):
         tester = app.test_client(self)
