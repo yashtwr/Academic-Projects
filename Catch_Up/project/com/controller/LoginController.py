@@ -119,9 +119,9 @@ def updatePassword():
     lst = [i.as_dict for i in lst]
     if len(lst) == 0:
 
-        return render_template("forgot_password.html") + "please enter valid user name"
+        return render_template("forgot_password.html",msg = "please enter valid Email Id")
     else:
         print("___________INSIDE ELSE updatePassword_________")
         loginVO.password = password
         loginDAO.updatePassword(loginVO)
-        return render_template("login.html") + "<h1> password updated successfully.</h1>"
+        return render_template("login.html", msg1 = "password updated successfully")
