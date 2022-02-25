@@ -37,6 +37,9 @@ def signup():
     loginVO.email = email
     loginVO.password = password
 
+    # loginDAO.insertLogin(loginVO)
+    print("LoginVO inserted")
+
     signupVO = SignUpVO()
     signupDAO = SignUpDAO()
 
@@ -44,6 +47,9 @@ def signup():
     signupVO.lastname = lastname
     signupVO.gender = gender
     signupVO.category = category
+
+    print(signupVO.signup_LoginId)
+
 
     lst = loginDAO.validateUser(loginVO)
 

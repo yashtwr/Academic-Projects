@@ -69,8 +69,6 @@ class FlaskTestCases(unittest.TestCase):
         tester = app.test_client(self)
         response = tester.post('/updatePassword', data=dict(email="admin@uwaterloo00.ca", confirmpswd="Abcd12345"),
                                follow_redirects=True)
-        
-        print('***********', response.data)
         self.assertTrue(response, "/login")
 
     def test_forgotPassword_no_user_exist(self):
