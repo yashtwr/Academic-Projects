@@ -1,4 +1,3 @@
-import email
 from project import app
 import unittest
 
@@ -78,7 +77,7 @@ class FlaskTestCases(unittest.TestCase):
         tester = app.test_client(self)
         response = tester.post('/updatePassword', data=dict(email="admin@uwaterloo009.ca", confirmpswd="Abcd1234"),
                                follow_redirects=True)
-        self.assertIn(b'please enter valid user name',response.data)
+        self.assertIn(b'please enter valid Email Id',response.data)
 
 if __name__ == '__main__':
     unittest.main()
