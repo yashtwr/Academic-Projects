@@ -88,7 +88,6 @@ function validateForm() {
 	}
 	
 	else{
-		alert("Login with your new password");
 		return true;
 	}
 }
