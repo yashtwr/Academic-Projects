@@ -43,60 +43,6 @@ def login():
     return render_template("login.html")
 
 
-# @app.route('/signup', methods=["GET"])
-# def userSignup():
-#     try:
-#         return render_template("signup.html")
-#     except Exception as ex:
-#         print(ex)
-#
-#
-# @app.route('/insertUser', methods=["GET", "POST"])
-# def signup():
-#     # getting input with name = lname in HTML form
-#     firstname = request.form['firstname']
-#     # getting input with name = lname in HTML form
-#     lastname = request.form['lastname']
-#     # getting input with name = fname in HTML form
-#     email = request.form['email']
-#     # getting input with name = lname in HTML form
-#     password = request.form['password']
-#     # getting input with name = lname in HTML form
-#     gender = request.form['gender']
-#     # getting input with name = lname in HTML form
-#     category = request.form['category']
-#
-#     loginVO = LoginVO()
-#     loginDAO = LoginDAO()
-#     loginVO.email = email
-#     loginVO.password = password
-#
-#     # loginDAO.insertLogin(loginVO)
-#     print("LoginVO inserted")
-#
-#     signupVO = SignUpVO()
-#     signupDAO = SignUpDAO()
-#
-#     signupVO.firstname = firstname
-#     signupVO.lastname = lastname
-#     signupVO.gender = gender
-#     signupVO.category = category
-#
-#     print(signupVO.signup_LoginId)
-#
-#
-#     lst = loginDAO.validateUser(loginVO)
-#
-#     lst = [i.as_dict for i in lst]
-#     if len(lst) == 0:
-#         loginDAO.insertLogin(loginVO)
-#         signupVO.signup_LoginId = loginVO.loginId
-#         signupDAO.insertUser(signupVO)
-#         return render_template("login.html")
-#     else:
-#         return render_template("signup.html", msg="User already exists!")
-
-
 @app.route('/forgotPassword', methods=["GET"])
 def forgotPassword():
     try:
@@ -121,7 +67,6 @@ def updatePassword():
 
         return render_template("forgot_password.html",msg = "please enter valid Email Id")
     else:
-        print("___________INSIDE ELSE updatePassword_________")
         loginVO.password = password
         loginDAO.updatePassword(loginVO)
         return render_template("login.html", msg1 = "password updated successfully")
