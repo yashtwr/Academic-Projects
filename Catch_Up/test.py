@@ -68,7 +68,7 @@ class FlaskTestCases(unittest.TestCase):
 
     def test_forgotPassword_change_password(self):
         tester = app.test_client(self)
-        response = tester.post('/updatePassword', data=dict(email="admin@uwaterloo00.ca", confirmpswd="Abcd1234"),
+        response = tester.post('/updatePassword', data=dict(email="admin@uwaterloo00.ca", confirmpswd="Abcd12345"),
                                follow_redirects=True)
         
         print('***********', response.data)
