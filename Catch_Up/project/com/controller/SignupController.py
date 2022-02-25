@@ -58,6 +58,6 @@ def signup():
         loginDAO.insertLogin(loginVO)
         signupVO.signup_LoginId = loginVO.loginId
         signupDAO.insertUser(signupVO)
-        return render_template("login.html")
+        return render_template("login.html", msg = "Account created successfully")
     else:
         return render_template("signup.html", msg="User already exists!")
