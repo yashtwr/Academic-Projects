@@ -1,0 +1,22 @@
+body {
+  background: #fdd54f;
+  color: #333333;
+  margin-top: 5rem;
+}
+
+a.fontStyle{
+	font-family: "BureauGrotCond Book","Barlow Condensed",impact,"avenir next condensed heavy","Droid Sans","sans-serif";
+	letter-spacing: .045rem;
+    text-transform: uppercase;
+    /*font-size: .9rem;*/
+    text-decoration: none;
+    color: white;
+}
+
+a.fontColor{
+	color: #ffffff;
+}
+
+.bg-steel {
+  background-color: #000000;
+}
