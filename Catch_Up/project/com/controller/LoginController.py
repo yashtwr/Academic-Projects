@@ -15,7 +15,7 @@ from project import app
 @app.route('/', methods=["GET", "POST"])
 def userLogin():
     try:
-        return render_template("login.html")
+        return render_template("login.html", title = "Login")
     except Exception as ex:
         print(ex)
 
@@ -37,9 +37,9 @@ def login():
         lst = loginDAO.validateLogin(loginVO)
         lst = [i.as_dict for i in lst]
         if len(lst) == 0:
-            return render_template("login.html", msg="Login Failed!")
+            return render_template("login.html", msg="Login Failed!", title = "Login")
         else:
-            return render_template("dashboard.html", email=email)
+            return render_template("dashboard.html", email=email, title = "dashboard" )
     return render_template("login.html")
 
 
@@ -100,7 +100,7 @@ def login():
 @app.route('/forgotPassword', methods=["GET"])
 def forgotPassword():
     try:
-        return render_template("forgot_password.html")
+        return render_template("forgot_password.html", title = "Forgot Password")
     except Exception as ex:
         print(ex)
 
@@ -119,7 +119,7 @@ def updatePassword():
     lst = [i.as_dict for i in lst]
     if len(lst) == 0:
 
-        return render_template("forgot_password.html",msg = "Please enter valid username.")
+        return render_template("forgot_password.html",msg = "Please enter valid username.", title = "Forgot Password")
     else:
         print("___________INSIDE ELSE updatePassword_________")
         loginVO.password = password
