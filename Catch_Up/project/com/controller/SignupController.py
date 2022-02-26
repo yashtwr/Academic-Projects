@@ -12,7 +12,7 @@ from project import app
 @app.route('/signup', methods=["GET"])
 def userSignup():
     try:
-        return render_template("signup.html")
+        return render_template("signup.html", title = "SignUp")
     except Exception as ex:
         print(ex)
 
@@ -58,6 +58,6 @@ def signup():
         loginDAO.insertLogin(loginVO)
         signupVO.signup_LoginId = loginVO.loginId
         signupDAO.insertUser(signupVO)
-        return render_template("login.html", msg1 = "Account created successfully")
+        return render_template("login.html", msg1 = "Account created successfully", title = "Login")
     else:
-        return render_template("signup.html", msg="User already exists!")
+        return render_template("signup.html", msg="User already exists!", title = "SignUp")
