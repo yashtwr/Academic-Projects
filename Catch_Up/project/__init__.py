@@ -19,11 +19,11 @@ app.config['SQLALCHEMY_ECHO'] = True
 
 app.config['SQLALCHEMY_RECORD_QUERIES'] = True
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:root@localhost/catchup'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=25)
 
-app.config['SQLALCHEMY_MAX_OVERFLOW'] = 0
+#app.config['SQLALCHEMY_MAX_OVERFLOW'] = 0
 
 app.config['DEBUG'] = True
 
