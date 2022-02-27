@@ -1,0 +1,171 @@
+#message {
+  display:none;
+  color: #000;
+  position: relative;
+  padding: 10px 70px 10px 70px;
+  font-family: Helvetica;
+  font-size: 14px;
+}
+
+/* Add a green text color and a checkmark when the requirements are right */
+.valid {
+  color: green;
+}
+
+.valid:before {
+  position: relative;
+  left: -35px;
+  content: "✔";
+}
+
+/* Add a red text color and an "x" when the requirements are wrong */
+.invalid {
+  color: red;
+}
+
+.invalid:before {
+  position: relative;
+  left: -35px;
+  content: "✖";
+}
+
+form{
+	height: 100%;
+	width: 120%;
+	background-color: #ffffff; 
+	border: 2px solid #8fc4b7;
+	border-radius: 15px;
+	border-color: #000000;
+	display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+	margin-top: 15%;
+	margin-bottom: 15%;
+    text-align: left;
+}
+div.form{
+    display: block;
+    text-align: center;
+}
+#title{
+	padding: 10px 20px 0px;
+}
+#msg{
+	display: none;
+}
+#title:hover + #msg {
+	display: block;
+	padding: 0px 20px;
+}
+
+#fnamediv{
+	padding: 0px 20px;
+}
+#fnamelabel{
+	font-family:Helvetica;
+	font-size: 15px;
+}
+#firstname{
+    border: 2px solid #cdcdcd;
+    border-color: rgba(0,0,0,.15);
+    background-color: white;
+	box-shadow: 5px 10px;
+}
+#firstname:hover{
+	box-shadow: none;
+}
+
+#lnamediv{
+	padding: 0px 20px;
+}
+#lnamelabel{
+	font-family:Helvetica;
+	font-size: 15px;
+}
+#lastname{
+    border: 2px solid #cdcdcd;
+    border-color: rgba(0,0,0,.15);
+    background-color: white;
+	box-shadow: 5px 10px;
+}
+#lastname:hover{
+	box-shadow: none;
+}
+
+#emaildiv{
+	padding: 0px 20px;
+}
+#emaillabel{
+	font-family:Helvetica;
+	font-size: 15px;
+}
+#email{
+    border: 2px solid #cdcdcd;
+    border-color: rgba(0,0,0,.15);
+    background-color: white;
+	box-shadow: 5px 10px;
+}
+#email:hover{
+	box-shadow: none;
+}
+
+#pswddiv{
+	padding: 0px 20px;
+}
+#pswdlabel{
+	font-family:Helvetica;
+	font-size: 15px;
+}
+#pswd{
+    border: 2px solid #cdcdcd;
+    border-color: rgba(0,0,0,.15);
+    background-color: white;
+	box-shadow: 5px 10px;
+}
+#pswd:hover{
+	box-shadow: none;
+}
+
+#confirmpswddiv{
+	padding: 0px 20px;
+}
+#confirmpswdlabel{
+	font-family:Helvetica;
+	font-size: 15px;
+}
+#confirmpswd{
+    border: 2px solid #cdcdcd;
+    border-color: rgba(0,0,0,.15);
+    background-color: white;
+	box-shadow: 5px 10px;
+}
+#confirmpswd:hover{
+	box-shadow: none;
+}
+
+#genderdiv{
+	padding:10px 20px 0px 20px;
+}
+#genderlabel{
+	font-family:Helvetica;
+	font-size: 15px;
+}
+
+#categorydiv{
+	padding:0px 20px;
+}
+#categorylabel{
+	font-family:Helvetica;
+	font-size: 15px;
+}
+
+#submitbtn{
+	margin: 0px 10px 0px 20px;
+	background-color: #000000;
+}
+#resetbtn{
+	background-color: #000000;
+}
+#loginlink{
+	padding: 10px 20px 20px;
+}
