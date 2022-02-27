@@ -1,7 +1,7 @@
 form{
 	height: 100%;
 	width: 120%;
-	background-color: #ffffff; 
+	background-color: #fdd54f; 
 	border: 2px solid #8fc4b7;
 	border-radius: 15px;
 	border-color: #000000;
@@ -47,7 +47,7 @@ div.form
     border: 2px solid #cdcdcd;
     border-color: rgba(0,0,0,.15);
     background-color: white;
-	box-shadow: 5px 10px;
+	box-shadow: 3px 3px;
 }
 #usr:hover{
 	box-shadow: none;
@@ -64,7 +64,7 @@ div.form
 	border: 2px solid #cdcdcd;
     border-color: rgba(0,0,0,.15);
     background-color: white;
-	box-shadow: 5px 10px;
+	box-shadow: 3px 3px;
 }
 #pswd:hover{
 	box-shadow: none;
