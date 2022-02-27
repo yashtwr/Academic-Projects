@@ -33,14 +33,22 @@
           </button> -->
           <!-- <div class="collapse navbar-collapse" id="navbarToggle"> -->
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link fontStyle" style ="color:white" href="#">Home</a>
-              <a class="nav-item nav-link fontStyle" style ="color:white" href="#">Dashboard</a>
+                <a class="nav-item nav-link fontStyle" style ="color:white" href="/login">Home</a>
+                <a class="nav-item nav-link fontStyle" style ="color:white" href="/dashboard">Dashboard</a>
+              
             </div>
             <!-- Navbar Right Side -->
+             {% if not session %}
             <div class="navbar-nav">
-              <a class="nav-item nav-link fontStyle" style ="color:white" href="#">Login</a>
-              <a class="nav-item nav-link fontStyle" style ="color:white" href="#">Register</a>
+              <a class="nav-item nav-link fontStyle" style ="color:white" href="/">Login</a>
+              <a class="nav-item nav-link fontStyle" style ="color:white" href="/signup">Register</a>
             </div>
+            {% else %}
+            <div class="navbar-nav">
+              <a class="nav-item nav-link fontStyle" style ="color:white" href="/userLogoutSession">Logout</a>
+              <a class="nav-item nav-link fontStyle" style ="color:white" href="/loadDashboard">Edit Profile</a>
+            </div>
+            {% endif %}
           <!-- </div> -->
         </div>
       </nav>
@@ -61,8 +69,6 @@
           &copy CatchUp Uwaterloo</a>
         </div>
       </nav>
-
-
 
 
   <script language="JavaScript">
