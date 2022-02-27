@@ -58,9 +58,9 @@ myInput.onkeyup = function() {
 
 function validateForm() {
 	
-	var un = document.forms["forgotpswdform"]["username"].value;
-	var newp = document.forms["forgotpswdform"]["newpswd"].value;
-	var cp = document.forms["forgotpswdform"]["confirmpswd"].value;
+	var un = document.getElementById("usr").value;
+	var newp = document.getElementById("newpswd").value;
+	var cp = document.getElementById("confirmpswd").value;
 	
 	var small = /[a-z]/.test(newp);
 	var capital = /[A-Z]/.test(newp);
