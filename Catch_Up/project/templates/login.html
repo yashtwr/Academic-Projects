@@ -4,7 +4,7 @@
 	<link rel="stylesheet" href="../static/css/login.css">
 	<div class="form">
 	<form name = "login" method = "POST" action="/login">
-	<h1 id="title">Login</h1>	
+	<h1 id="title"><b>Login</b></h1>	
         <!-- <a class="fontStyle"  href="/"><img height="40" src="../static/pictures/university-of-waterloo-logo.png"/>
           Catch-Up</a>
          -->
@@ -21,11 +21,11 @@
     {% endif%}
 	<p id="msg" >Please sign in to access.</p>
     <div class="form-group" id="userdiv">
-      <label for="usr" id="userlabel">Username:</label>
+      <label for="usr" id="userlabel"><b>Username:</b></label>
       <input type="text" class="form-control" id="usr" name="email" placeholder="username@uwaterloo.ca" required>
     </div>
     <div class="form-group" id="pswddiv">
-      <label for="pwd" id="pswdlabel">Password:</label>
+      <label for="pwd" id="pswdlabel"><b>Password:</b></label>
       <input type="password" class="form-control" id="pswd" name="password" required>
     </div>
     <button type="submit" id="loginbtn" class="btn btn-primary">Login</button>
