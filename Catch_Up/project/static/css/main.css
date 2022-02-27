@@ -13,6 +13,16 @@ a.fontStyle{
     color: white;
 }
 
+
+a.fontStyle2{
+  font-family: "BureauGrotCond Book","Barlow Condensed",impact,"avenir next condensed heavy","Droid Sans","sans-serif";
+  letter-spacing: .055rem;
+    
+    font-size: .95rem;
+    text-decoration: none;
+    color: white;
+}
+
 a.fontColor{
 	color: #ffffff;
 }
