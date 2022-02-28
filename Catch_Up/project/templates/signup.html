@@ -13,8 +13,6 @@
       {{msg}}
     </div>
     {% endif%}
-    <p id="msg" >Please fill in this form to create an account.</p>	
-	</div>	
 		
 	    	
     <div class="form-group" id="fnamediv">	
@@ -44,12 +42,13 @@
 		
     <div class="form-group" id="confirmpswddiv">	
         <label for="pwd-confirm" id="confirmpswdlabel">Confirm Password:</label>	
-        <input type="password" class="form-control" id="confirmpswd" name="confirmpassword" required>	
+        <input type="password" class="form-control" id="confirmpswd" name="confirmpassword" onkeyup="confirmvalidation()" required>
+			<p id="cmsg">Passwords should match</p>
     </div>	
     <div class="form-group" id="genderdiv">	
     <label for="gender" id="genderlabel">Gender: </label>	
         <label>	
-        <input type="radio" id="male" name="gender" value='male' required> Male </label> 	
+        <input type="radio" id="male" name="gender" value="male" required> Male </label> 	
 			
         <label>  	
         <input type="radio" id="female" name="gender" value="female"> Female  </label>	
