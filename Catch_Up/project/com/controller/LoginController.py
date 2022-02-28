@@ -76,7 +76,7 @@ def userLogoutSession():
     except Exception as ex:
         print(ex)
 
-@app.route("/AboutUs", methods=['GET'])
+@app.route("/AboutUs", methods=['GET','POST'])
 def AboutUs():
     try:
         return render_template('AboutUs.html', title = "About Us")
@@ -84,6 +84,12 @@ def AboutUs():
         print(ex)
 
 
+@app.route("/profileSetup", methods=['GET','POST'])
+def profileSetup():
+    try:
+        return render_template('profile_setup.html', title = "profile setup")
+    except Exception as ex:
+        print(ex)
 
 
 @app.route('/forgotPassword', methods=["GET"])
