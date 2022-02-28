@@ -136,6 +136,20 @@ def forgotPassword():
     except Exception as ex:
         print(ex)
 
+@app.route('/dashboard', methods=["GET"])
+def dashboard():
+    try:
+        return render_template("Dashboard.html", title="Dashboard")
+    except Exception as ex:
+        print(ex)
+
+@app.route('/AboutUs', methods=["GET"])
+def AboutUs():
+    try:
+        return render_template("AboutUs.html", title="About Us")
+    except Exception as ex:
+        print(ex)
+
 
 @app.route('/updatePassword', methods=["GET", "POST"])
 def updatePassword():
