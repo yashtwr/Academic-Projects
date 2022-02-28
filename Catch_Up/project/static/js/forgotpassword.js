@@ -25,7 +25,7 @@ myInput.onkeyup = function() {
     letter.classList.remove("valid");
     letter.classList.add("invalid");
   }
-  
+ 
   // Validate capital letters
   var upperCaseLetters = /[A-Z]/g;
   if(myInput.value.match(upperCaseLetters)) {  
@@ -56,6 +56,19 @@ myInput.onkeyup = function() {
   }
 }
 
+function confirmvalidation() {
+	var vp = document.getElementById("newpswd").value;
+	var vcp = document.getElementById("confirmpswd").value;
+	if (vcp!=vp){
+		document.getElementById("cmsg").style.display="inline-block";
+		document.getElementById("confirmpswd").style.color="red";
+	}
+	else{
+		document.getElementById("cmsg").style.display="none";
+		document.getElementById("confirmpswd").style.color="black";
+	}
+}
+
 function validateForm() {
 	
 	var un = document.getElementById("usr").value;
@@ -68,22 +81,21 @@ function validateForm() {
 
 	if (newp.length < 8){
 		alert("Password must contain at least 8 characters");
-		document.forms["forgotpswdform"]["newpswd"].focus();
-		document.forms["forgotpswdform"]["newpswd"].select();
+		document.getElementById("newpswd").focus();
+		document.getElementById("newpswd").select();
 		return false;
 	}
 	
 	else if (!(small && capital && num)){
 		alert("Please fill all the details of Password");
-		document.forms["forgotpswdform"]["newpswd"].focus();
-		document.forms["forgotpswdform"]["newpswd"].select();
+		document.getElementById("newpswd").focus();
+		document.getElementById("newpswd").select();
 		return false;
 	}
 	
 	else if(newp!=cp){
-		alert("Both password should be same");
-		document.forms["forgotpswdform"]["confirmpswd"].focus();
-		document.forms["forgotpswdform"]["confirmpswd"].select();
+		document.getElementById("confirmpswd").focus();
+		document.getElementById("confirmpswd").select();
 		return false;
 	}
 	
@@ -93,5 +105,16 @@ function validateForm() {
 }
 function resetfun(){
 	document.getElementById("usr").focus();
-	//document.forms["forgotpswdform"]["username"].focus();
+	
+	letter.classList.remove("valid");
+    letter.classList.add("invalid");
+	
+	capital.classList.remove("valid");
+    capital.classList.add("invalid");
+	
+	number.classList.remove("valid");
+    number.classList.add("invalid");
+	
+	length.classList.remove("valid");
+    length.classList.add("invalid");
 }
