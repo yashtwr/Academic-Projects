@@ -76,6 +76,13 @@ def userLogoutSession():
     except Exception as ex:
         print(ex)
 
+@app.route("/AboutUs", methods=['GET'])
+def AboutUs():
+    try:
+        return render_template('AboutUs.html', title = "About Us")
+    except Exception as ex:
+        print(ex)
+
 
 
 
