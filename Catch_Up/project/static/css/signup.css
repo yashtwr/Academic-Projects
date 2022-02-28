@@ -32,7 +32,7 @@
 form{
 	height: 100%;
 	width: 120%;
-	background-color: #ffffff; 
+	background-color: #fdd54f; 
 	border: 2px solid #8fc4b7;
 	border-radius: 15px;
 	border-color: #000000;
@@ -47,15 +47,15 @@ div.form{
     display: block;
     text-align: center;
 }
+
+#cmsg{
+	display: none;
+	padding: 0px 5px;
+	color: red;
+}
+
 #title{
 	padding: 10px 20px 0px;
-}
-#msg{
-	display: none;
-}
-#title:hover + #msg {
-	display: block;
-	padding: 0px 20px;
 }
 
 #fnamediv{
@@ -64,12 +64,13 @@ div.form{
 #fnamelabel{
 	font-family:Helvetica;
 	font-size: 15px;
+	font-weight: bold;
 }
 #firstname{
     border: 2px solid #cdcdcd;
     border-color: rgba(0,0,0,.15);
     background-color: white;
-	box-shadow: 5px 10px;
+	box-shadow: 3px 3px;
 }
 #firstname:hover{
 	box-shadow: none;
@@ -81,12 +82,13 @@ div.form{
 #lnamelabel{
 	font-family:Helvetica;
 	font-size: 15px;
+	font-weight: bold;
 }
 #lastname{
     border: 2px solid #cdcdcd;
     border-color: rgba(0,0,0,.15);
     background-color: white;
-	box-shadow: 5px 10px;
+	box-shadow: 3px 3px;
 }
 #lastname:hover{
 	box-shadow: none;
@@ -98,12 +100,13 @@ div.form{
 #emaillabel{
 	font-family:Helvetica;
 	font-size: 15px;
+	font-weight: bold;
 }
 #email{
     border: 2px solid #cdcdcd;
     border-color: rgba(0,0,0,.15);
     background-color: white;
-	box-shadow: 5px 10px;
+	box-shadow: 3px 3px;
 }
 #email:hover{
 	box-shadow: none;
@@ -115,12 +118,13 @@ div.form{
 #pswdlabel{
 	font-family:Helvetica;
 	font-size: 15px;
+	font-weight: bold;
 }
 #pswd{
     border: 2px solid #cdcdcd;
     border-color: rgba(0,0,0,.15);
     background-color: white;
-	box-shadow: 5px 10px;
+	box-shadow: 3px 3px;
 }
 #pswd:hover{
 	box-shadow: none;
@@ -132,12 +136,13 @@ div.form{
 #confirmpswdlabel{
 	font-family:Helvetica;
 	font-size: 15px;
+	font-weight: bold;
 }
 #confirmpswd{
     border: 2px solid #cdcdcd;
     border-color: rgba(0,0,0,.15);
     background-color: white;
-	box-shadow: 5px 10px;
+	box-shadow: 3px 3px;
 }
 #confirmpswd:hover{
 	box-shadow: none;
@@ -149,6 +154,7 @@ div.form{
 #genderlabel{
 	font-family:Helvetica;
 	font-size: 15px;
+	font-weight: bold;
 }
 
 #categorydiv{
@@ -157,6 +163,7 @@ div.form{
 #categorylabel{
 	font-family:Helvetica;
 	font-size: 15px;
+	font-weight: bold;
 }
 
 #submitbtn{
@@ -168,4 +175,33 @@ div.form{
 }
 #loginlink{
 	padding: 10px 20px 20px;
+	color: #003366;
+	text-decoration: underline;
+}
+
+input[type='radio']:after {
+        width: 15px;
+        height: 15px;
+        border-radius: 15px;
+        top: -2px;
+        left: -1px;
+        position: relative;
+        background-color: #ffffff;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+}
+
+input[type='radio']:checked:after {
+        width: 15px;
+        height: 15px;
+        border-radius: 15px;
+        top: -2px;
+        left: -1px;
+        position: relative;
+        background-color: #000000;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 2px solid white;
 }
