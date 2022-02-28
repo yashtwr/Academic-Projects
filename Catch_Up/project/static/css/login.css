@@ -20,13 +20,6 @@ div.form
 #title{
 	padding: 10px 20px 0px;
 }
-#msg{
-	display: none;
-}
-#title:hover + #msg {
-	display: block;
-	padding: 0px 20px;
-}
 
 #loginbtn{
 	margin: 10px 0px 20px 20px;
@@ -34,6 +27,8 @@ div.form
 }
 #fpbtn{
 	padding: 10px 20px 20px;
+	color: #003366;
+	text-decoration: underline;
 }
 
 #userdiv{
@@ -42,6 +37,7 @@ div.form
 #userlabel{
 	font-family:Helvetica;
 	font-size: 15px;
+	font-weight: bold;
 }
 #usr{
     border: 2px solid #cdcdcd;
@@ -59,6 +55,7 @@ div.form
 #pswdlabel{
 	font-family:Helvetica;
 	font-size: 15px;
+	font-weight: bold;
 }
 #pswd{
 	border: 2px solid #cdcdcd;
