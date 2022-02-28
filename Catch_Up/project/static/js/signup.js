@@ -56,6 +56,19 @@ myInput.onkeyup = function() {
   }
 }
 
+function confirmvalidation() {
+	var vp = document.getElementById("pswd").value;
+	var vcp = document.getElementById("confirmpswd").value;
+	if (vcp!=vp){
+		document.getElementById("cmsg").style.display="inline-block";
+		document.getElementById("confirmpswd").style.color="red";
+	}
+	else{
+		document.getElementById("cmsg").style.display="none";
+		document.getElementById("confirmpswd").style.color="black";
+	}
+}
+
 function validateForm() {
 	
 	var firstname = document.forms["signup"]["firstname"].value;
@@ -98,18 +111,27 @@ function validateForm() {
 	}
 	
 	else if(newp!=cp){
-		alert("Both password should be same");
 		document.forms["signup"]["confirmpswd"].focus();
 		document.forms["signup"]["confirmpswd"].select();
 		return false;
 	}
 	
 	else{
-		
 		return true;
 	}
 }
 function resetfun(){
 	document.getElementById("firstname").focus();
-	//document.forms["forgotpswdform"]["username"].focus();
+	
+	letter.classList.remove("valid");
+    letter.classList.add("invalid");
+	
+	capital.classList.remove("valid");
+    capital.classList.add("invalid");
+	
+	number.classList.remove("valid");
+    number.classList.add("invalid");
+	
+	length.classList.remove("valid");
+    length.classList.add("invalid");
 }
