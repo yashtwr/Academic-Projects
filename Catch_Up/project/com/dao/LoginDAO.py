@@ -19,3 +19,7 @@ class LoginDAO:
 		loginList = LoginVO.query.filter_by(email = loginVO.email).first()
 		loginList.password = loginVO.password
 		db.session.commit()
+
+	def fetchId(self, loginVO):
+		fetchedId = LoginVO.query.filter_by(email = loginVO.email).first()
+		return fetchedId.loginId
