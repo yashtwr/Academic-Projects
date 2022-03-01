@@ -84,14 +84,6 @@ def AboutUs():
         print(ex)
 
 
-@app.route("/profileSetup", methods=['GET','POST'])
-def profileSetup():
-    try:
-        return render_template('profile_setup.html', title = "profile setup")
-    except Exception as ex:
-        print(ex)
-
-
 @app.route('/forgotPassword', methods=["GET"])
 def forgotPassword():
 
