@@ -1,7 +1,7 @@
 from project import db
 from project.com.vo.SkillsVO import SkillsVO
 
-class ProjectDAO:
+class SkillsDAO:
     def insertSkills(self, skillsVO):
         db.session.add(skillsVO)
         db.session.commit()
