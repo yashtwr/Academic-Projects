@@ -4,12 +4,12 @@ from project.com.vo.LoginVO import LoginVO
 class PersonalVO(db.Model):
     __tablename__ = "personalmaster"
     Id = db.Column('Id', db.Integer, primary_key=True, autoincrement=True)
-    description = db.Colum('description', db.String(200), nulllable=False)
-    contact_number = db.Column('contact_number', db.Integer)
+    description = db.Column('description', db.String(200))
+    contact_number = db.Column('contact_number', db.String(20))
     contact_email = db.Column('contact_email', db.String(50))
     address = db.Column('address', db.String(200))
-    linkedIn_account = db.Column('linkedIn_account', db.String(100))
-    other_links = db.Column('other_links', db.String(100))
+    linkedIn_account = db.Column('linkedIn_account', db.String(200))
+    other_links = db.Column('other_links', db.String(200))
     personal_loginId = db.Column('personal_loginId', db.Integer, db.ForeignKey(LoginVO.loginId))
 
     def as_dict(self):
