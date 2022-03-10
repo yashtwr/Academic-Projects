@@ -1,6 +1,4 @@
 # importing Flask and other modules
-from audioop import add
-import imp
 from flask import Flask, request, render_template, redirect, url_for, session
 from project.com.vo.LoginVO import LoginVO
 from project.com.vo.CoursesVO import CoursesVO
