@@ -2,7 +2,7 @@ from project import db
 from project.com.vo.CertificatesVO import CertificatesVO
 
 class CertificatesDAO:
-    def insertSkills(self, certificatesVO):
+    def insertCertificates(self, certificatesVO):
         db.session.add(certificatesVO)
         db.session.commit()
 
