@@ -20,7 +20,8 @@ class PersonalVO(db.Model):
             'contact_email': self.contact_email,
             'address': self.address,
             'linkedIn_account': self.linkedIn_account,
-            'other_links': self.other_links
+            'other_links': self.other_links,
+            'personal_loginId':self.personal_loginId
         }
 
 db.create_all()
