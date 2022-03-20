@@ -6,6 +6,6 @@ class ProjectDAO:
         db.session.add(projectVO)
         db.session.commit()
 
-    def fetchProjects(self, id):
-        projects_list = ProjectVO.query.all(project_loginId = id)
+    def fetchProjects(self, projectVO):
+        projects_list = ProjectVO.query.filter_by(project_loginId = projectVO.project_loginId).all()
         return projects_list
