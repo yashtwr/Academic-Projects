@@ -16,7 +16,8 @@ class IndustryVO(db.Model):
             'company_name': self.company_name,
             'designation': self.designation,
             'work_description': self.work_description,
-            'no_of_months': self.no_of_months
+            'no_of_months': self.no_of_months,
+            'industry_loginId': self.industry_loginId
         }
 
 db.create_all()
