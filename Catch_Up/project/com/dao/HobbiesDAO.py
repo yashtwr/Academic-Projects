@@ -6,6 +6,6 @@ class HobbiesDAO:
         db.session.add(hobbiesVO)
         db.session.commit()
 
-    def fetchHobbies(self, id):
-        hobbies_list = HobbiesVO.query.all(hobbies_loginId = id)
+    def fetchHobbies(self, hobbiesVO):
+        hobbies_list = HobbiesVO.query.filter_by(hobbies_loginId = hobbiesVO.hobbies_loginId).all()
         return hobbies_list
