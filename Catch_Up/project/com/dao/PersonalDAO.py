@@ -6,6 +6,6 @@ class PersonalDAO:
         db.session.add(personalVO)
         db.session.commit()
 
-    def fetchPersonal(self, id):
-        personal_list = PersonalVO.query.all(personal_loginId = id)
+    def fetchPersonal(self, personalVO):
+        personal_list = PersonalVO.query.filter_by(personal_loginId = personalVO.personal_loginId).all()
         return personal_list
