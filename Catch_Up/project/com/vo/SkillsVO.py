@@ -10,7 +10,8 @@ class SkillsVO(db.Model):
     def as_dict(self):
         return {
             'Id': self.Id,
-            'skills': self.skills
+            'skills': self.skills,
+            'skills_loginId': self.skills_loginId
         }
 
 db.create_all()
