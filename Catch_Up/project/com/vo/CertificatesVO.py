@@ -10,7 +10,8 @@ class CertificatesVO(db.Model):
     def as_dict(self):
         return {
             'Id': self.Id,
-            'certificates': self.certificates
+            'certificates': self.certificates,
+            'certificates_loginId': self.certificates_loginId
         }
 
 db.create_all()
