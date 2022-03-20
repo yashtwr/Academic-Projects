@@ -1,11 +1,11 @@
 from project import db
-from project.com.vo.IndustryExpVO import IndustryVO
+from project.com.vo.HobbiesVO import HobbiesVO
 
-class IndustryDAO:
-    def insertIndustryExp(self, industryVO):
-        db.session.add(industryVO)
+class HobbiesDAO:
+    def insertHobbies(self, hobbiesVO):
+        db.session.add(hobbiesVO)
         db.session.commit()
 
-    def fetchIndustryExp(self, id):
-        Experience_list = IndustryVO.query.all(industry_loginId = id)
-        return Experience_list
+    def fetchHobbies(self, hobbiesVO):
+        hobbies_list = HobbiesVO.query.filter_by(hobbies_loginId = hobbiesVO.hobbies_loginId).all()
+        return hobbies_list
