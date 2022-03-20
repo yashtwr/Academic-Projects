@@ -12,7 +12,8 @@ class ProjectVO(db.Model):
         return {
             'Id': self.Id,
             'project_title': self.project_title,
-            'project_detail': self.project_detail
+            'project_detail': self.project_detail,
+            'project_loginId': self.project_loginId
         }
 
 db.create_all()
