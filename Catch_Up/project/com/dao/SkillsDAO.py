@@ -6,6 +6,6 @@ class SkillsDAO:
         db.session.add(skillsVO)
         db.session.commit()
 
-    def fetchSkills(self, id):
-        skills_list = SkillsVO.query.all(skills_loginId = id)
+    def fetchSkills(self, skillsVO):
+        skills_list = SkillsVO.query.filter_by(skills_loginId = skillsVO.skills_loginId).all()
         return skills_list
