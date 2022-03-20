@@ -2,10 +2,10 @@ from project import db
 from project.com.vo.EducationVO import EducationVO
 
 class EducationDAO:
-    def insertEdu(self, educationVO):
+    def insertEdution(self, educationVO):
         db.session.add(educationVO)
         db.session.commit()
 
-    def fetchEdu(self, id):
-        edu_list = EducationVO.query.all(education_loginId = id)
+    def fetchEducation(self, educationVO):
+        edu_list = EducationVO.query.filter_by(education_loginId = educationVO.education_loginId).all()
         return edu_list
