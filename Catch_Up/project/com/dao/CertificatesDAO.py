@@ -6,6 +6,6 @@ class CertificatesDAO:
         db.session.add(certificatesVO)
         db.session.commit()
 
-    def fetchcertificates(self, id):
-        certificates_list = CertificatesVO.query.all(certificates_loginId = id)
+    def fetchCertificates(self, certificatesVO):
+        certificates_list = CertificatesVO.query.filter_by(certificates_loginId = certificatesVO.certificates_loginId).all()
         return certificates_list
