@@ -10,7 +10,8 @@ class HobbiesVO(db.Model):
     def as_dict(self):
         return {
             'Id': self.Id,
-            'hobbies': self.hobbies
+            'hobbies': self.hobbies,
+            'hobbies_lognId': self.hobbies_loginId
         }
 
 db.create_all()
