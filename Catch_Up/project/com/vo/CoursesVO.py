@@ -12,7 +12,8 @@ class CoursesVO(db.Model):
         return {
             'Id': self.Id,
             'department': self.department,
-            'course_no': self.course_no
+            'course_no': self.course_no,
+            'course_loginId': self.course_loginId
         }
 
 db.create_all()
