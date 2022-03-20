@@ -6,6 +6,6 @@ class CoursesDAO:
         db.session.add(coursesVO)
         db.session.commit()
 
-    def fetchEdu(self, id):
-        courses_list = CoursesVO.query.all(education_loginId = id)
+    def fetchCourses(self, coursesVO):
+        courses_list = CoursesVO.query.filter_by(course_loginId = coursesVO.course_loginId).all()
         return courses_list
