@@ -28,6 +28,9 @@ def userProfile():
     try:
         courseVO = CoursesVO()
         courseDAO = CoursesDAO()
+        certificatesVO = CertificatesVO()
+        certificatesDAO = CertificatesDAO()
+
         loginVO = LoginVO()
         loginDAO = LoginDAO()
         
@@ -35,12 +38,16 @@ def userProfile():
         id = loginDAO.fetchId(loginVO)
 
         courseVO.course_loginId = id
-        lst = courseDAO.fetchCourses(CoursesVO)
+        lst = courseDAO.fetchCourses(courseVO)
         courses = [i.as_dict() for i in lst]
         print('=------------------------------')
-    
-        print(courses)
-        return render_template("profile_setup.html", title = "profileSetup", courses = courses)
+        
+        certificatesVO.certificates_loginId = id
+        lst_certi = certificatesDAO.fetchCertificates(CertificatesVO)
+        certificates = [i.as_dict() for i in lst_certi]
+        print(certificates)
+
+        return render_template("profile_setup.html", title = "profileSetup", courses = courses, certificates = certificates)
     except Exception as ex:
         print(ex)
 
@@ -60,15 +67,33 @@ def insertCourse():
     courseVO.department = request.args.get('department')
     #courseVO.department = department
     courseVO.course_loginId = loginDAO.fetchId(loginVO)
-    print('=------------------------------')
-    print(request.args.get('courseid'))
-    print(request.args.get('department'))
-    print(';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;')
     
     courseDAO.insertCourses(courseVO)
 
     return redirect(url_for("userProfile"))
 
+
+@app.route('/insertCertificates', methods=["GET"])
+def insertCertificates():
+    certificatesVO = CertificatesVO()
+    certificatesDAO = CertificatesDAO()
+    loginVO = LoginVO()
+    loginDAO = LoginDAO()
+    
+
+    loginVO.email = session['login_email']
+    
+    certificatesVO.certificates = request.args.get('certificates')
+    
+    certificatesVO.certificates_loginId = loginDAO.fetchId(loginVO)
+    print('=------------------------------')
+    print(';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;')
+    
+    print(request.args.get('certificates'))
+    certificatesDAO.insertCertificates(certificatesVO)
+
+
+    return redirect(url_for("userProfile"))
 
 @app.route('/deleteCourse', methods=["GET"])
 def deleteCourse():
@@ -89,6 +114,23 @@ def deleteCourse():
 
     return redirect(url_for("userProfile"))
 
+
+@app.route('/deleteCertificates', methods=["GET"])
+def deleteCertificates():
+    certificatesVO = CertificatesVO()
+    certificatesDAO = CertificatesDAO()
+    loginVO = LoginVO()
+    loginDAO = LoginDAO()
+    
+
+    loginVO.email = session['login_email']
+    
+    certificatesVO.certificates= request.args.get('certificates')
+    
+    certificatesVO.certificates_loginId = loginDAO.fetchId(loginVO)
+    certificatesDAO.deleteCertificates(certificatesVO)
+
+    return redirect(url_for("userProfile"))
 
 
 @app.route('/profileSetup', methods=["GET", "POST"])
