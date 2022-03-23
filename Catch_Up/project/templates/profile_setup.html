@@ -72,23 +72,27 @@
 		</div>
 		
 		<!-- add and delete courses-->
-
-		{% for course in courses %}
-		    <div class="form-group" id="course_no">	
-		      <label for="first" id="course_no">Course No.:</label>	
+		    <div class="form-group">	
+		      <label for="first">Course No.:</label>	
+		      {% for course in courses %}
+		
 		      <input type="text" class="form-control" id="course_no" name="course_no" value="{{ course['course_no'] }}">
 		      <a href="deleteCourse?courseid={{course['course_no']}}">DELETE</a>
 		      <a href="updateCourse?courseid={{course['course_no']}}&{{courses['Id']}}">UPDATE</a>
-		    </div>
-		{% endfor %}
-		<div class="form-group" id="course_no"> 
-		    <label for="first" id="course_no">Course No.:</label> 
-		    <input type="text" class="form-control" id="course_no1" name="course_no1">  
+		      {% endfor %}
+		      <input type="text" class="form-control" id="course_no1" name="course_no1">  
 		    
 		    <a name="insertCourse" href="" onclick="this.href='insertCourse?courseid='+document.getElementById('course_no1').value+'&department='+document.getElementById('department').value">ADD</a>
-
-		</div>
+		    </div>
 		
+	
+
+	
+
+
+
+
+
 		<div class="form-group" id="institution_name">	
 			<label for="first" id="institution_name">Institution name:</label>	
 			<input type="text" class="form-control" id="institution_name" name="institution_name">	
@@ -143,11 +147,21 @@
 	
 	<div id="divskills" class="content">
 	  <form class="skills">
-		<div class="form-group" id="certificates">	
-			<label for="first" id="certificates">Certificates:</label>	
-			<input type="text" class="form-control" id="certificates" name="certificates">	
-		</div>
-		
+
+		<div class="form-group">	
+			<label for="first" >Certificates:</label>	
+			{% for certificate in certificates %}
+				
+				 <input type="text" class="form-control" id="certificates" name="certificates" value="{{ certificate['certificates'] }}">
+		      <a href="deleteCertificates?certificates={{certificate['certificates']}}">DELETE</a>
+		      <a href="updateCertificates?certificates={{certificate['certificates']}}}}">UPDATE</a>
+		      {% endfor %}
+
+
+		      <input type="text" class="form-control" id="certificates1" name="certificates1">  
+		    
+		    <a name="insertCertificates" href="" onclick="this.href='insertCertificates?certificates='+document.getElementById('certificates1').value">ADD</a>
+		</div>		
 		<div class="form-group" id="project_title">	
 			<label for="first" id="project_title">Project Title:</label>	
 			<input type="text" class="form-control" id="project_title" name="project_title">	
