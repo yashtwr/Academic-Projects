@@ -1,17 +1,16 @@
 from project import db
-from project.com.vo.LoginVO import LoginVO
+from project.com.vo.CertificatesVO import CertificatesVO
 
-class CertificatesVO(db.Model):
-    __tablename__ = "certificatesmaster"
-    Id = db.Column('Id', db.Integer, primary_key=True, autoincrement=True)
-    certificates = db.Column('certificates',db.String(200))
-    certificates_loginId = db.Column('certificates_loginId', db.Integer, db.ForeignKey(LoginVO.loginId))
+class CertificatesDAO:
+    def insertCertificates(self, certificatesVO):
+        db.session.add(certificatesVO)
+        db.session.commit()
 
-    def as_dict(self):
-        return {
-            'Id': self.Id,
-            'certificates': self.certificates,
-            'certificates_loginId': self.certificates_loginId
-        }
+    def fetchCertificates(self, certificatesVO):
+        certificates_list = CertificatesVO.query.filter_by(certificates_loginId = certificatesVO.certificates_loginId).all()
+        return certificates_list
 
-db.create_all()
+    
+    def deleteCertificates(self, certificatesVO):
+        CertificatesVO.query.filter_by(certificates=certificatesVO.certificates, certificates_loginId=certificatesVO.certificates_loginId).delete()
+        db.session.commit()
