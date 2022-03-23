@@ -61,9 +61,32 @@
 			<input type="text" class="form-control" id="degree_name" name="degree_name">	
 		</div>
 		
-		<div class="form-group" id="department">	
-			<label for="last" id="department">Department:</label>	
-			<input type="text" class="form-control" id="department" name="department">	
+		<div class="form-group" >	
+			<label for="last" id="">Department:</label>	
+			{% if courses%}
+			<input type="text" class="form-control" id="department" name="department" value="{{courses[0]['department']}}">
+			{%else%}
+			<input type="text" class="form-control" id="department" name="department" >
+			
+			{%endif%}	
+		</div>
+		
+		<!-- add and delete courses-->
+
+		{% for course in courses %}
+		    <div class="form-group" id="course_no">	
+		      <label for="first" id="course_no">Course No.:</label>	
+		      <input type="text" class="form-control" id="course_no" name="course_no" value="{{ course['course_no'] }}">
+		      <a href="deleteCourse?courseid={{course['course_no']}}">DELETE</a>
+		      <a href="updateCourse?courseid={{course['course_no']}}&{{courses['Id']}}">UPDATE</a>
+		    </div>
+		{% endfor %}
+		<div class="form-group" id="course_no"> 
+		    <label for="first" id="course_no">Course No.:</label> 
+		    <input type="text" class="form-control" id="course_no1" name="course_no1">  
+		    
+		    <a name="insertCourse" href="" onclick="this.href='insertCourse?courseid='+document.getElementById('course_no1').value+'&department='+document.getElementById('department').value">ADD</a>
+
 		</div>
 		
 		<div class="form-group" id="institution_name">	
