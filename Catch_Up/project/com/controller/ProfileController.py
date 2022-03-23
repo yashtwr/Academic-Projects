@@ -23,12 +23,72 @@ from project.com.dao.SkillsDAO import SkillsDAO
 from project import app
 
 
-@app.route('/profile', methods=["GET"])
+@app.route('/profile', methods=["GET","POST"])
 def userProfile():
     try:
-        return render_template("profile_setup.html", title = "profileSetup")
+        courseVO = CoursesVO()
+        courseDAO = CoursesDAO()
+        loginVO = LoginVO()
+        loginDAO = LoginDAO()
+        
+        loginVO.email = session['login_email']
+        id = loginDAO.fetchId(loginVO)
+
+        courseVO.course_loginId = id
+        lst = courseDAO.fetchCourses(CoursesVO)
+        courses = [i.as_dict() for i in lst]
+        print('=------------------------------')
+    
+        print(courses)
+        return render_template("profile_setup.html", title = "profileSetup", courses = courses)
     except Exception as ex:
         print(ex)
+
+
+@app.route('/insertCourse', methods=["GET"])
+def insertCourse():
+    courseVO = CoursesVO()
+    courseDAO = CoursesDAO()
+    loginVO = LoginVO()
+    loginDAO = LoginDAO()
+    
+
+    loginVO.email = session['login_email']
+    
+    courseVO.course_no = request.args.get('courseid')
+    
+    courseVO.department = request.args.get('department')
+    #courseVO.department = department
+    courseVO.course_loginId = loginDAO.fetchId(loginVO)
+    print('=------------------------------')
+    print(request.args.get('courseid'))
+    print(request.args.get('department'))
+    print(';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;')
+    
+    courseDAO.insertCourses(courseVO)
+
+    return redirect(url_for("userProfile"))
+
+
+@app.route('/deleteCourse', methods=["GET"])
+def deleteCourse():
+    courseVO = CoursesVO()
+    courseDAO = CoursesDAO()
+    loginVO = LoginVO()
+    loginDAO = LoginDAO()
+    
+
+    loginVO.email = session['login_email']
+    
+    course_no = request.args.get('courseid')
+    courseVO.course_no= request.args.get('courseid')
+    
+    courseVO.course_loginId = loginDAO.fetchId(loginVO)
+    login_id = loginDAO.fetchId(loginVO)
+    courseDAO.deleteCourses(course_no, login_id)
+
+    return redirect(url_for("userProfile"))
+
 
 
 @app.route('/profileSetup', methods=["GET", "POST"])
