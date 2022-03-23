@@ -2,7 +2,7 @@ from project import db
 from project.com.vo.EducationVO import EducationVO
 
 class EducationDAO:
-    def insertEdution(self, educationVO):
+    def insertEducation(self, educationVO):
         db.session.add(educationVO)
         db.session.commit()
 
