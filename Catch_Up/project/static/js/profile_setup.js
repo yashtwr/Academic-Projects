@@ -15,6 +15,10 @@ divexp.style.display = "none";
 divskills.style.display = "none";
 divla.style.display = "none";
 btnpi.style.backgroundColor = "#fdd54f";
+btnedu.style.backgroundColor = "#eee";
+btnexp.style.backgroundColor = "#eee";
+btnskills.style.backgroundColor = "#eee";
+btnla.style.backgroundColor = "#eee";
 
 function openPI(){
 	btnpi.style.backgroundColor = "#fdd54f";
