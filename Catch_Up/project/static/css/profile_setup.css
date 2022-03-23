@@ -77,7 +77,7 @@ form.la{
 }
 
 .btn-box{
-	#background-color: #fdd54f;
+	background-color: #fdd54f;
 	display: flex;
 	border-bottom: 1px solid black;
 }
