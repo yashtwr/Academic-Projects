@@ -183,7 +183,7 @@ def profile():
         courseDAO.insertCourses(courseVO)
 
         educationVO.education_loginId = loginDAO.fetchId(loginVO)
-        educationDAO.insertEdu(educationVO)
+        educationDAO.insertEducation(educationVO)
 
         certificatesVO.certificates_loginId = loginDAO.fetchId(loginVO)
         certificatesDAO.insertCertificates(certificatesVO)
