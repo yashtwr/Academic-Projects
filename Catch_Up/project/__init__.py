@@ -20,6 +20,7 @@ app.config['SQLALCHEMY_ECHO'] = True
 app.config['SQLALCHEMY_RECORD_QUERIES'] = True
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:root@localhost/catchup'
 
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=25)
 
