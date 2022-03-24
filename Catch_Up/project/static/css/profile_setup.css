@@ -6,13 +6,13 @@ div.profile{
 
 form.pi{
 	height: auto;
-	width: 120%;
+	width: 170%;
 	background-color: #fdd54f; 
 	border: 2px solid #8fc4b7;
 	border-radius: 15px;
 	border-color: #000000;
 	display: inline-block;
-    margin-left: 20px;
+    margin-left: auto;
     margin-right: auto;
 	margin-top: auto;
 	margin-bottom: 30%;
@@ -21,13 +21,13 @@ form.pi{
 
 form.edu{
 	height: auto;
-	width: 120%;
+	width: 170%;
 	background-color: #fdd54f; 
 	border: 2px solid #8fc4b7;
 	border-radius: 15px;
 	border-color: #000000;
 	display: inline-block;
-    margin-left: 50px;
+    margin-left: auto;
     margin-right: auto;
 	margin-top: auto;
 	margin-bottom: 30%;
@@ -35,13 +35,13 @@ form.edu{
 }
 form.exp{
 	height: auto;
-	width: 120%;
+	width: 170%;
 	background-color: #fdd54f; 
 	border: 2px solid #8fc4b7;
 	border-radius: 15px;
 	border-color: #000000;
 	display: inline-block;
-    margin-left: 100px;
+    margin-left: auto;
     margin-right: auto;
 	margin-top: auto;
 	margin-bottom: 30%;
@@ -49,13 +49,13 @@ form.exp{
 }
 form.skills{
 	height: auto;
-	width: 120%;
+	width: 170%;
 	background-color: #fdd54f; 
 	border: 2px solid #8fc4b7;
 	border-radius: 15px;
 	border-color: #000000;
 	display: inline-block;
-    margin-left: 135px;
+    margin-left: auto;
     margin-right: auto;
 	margin-top: auto;
 	margin-bottom: 30%;
@@ -63,13 +63,13 @@ form.skills{
 }
 form.la{
 	height: auto;
-	width: 120%;
+	width: 170%;
 	background-color: #fdd54f; 
 	border: 2px solid #8fc4b7;
 	border-radius: 15px;
 	border-color: #000000;
 	display: inline-block;
-    margin-left: 180px;
+    margin-left: auto;
     margin-right: auto;
 	margin-top: auto;
 	margin-bottom: 30%;
@@ -77,16 +77,22 @@ form.la{
 }
 
 .btn-box{
-	background-color: #fdd54f;
 	display: flex;
-	border-bottom: 1px solid black;
 }
 .btn-box button{
 	background: transparent;
 	outline: none;
 	cursor: pointer;
+	background-color: #000;
+	color: #fdd54f;
 	padding: 10px;
+	font-weight: bold;
 }
+#btnpi {
+	height: 150px;
+	width: 50px;
+}
+
 .content{
 	margin: 5px;
 	position: absolute;
@@ -99,6 +105,7 @@ form.la{
 	font-size: 15px;
 	font-weight: bold;
 }
+
 input[type='radio']:after {
         width: 15px;
         height: 15px;
@@ -212,5 +219,23 @@ input[type='radio']:checked:after {
 	box-shadow: 3px 3px;
 }
 #address:hover{
+	box-shadow: none;
+}
+
+div#degree_name{
+	padding: 0px 20px;
+}
+label#degree_name{
+	font-family:Helvetica;
+	font-size: 15px;
+	font-weight: bold;
+}
+input#degree_name{
+	border: 2px solid #cdcdcd;
+    border-color: rgba(0,0,0,.15);
+    background-color: white;
+	box-shadow: 3px 3px;
+}
+input#degree_name:hover{
 	box-shadow: none;
 }
