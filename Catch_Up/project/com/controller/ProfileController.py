@@ -30,6 +30,8 @@ def userProfile():
         courseDAO = CoursesDAO()
         certificatesVO = CertificatesVO()
         certificatesDAO = CertificatesDAO()
+        industryVO = IndustryVO()
+        industryDAO = IndustryDAO()
 
         loginVO = LoginVO()
         loginDAO = LoginDAO()
@@ -45,9 +47,15 @@ def userProfile():
         certificatesVO.certificates_loginId = id
         lst_certi = certificatesDAO.fetchCertificates(CertificatesVO)
         certificates = [i.as_dict() for i in lst_certi]
-        print(certificates)
+        print('---------------------------------')
 
-        return render_template("profile_setup.html", title = "profileSetup", courses = courses, certificates = certificates)
+        industryVO.industry_loginId = id
+        lst_industry = industryDAO.fetchIndustryExp(industryVO)
+        industryExp = [i.as_dict() for i in lst_industry]
+        print('IndustryExperience===========================================')
+        print(industryExp)
+
+        return render_template("profile_setup.html", title = "profileSetup", courses = courses, certificates = certificates, industryExp = industryExp)
     except Exception as ex:
         print(ex)
 
@@ -93,6 +101,40 @@ def insertCertificates():
     certificatesDAO.insertCertificates(certificatesVO)
 
 
+    return redirect(url_for("userProfile"))
+
+
+@app.route('/insertIndustryExp', methods=["POST"])
+def insertIndustryExp():
+    industryVO = IndustryVO()
+    industryDAO = IndustryDAO()
+    loginVO = LoginVO()
+    loginDAO = LoginDAO()
+    
+
+    loginVO.email = session['login_email']
+    
+
+    industryVO.company_name = request.form['company_name']
+    industryVO.designation = request.form['designation']
+    industryVO.work_description = request.form['work_description']
+    industryVO.no_of_months = request.form['no_of_months']
+    
+    #courseVO.department = department
+    industryVO.industry_loginId = loginDAO.fetchId(loginVO)
+    
+    if request.form['Id'] == 'Null':
+        print('old one-------------------------------------')
+        industryDAO.insertIndustryExp(industryVO)
+    else:
+        print('Data is updated-------------------------------------')
+        print(request.form['Id'])
+        print('-------------------------------------')
+        industryVO.Id = request.form['Id']
+        industryDAO.updateIndustryExp(industryVO)
+
+    
+        
     return redirect(url_for("userProfile"))
 
 @app.route('/deleteCourse', methods=["GET"])
