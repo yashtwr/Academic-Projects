@@ -14,18 +14,27 @@ divedu.style.display = "none";
 divexp.style.display = "none";
 divskills.style.display = "none";
 divla.style.display = "none";
+
+btnpi.style.color = "#000";
+
 btnpi.style.backgroundColor = "#fdd54f";
-btnedu.style.backgroundColor = "#eee";
-btnexp.style.backgroundColor = "#eee";
-btnskills.style.backgroundColor = "#eee";
-btnla.style.backgroundColor = "#eee";
+btnedu.style.backgroundColor = "#000";
+btnexp.style.backgroundColor = "#000";
+btnskills.style.backgroundColor = "#000";
+btnla.style.backgroundColor = "#000";
 
 function openPI(){
 	btnpi.style.backgroundColor = "#fdd54f";
-	btnedu.style.backgroundColor = "#eee";
-	btnexp.style.backgroundColor = "#eee";
-	btnskills.style.backgroundColor = "#eee";
-	btnla.style.backgroundColor = "#eee";
+	btnedu.style.backgroundColor = "#000";
+	btnexp.style.backgroundColor = "#000";
+	btnskills.style.backgroundColor = "#000";
+	btnla.style.backgroundColor = "#000";
+	
+	btnpi.style.color="#000";
+	btnedu.style.color="#fdd54f";
+	btnexp.style.color="#fdd54f";
+	btnskills.style.color="#fdd54f";
+	btnla.style.color="#fdd54f";
 	
 	divpi.style.display = "block";
 	divedu.style.display = "none";
@@ -35,10 +44,17 @@ function openPI(){
 }
 function openEdu(){
 	btnedu.style.backgroundColor = "#fdd54f";
-	btnpi.style.backgroundColor = "#eee";
-	btnexp.style.backgroundColor = "#eee";
-	btnskills.style.backgroundColor = "#eee";
-	btnla.style.backgroundColor = "#eee";
+	btnpi.style.backgroundColor = "#000";
+	btnexp.style.backgroundColor = "#000";
+	btnskills.style.backgroundColor = "#000";
+	btnla.style.backgroundColor = "#000";
+	
+	btnedu.style.color="#000";
+	btnpi.style.color="#fdd54f";
+	btnexp.style.color="#fdd54f";
+	btnskills.style.color="#fdd54f";
+	btnla.style.color="#fdd54f";
+	
 	
 	divedu.style.display = "block";
 	divpi.style.display = "none";
@@ -49,10 +65,16 @@ function openEdu(){
 
 function openExp(){
 	btnexp.style.backgroundColor = "#fdd54f";
-	btnpi.style.backgroundColor = "#eee";
-	btnedu.style.backgroundColor = "#eee";
-	btnskills.style.backgroundColor = "#eee";
-	btnla.style.backgroundColor = "#eee";
+	btnpi.style.backgroundColor = "#000";
+	btnedu.style.backgroundColor = "#000";
+	btnskills.style.backgroundColor = "#000";
+	btnla.style.backgroundColor = "#000";
+	
+	btnexp.style.color="#000";
+	btnpi.style.color="#fdd54f";
+	btnedu.style.color="#fdd54f";
+	btnskills.style.color="#fdd54f";
+	btnla.style.color="#fdd54f";
 	
 	divexp.style.display = "block";
 	divpi.style.display = "none";
@@ -63,10 +85,16 @@ function openExp(){
 
 function openSkills(){
 	btnskills.style.backgroundColor = "#fdd54f";
-	btnpi.style.backgroundColor = "#eee";
-	btnedu.style.backgroundColor = "#eee";
-	btnexp.style.backgroundColor = "#eee";
-	btnla.style.backgroundColor = "#eee";
+	btnpi.style.backgroundColor = "#000";
+	btnedu.style.backgroundColor = "#000";
+	btnexp.style.backgroundColor = "#000";
+	btnla.style.backgroundColor = "#000";
+	
+	btnskills.style.color="#000";
+	btnpi.style.color="#fdd54f";
+	btnedu.style.color="#fdd54f";
+	btnexp.style.color="#fdd54f";
+	btnla.style.color="#fdd54f";
 	
 	divskills.style.display = "block";
 	divpi.style.display = "none";
@@ -77,10 +105,16 @@ function openSkills(){
 
 function openLA(){
 	btnla.style.backgroundColor = "#fdd54f";
-	btnpi.style.backgroundColor = "#eee";
-	btnedu.style.backgroundColor = "#eee";
-	btnexp.style.backgroundColor = "#eee";
-	btnskills.style.backgroundColor = "#eee";
+	btnpi.style.backgroundColor = "#000";
+	btnedu.style.backgroundColor = "#000";
+	btnexp.style.backgroundColor = "#000";
+	btnskills.style.backgroundColor = "#000";
+	
+	btnla.style.color="#000";
+	btnpi.style.color="#fdd54f";
+	btnedu.style.color="#fdd54f";
+	btnexp.style.color="#fdd54f";
+	btnskills.style.color="#fdd54f";
 	
 	divla.style.display = "block";
 	divpi.style.display = "none";
