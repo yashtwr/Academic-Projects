@@ -35,6 +35,11 @@
 			<label for="address" id="addresslabel">Address:</label>	
 			<input type="text" class="form-control" id="address" name="address">	
 		</div>
+
+		<div class="form-group" id="description">	
+			<label for="first" id="description">Description:</label>	
+			<input type="text" class="form-control" id="description" name="description">	
+		</div>	
 		<div class="form-group" id="hobbies">	
 			<label for="first" id="hobbies">Hobbies:</label>	
 			<input type="text" class="form-control" id="hobbies" name="hobbies">	
@@ -42,6 +47,8 @@
 	  </form>
 	</div>
 	
+
+
 	<div id="divedu" class="content">
 	  <form class="edu" >
 		<!--<div class="form-group" id="leveledudiv">	
@@ -116,32 +123,52 @@
 	  </form>
 	</div>
 	
+
+
+
+
 	<div id="divexp" class="content">
-	  <form class="exp">
-		<div class="form-group" id="company_name">	
-			<label for="first" id="company_name">Company Name:</label>	
-			<input type="text" class="form-control" id="company_name" name="company_name">	
+	  <form class="exp" method="post" action="/insertIndustryExp">
+		<div class="form-group">	
+			<label for="first" >Company Name:</label>	
+			{% if industryExp %}
+				<input type="text" class="form-control" id="company_name" name="company_name" value="{{industryExp[0]['company_name']}}">	
+			{% else %}
+				<input type="text" class="form-control" id="company_name" name="company_name">	
+			{% endif %}
 		</div>
 		
-		<div class="form-group" id="designation">	
-			<label for="first" id="designation">Designation:</label>	
-			<input type="text" class="form-control" id="designation" name="designation" >	
+		<div class="form-group">	
+			<label for="first">Designation:</label>	
+			{% if industryExp %}
+				<input type="text" class="form-control" id="designation" name="designation" value="{{industryExp[0]['designation']}}">	
+			{% else %}
+				<input type="text" class="form-control" id="designation" name="designation" >	
+			{%endif%}
 		</div>
 
-		<div class="form-group" id="work_description">	
-			<label for="first" id="work_description">Work Description:</label>	
-			<input type="text" class="form-control" id="work_description" name="work_description">	
+		<div class="form-group" >	
+			<label for="first" >Work Description:</label>	
+			{% if industryExp %}
+				<input type="text" class="form-control" id="work_description" name="work_description" value="{{industryExp[0]['work_description']}}">	
+			{%else%}
+				<input type="text" class="form-control" id="work_description" name="work_description">	
+			{%endif%}
 		</div>
 
-		<div class="form-group" id="no_of_months">	
-			<label for="first" id="no_of_months">No. of Months:</label>	
-			<input type="number" min="1" class="form-control" id="no_of_months" name="no_of_months">	
+		<div class="form-group" >	
+			<label for="first">No. of Months:</label>	
+			{% if industryExp %}
+				<input type="number" min="1" class="form-control" id="no_of_months" name="no_of_months" value="{{industryExp[0]['no_of_months']}}">
+
+				<input type="hidden" id="Id" name="Id" value="{{industryExp[0]['Id']}}">
+			{% else %}
+				<input type="number" min="1" class="form-control" id="no_of_months" name="no_of_months">
+				<input type="hidden" id="Id" name="Id" value="Null">
+			{% endif %}
 		</div>
 	  
-		<div class="form-group" id="description">	
-			<label for="first" id="description">Description:</label>	
-			<input type="text" class="form-control" id="description" name="description">	
-		</div>	
+		<button type="submit">Update</button>
 	  </form>
 	</div>
 	
