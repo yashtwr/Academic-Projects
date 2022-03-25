@@ -55,31 +55,58 @@ def userProfile():
         print('IndustryExperience===========================================')
         print(industryExp)
 
-        return render_template("profile_setup.html", title = "profileSetup", courses = courses, certificates = certificates, industryExp = industryExp)
+        if 'currentPage' not in session:
+            session['currentPage'] = 'personal_information'
+
+        return render_template("profilesetup_changes.html", title = "profileSetup", courses = courses, certificates = certificates, industryExp = industryExp)
     except Exception as ex:
         print(ex)
 
 
-@app.route('/insertCourse', methods=["GET"])
+@app.route('/insertCourse', methods=["GET","POST"])
 def insertCourse():
     courseVO = CoursesVO()
     courseDAO = CoursesDAO()
     loginVO = LoginVO()
     loginDAO = LoginDAO()
-    
 
     loginVO.email = session['login_email']
-    
-    courseVO.course_no = request.args.get('courseid')
-    
-    courseVO.department = request.args.get('department')
-    #courseVO.department = department
-    courseVO.course_loginId = loginDAO.fetchId(loginVO)
-    
-    courseDAO.insertCourses(courseVO)
 
+    courseVO.course_no = request.form['course_no1']
+    courseVO.department = request.form['department']
+    # courseVO.department = request.args.get('department')
+    # courseVO.department = department
+    courseVO.course_loginId = loginDAO.fetchId(loginVO)
+    print('=------------------------------')
+    print(request.args.get('courseid'))
+    print(request.args.get('department'))
+    print(';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;')
+
+    courseDAO.insertCourses(courseVO)
+    session['currentPage'] = 'education'
     return redirect(url_for("userProfile"))
 
+@app.route('/updateCourse', methods=["GET","POST"])
+def updateCourse():
+    courseVO = CoursesVO()
+    courseDAO = CoursesDAO()
+    loginVO = LoginVO()
+    loginDAO = LoginDAO()
+    loginVO.email = session['login_email']
+
+    Id = request.args.get('Id')
+    course_no = request.form['course_no'+str(Id)]
+    department = request.form['department']
+    loginId = loginDAO.fetchId(loginVO)
+
+    courseVO.Id = Id
+    courseVO.course_no = course_no
+    courseVO.department = department
+    courseVO.course_loginId = loginId
+    courseDAO.updateCourses(courseVO)
+    print('*********************8', Id, course_no, department)
+    session['currentPage'] = 'education'
+    return redirect(url_for("userProfile"))
 
 @app.route('/insertCertificates', methods=["GET"])
 def insertCertificates():
@@ -99,7 +126,7 @@ def insertCertificates():
     
     print(request.args.get('certificates'))
     certificatesDAO.insertCertificates(certificatesVO)
-
+    session['currentPage'] = 'skills'
 
     return redirect(url_for("userProfile"))
 
@@ -121,7 +148,8 @@ def insertIndustryExp():
     industryVO.no_of_months = request.form['no_of_months']
     
     #courseVO.department = department
-    industryVO.industry_loginId = loginDAO.fetchId(loginVO)
+    login_Id = loginDAO.fetchId(loginVO)
+    industryVO.industry_loginId = login_Id
     
     if request.form['Id'] == 'Null':
         print('old one-------------------------------------')
@@ -133,8 +161,22 @@ def insertIndustryExp():
         industryVO.Id = request.form['Id']
         industryDAO.updateIndustryExp(industryVO)
 
-    
-        
+    session['currentPage'] = 'experience'
+    return redirect(url_for("userProfile"))
+
+@app.route('/deleteIndustryExp', methods=["GET"])
+def deleteIndustryExp():
+    industryVO = IndustryVO()
+    industryDAO = IndustryDAO()
+    loginVO = LoginVO()
+    loginDAO = LoginDAO()
+    loginVO.email = session['login_email']
+    login_Id = loginDAO.fetchId(loginVO)
+    industryVO.industry_loginId = login_Id
+    Id = request.args.get('Id')
+    industryVO.Id = Id
+    industryDAO.deleteIndustryExp(industryVO)
+    session['currentPage'] = 'experience'
     return redirect(url_for("userProfile"))
 
 @app.route('/deleteCourse', methods=["GET"])
@@ -148,12 +190,33 @@ def deleteCourse():
     loginVO.email = session['login_email']
     
     course_no = request.args.get('courseid')
-    courseVO.course_no= request.args.get('courseid')
-    
-    courseVO.course_loginId = loginDAO.fetchId(loginVO)
-    login_id = loginDAO.fetchId(loginVO)
-    courseDAO.deleteCourses(course_no, login_id)
+    courseVO.course_no= course_no
 
+    login_id = loginDAO.fetchId(loginVO)
+    courseVO.course_loginId = login_id
+
+
+    courseDAO.deleteCourses(courseVO)
+    session['currentPage'] = 'education'
+    return redirect(url_for("userProfile"))
+
+@app.route('/updateCertificates', methods=["GET","POST"])
+def updateCertificates():
+    certificatesVO = CertificatesVO()
+    certificatesDAO = CertificatesDAO()
+    loginVO = LoginVO()
+    loginDAO = LoginDAO()
+    loginVO.email = session['login_email']
+
+    Id = request.args.get('Id')
+    certificates = request.form['certificate'+str(Id)]
+    loginId = loginDAO.fetchId(loginVO)
+
+    certificatesVO.Id = Id
+    certificatesVO.certificates = certificates
+    certificatesVO.course_loginId = loginId
+    certificatesDAO.upadateCertificates(certificatesVO)
+    session['currentPage'] = 'skills'
     return redirect(url_for("userProfile"))
 
 
@@ -166,13 +229,14 @@ def deleteCertificates():
     
 
     loginVO.email = session['login_email']
-    
-    certificatesVO.certificates= request.args.get('certificates')
-    
+    Id = request.args.get('Id')
+    certificatesVO.Id = Id
     certificatesVO.certificates_loginId = loginDAO.fetchId(loginVO)
     certificatesDAO.deleteCertificates(certificatesVO)
-
+    session['currentPage'] = 'skills'
     return redirect(url_for("userProfile"))
+
+
 
 
 @app.route('/profileSetup', methods=["GET", "POST"])
