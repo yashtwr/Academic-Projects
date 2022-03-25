@@ -18,6 +18,8 @@ from project.com.vo.ProjectVO import ProjectVO
 from project.com.dao.ProjectDAO import ProjectDAO
 from project.com.vo.SkillsVO import SkillsVO
 from project.com.dao.SkillsDAO import SkillsDAO
+from project.com.vo.SignUpVO import SignUpVO
+from project.com.dao.SignUpDAO import SignUpDAO
 
 
 from project import app
@@ -32,6 +34,11 @@ def userProfile():
         certificatesDAO = CertificatesDAO()
         industryVO = IndustryVO()
         industryDAO = IndustryDAO()
+
+        personalVO = PersonalVO()
+        personalDAO = PersonalDAO()
+        signupVO = SignUpVO()
+        signupDAO = SignUpDAO()
 
         loginVO = LoginVO()
         loginDAO = LoginDAO()
@@ -55,10 +62,23 @@ def userProfile():
         print('IndustryExperience===========================================')
         print(industryExp)
 
+        personalVO.personal_loginId = id
+        lst_personal = personalDAO.fetchPersonal(personalVO)
+        personal = [i.as_dict() for i in lst_personal]
+        print('personal===========================================')
+        print(personal)
+
+        signupVO.signup_LoginId = id
+        lst_signup = signupDAO.fetchUser(signupVO)
+        signup = [i.as_dict() for i in lst_signup]
+        print('signup===========================================')
+        print(signup)
+
+
         if 'currentPage' not in session:
             session['currentPage'] = 'personal_information'
 
-        return render_template("profilesetup_changes.html", title = "profileSetup", courses = courses, certificates = certificates, industryExp = industryExp)
+        return render_template("profilesetup_changes.html", title = "profileSetup", courses = courses, certificates = certificates, industryExp = industryExp, signup = signup, personal = personal)
     except Exception as ex:
         print(ex)
 
@@ -108,6 +128,7 @@ def updateCourse():
     session['currentPage'] = 'education'
     return redirect(url_for("userProfile"))
 
+
 @app.route('/insertCertificates', methods=["GET"])
 def insertCertificates():
     certificatesVO = CertificatesVO()
@@ -138,9 +159,7 @@ def insertIndustryExp():
     loginVO = LoginVO()
     loginDAO = LoginDAO()
     
-
     loginVO.email = session['login_email']
-    
 
     industryVO.company_name = request.form['company_name']
     industryVO.designation = request.form['designation']
@@ -163,6 +182,58 @@ def insertIndustryExp():
 
     session['currentPage'] = 'experience'
     return redirect(url_for("userProfile"))
+
+
+@app.route('/insertPersonalInfo', methods=["POST"])
+def insertPersonalInfo():
+    
+    personalVO = PersonalVO()
+    personalDAO = PersonalDAO()
+    signupVO = SignUpVO()
+    signupDAO = SignUpDAO()
+
+    loginVO = LoginVO()
+    loginDAO = LoginDAO()
+    loginVO.email = session['login_email']
+
+    #Id = request.args.get('Id')
+    #course_no = request.form['course_no'+str(Id)]
+    #department = request.form['department']
+    id = loginDAO.fetchId(loginVO)
+
+    firstname = request.form['firstname']
+    lastname = request.form['lastname']
+    contact_email = request.form['contact_email']
+    contact_number = request.form['contact_number']
+    address = request.form['address']
+    description = request.form['description']
+
+    signupVO.firstname = firstname
+    signupVO.lastname = lastname
+    signupVO.signup_LoginId = id
+    personalVO.personal_loginId = id
+    personalVO.contact_email = contact_email
+    personalVO.contact_number = contact_number
+    personalVO.address = address
+    personalVO.description = description
+    
+    if request.form['Id'] == 'Null':
+        print('old one-------------------------------------')
+        personalDAO.insertPersonal(personalVO)
+    else:
+        print('Data is updated-------------------------------------')
+        print(request.form['Id'])
+        print('-------------------------------------')
+        personalVO.Id = request.form['Id']
+        personalDAO.updatePersonal(personalVO)
+    
+    signupDAO.updateUser(signupVO)
+
+    session['currentPage'] = 'personal_information'
+    return redirect(url_for("userProfile"))
+
+
+
 
 @app.route('/deleteIndustryExp', methods=["GET"])
 def deleteIndustryExp():
