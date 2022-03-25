@@ -2,7 +2,7 @@
 {% block content %}
 
 <link rel="stylesheet" href = "../static/css/profile_setup.css">
-
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <div class = "profile">
 	<h1 id="title">Profile</h1>
 	<div class = "btn-box">
@@ -79,18 +79,23 @@
 		</div>
 		
 		<!-- add and delete courses-->
-		    <div class="form-group">	
-		      <label for="first">Course No.:</label>	
-		      {% for course in courses %}
-		
-		      <input type="text" class="form-control" id="course_no" name="course_no" value="{{ course['course_no'] }}">
-		      <a href="deleteCourse?courseid={{course['course_no']}}">DELETE</a>
-		      <a href="updateCourse?courseid={{course['course_no']}}&{{courses['Id']}}">UPDATE</a>
-		      {% endfor %}
-		      <input type="text" class="form-control" id="course_no1" name="course_no1">  
-		    
-		    <a name="insertCourse" href="" onclick="this.href='insertCourse?courseid='+document.getElementById('course_no1').value+'&department='+document.getElementById('department').value">ADD</a>
-		    </div>
+		    <!-- add and delete courses-->
+            <div class="form-group">
+                <label for="first">Course No.:</label>
+                {% for course in courses %}
+
+                <input type="text" class="form-control" id="{{course['Id']}}" name="course_no{{course['Id']}}"
+                       value="{{ course['course_no'] }}">
+                <a class= "material-icons md-48 md-dark" href="deleteCourse?courseid={{course['course_no']}}">delete</a>
+                <button type= "submit" formaction="updateCourse?Id={{course['Id']}}" style="background-color:#fdd54f" formmethod="POST"><i style="background-color:#fdd54f" class= "material-icons md-48 md-dark">edit</i></button>
+                <!--<a href="updateCourse?courseid={{course['course_no']}}&{{courses['Id']}}">UPDATE</a>-->
+                {% endfor %}
+                <input type="text" class="form-control" id="course_no1" name="course_no1">
+                <button type="submit" formaction="insertCourse" formmethod="POST">ADD</button>
+                <!--<a name="insertCourse" href=""-->
+                   <!--onclick="this.href='insertCourse?courseid='+document.getElementById('course_no1').value+'&department='+document.getElementById('department').value">ADD</a>-->
+            </div>
+
 		
 	
 
@@ -168,7 +173,12 @@
 			{% endif %}
 		</div>
 	  
-		<button type="submit">Update</button>
+        {% if industryExp %}
+          <button type="submit" formaction="insertIndustryExp" formmethod="POST"><i class="material-icons md-48 md-dark">edit</i></button>
+          <button type="submit" formaction="deleteIndustryExp?Id={{industryExp['Id']}}" formmethod="GET"><i class="material-icons md-48 md-dark">delete</i></button>
+          {%else%}
+          <button type="submit" formaction="insertIndustryExp" formmethod="POST">ADD</button>
+          {%endif%}
 	  </form>
 	</div>
 	
@@ -179,11 +189,10 @@
 			<label for="first" >Certificates:</label>	
 			{% for certificate in certificates %}
 				
-				 <input type="text" class="form-control" id="certificates" name="certificates" value="{{ certificate['certificates'] }}">
-		      <a href="deleteCertificates?certificates={{certificate['certificates']}}">DELETE</a>
-		      <a href="updateCertificates?certificates={{certificate['certificates']}}}}">UPDATE</a>
+			  <input type="text" class="form-control" id="{{certificate['Id']}}" name="certificate{{certificate['Id']}}" value="{{ certificate['certificates'] }}">
+		      <a class= "material-icons md-48 md-dark" href="deleteCertificates?Id={{certificate['Id']}}">delete</a>
+                <button type= "submit" formaction="updateCertificates?Id={{certificate['Id']}}" style="background-color:#fdd54f" formmethod="POST"><i style="background-color:#fdd54f" class= "material-icons md-48 md-dark">edit</i></button>
 		      {% endfor %}
-
 
 		      <input type="text" class="form-control" id="certificates1" name="certificates1">  
 		    
@@ -219,7 +228,18 @@
 </form>
 
 <script src = "../static/js/profile_setup.js"></script>
+{%if session['currentPage']=='personal_information' %}
+<script> openPI();console.log("this is printed");</script>
 
+{%elif session['currentPage']=='education' %}
+<script>openEdu();console.log("this is printed");</script>
+{%elif session['currentPage']== 'experience'%}
+<script>openExp();console.log("this is printed");</script>
+{%elif session['currentPage']== 'skills' %}
+<script>openSkills();console.log("this is printed");</script>
+{%else%}
+<script>openLA();console.log("this is printed");</script>
+{%endif%}
 
   <!--<div class="form-group" id="department">	
     <label for="last" id="department">Department:</label>	
