@@ -40,6 +40,9 @@ def userProfile():
         signupVO = SignUpVO()
         signupDAO = SignUpDAO()
 
+        educationVO = EducationVO()
+        educationDAO = EducationDAO()
+
         loginVO = LoginVO()
         loginDAO = LoginDAO()
         
@@ -49,36 +52,37 @@ def userProfile():
         courseVO.course_loginId = id
         lst = courseDAO.fetchCourses(courseVO)
         courses = [i.as_dict() for i in lst]
-        print('=------------------------------')
         
         certificatesVO.certificates_loginId = id
         lst_certi = certificatesDAO.fetchCertificates(CertificatesVO)
         certificates = [i.as_dict() for i in lst_certi]
-        print('---------------------------------')
 
         industryVO.industry_loginId = id
         lst_industry = industryDAO.fetchIndustryExp(industryVO)
         industryExp = [i.as_dict() for i in lst_industry]
-        print('IndustryExperience===========================================')
         print(industryExp)
 
         personalVO.personal_loginId = id
         lst_personal = personalDAO.fetchPersonal(personalVO)
         personal = [i.as_dict() for i in lst_personal]
-        print('personal===========================================')
         print(personal)
 
         signupVO.signup_LoginId = id
         lst_signup = signupDAO.fetchUser(signupVO)
         signup = [i.as_dict() for i in lst_signup]
-        print('signup===========================================')
         print(signup)
+
+        educationVO.education_loginId = id
+        lst_education = educationDAO.fetchEducation(educationVO)
+        education = [i.as_dict() for i in lst_education]
+        print(education)
+
 
 
         if 'currentPage' not in session:
             session['currentPage'] = 'personal_information'
 
-        return render_template("profilesetup_changes.html", title = "profileSetup", courses = courses, certificates = certificates, industryExp = industryExp, signup = signup, personal = personal)
+        return render_template("profilesetup_changes.html", title = "profileSetup", courses = courses, certificates = certificates, industryExp = industryExp, signup = signup, personal = personal, education = education)
     except Exception as ex:
         print(ex)
 
@@ -230,6 +234,50 @@ def insertPersonalInfo():
     signupDAO.updateUser(signupVO)
 
     session['currentPage'] = 'personal_information'
+    return redirect(url_for("userProfile"))
+
+
+
+@app.route('/insertEducation', methods=["GET","POST"])
+def insertEducation():
+    
+    educationVO = EducationVO()
+    educationDAO = EducationDAO()
+
+
+    loginVO = LoginVO()
+    loginDAO = LoginDAO()
+    loginVO.email = session['login_email']
+
+    #Id = request.args.get('Id')
+    #course_no = request.form['course_no'+str(Id)]
+    #department = request.form['department']
+    id = loginDAO.fetchId(loginVO)
+
+    degree_name = request.form['degree_name']
+    start_date = request.form['start_date']
+    institution_name = request.form['institution_name']
+    end_date = request.form['end_date']
+    cgpa = request.form['cgpa']
+    
+
+    educationVO.degree_name = degree_name
+    educationVO.start_date = start_date
+    educationVO.institution_name = institution_name
+    educationVO.end_date = end_date
+    educationVO.cgpa = cgpa
+    educationVO.education_loginId = id
+    
+    if request.form['Id'] == 'Null':
+        print('old one-------------------------------------')
+        educationDAO.insertEducation(educationVO)
+    else:
+        print('Data is updated-------------------------------------')
+        print(request.form['Id'])
+        educationVO.Id = request.form['Id']
+        educationDAO.updateEducation(educationVO)
+    
+    session['currentPage'] = 'education'
     return redirect(url_for("userProfile"))
 
 
