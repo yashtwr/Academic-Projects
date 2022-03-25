@@ -17,29 +17,69 @@
 	  <form class="pi" >
 		<div class="form-group" id="fnamediv">	
 			<label for="first" id="fnamelabel">First Name:</label>	
-			<input type="text" class="form-control" id="firstname" name="firstname">	
+			{% if signup %}
+			<input type="text" class="form-control" id="firstname" name="firstname" value="{{signup[0]['firstname']}}">	
+			{% else %}
+			<input type="text" class="form-control" id="firstname" name="firstname" >	
+			{% endif %}
 		</div>	
 		<div class="form-group" id="lnamediv">	
 			<label for="last" id="lnamelabel">Last Name:</label>	
-			<input type="text" class="form-control" id="lastname" name="lastname">	
+			
+			{% if signup %}
+			<input type="text" class="form-control" id="lastname" name="lastname" value="{{signup[0]['lastname']}}">
+			{% else %}
+			<input type="text" class="form-control" id="lastname" name="lastname">
+			{% endif %}
 		</div>	
 		<div class="form-group" id="emaildiv">	
 			<label for="email" id="emaillabel">Email:</label>	
-			<input type="email" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" class="form-control" placeholder="Enter Email" id="email" name="email">	
+				
+			{% if personal %}
+			<input type="email" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" class="form-control" placeholder="Enter Email" id="contact_email" name="contact_email" value="{{personal[0]['contact_email']}}">
+			{% else %}
+			<input type="email" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" class="form-control" placeholder="Enter Email" id="contact_email" name="contact_email">
+			{% endif %}
 		</div>
 		<div class="form-group" id="contactdiv">	
 			<label for="contactno" id="contactlabel">Contact No:</label>	
-			<input type="text" pattern="[0-9]{10}" class="form-control" id="contactno" name="contactno">
+				
+			{% if personal %}
+			<input type="text" pattern="[0-9]{10}" class="form-control" id="contact_number" name="contact_number" value="{{personal[0]['contact_number']}}">
+			{% else %}
+			<input type="text" pattern="[0-9]{10}" class="form-control" id="contact_number" name="contact_number">
+			{% endif %}
 		</div>
 		<div class="form-group" id="addressdiv">	
 			<label for="address" id="addresslabel">Address:</label>	
+
+			{% if personal %}
+			<input type="text" class="form-control" id="address" name="address" value="{{personal[0]['address']}}">	
+			{% else %}
 			<input type="text" class="form-control" id="address" name="address">	
+			{% endif %}
+			
 		</div>
 
 		<div class="form-group" id="description">	
 			<label for="first" id="description">Description:</label>	
+			
+			{% if personal %}
+			<input type="text" class="form-control" id="description" name="description" value="{{personal[0]['description']}}">	
+			{% else %}
 			<input type="text" class="form-control" id="description" name="description">	
+			{% endif %}
+			
 		</div>	
+
+			{% if personal %}
+				<input type="hidden" id="Id" name="Id" value="{{personal[0]['Id']}}">
+			{% else %}
+				<input type="hidden" id="Id" name="Id" value="Null">
+			{% endif %}
+		<button type="submit" formaction="insertPersonalInfo" formmethod="POST">UPDATE</button>
+
+		Probably not on this page
 		<div class="form-group" id="hobbies">	
 			<label for="first" id="hobbies">Hobbies:</label>	
 			<input type="text" class="form-control" id="hobbies" name="hobbies">	
@@ -240,120 +280,5 @@
 {%else%}
 <script>openLA();console.log("this is printed");</script>
 {%endif%}
-
-  <!--<div class="form-group" id="department">	
-    <label for="last" id="department">Department:</label>	
-    <input type="text" class="form-control" id="department" name="department" required>	
-  </div>
-			
-  <div class="form-group" id="course_no">	
-    <label for="first" id="course_no">Course No.:</label>	
-    <input type="text" class="form-control" id="course_no" name="course_no" required>	
-  </div>	
-
-  <div class="form-group" id="degree_name">	
-    <label for="last" id="degree_name">Degree:</label>	
-    <input type="text" class="form-control" id="degree_name" name="degree_name" required>	
-  </div>
-			
-  <div class="form-group" id="institution_name">	
-    <label for="first" id="institution_name">Institution name:</label>	
-    <input type="text" class="form-control" id="institution_name" name="institution_name" required>	
-  </div>	
-  
-  <div class="form-group" id="start_date">	
-    <label for="last" id="start_date">Start Year:</label>	
-    <input type="text" class="form-control" id="start_date" name="start_date" required>	
-  </div>
-			
-  <div class="form-group" id="end_date">	
-    <label for="first" id="end_date">End Year:</label>	
-    <input type="text" class="form-control" id="end_date" name="end_date" required>	
-  </div>	
-
-  <div class="form-group" id="cgpa">	
-    <label for="first" id="cgpa">CGPA:</label>	
-    <input type="number" min="0" value="0" step=".01" class="form-control" id="cgpa" name="cgpa" required>	
-  </div>	
-
-  <div class="form-group" id="certificates">	
-    <label for="first" id="certificates">Certificates:</label>	
-    <input type="text" class="form-control" id="certificates" name="certificates" required>	
-  </div>
-
-  <div class="form-group" id="hobbies">	
-    <label for="first" id="hobbies">Hobbies:</label>	
-    <input type="text" class="form-control" id="hobbies" name="hobbies" required>	
-  </div>
-
-  <div class="form-group" id="company_name">	
-    <label for="first" id="company_name">Company Name:</label>	
-    <input type="text" class="form-control" id="company_name" name="company_name" required>	
-  </div>
-
-  <div class="form-group" id="designation">	
-    <label for="first" id="designation">Designation:</label>	
-    <input type="text" class="form-control" id="designation" name="designation" required>	
-  </div>
-
-  <div class="form-group" id="work_description">	
-    <label for="first" id="work_description">Work Description:</label>	
-    <input type="text" class="form-control" id="work_description" name="work_description" required>	
-  </div>
-
-  <div class="form-group" id="no_of_months">	
-    <label for="first" id="no_of_months">No. of Months:</label>	
-    <input type="number" min="1" class="form-control" id="no_of_months" name="no_of_months" required>	
-  </div>
-  
-  <div class="form-group" id="description">	
-    <label for="first" id="description">Description:</label>	
-    <input type="text" class="form-control" id="description" name="description" required>	
-  </div>
-
-  <div class="form-group" id="contact_number">	
-    <label for="first" id="contact_number">Contact Number:</label>	
-    <input type="text" class="form-control" id="contact_number" name="contact_number">	
-  </div>
-
-  <div class="form-group" id="contact_email">	
-    <label for="first" id="contact_email">Personal Email:</label>	
-    <input type="text" class="form-control" id="contact_email" name="contact_email" required>	
-  </div>
-
-  <div class="form-group" id="address">	
-    <label for="first" id="address">Address:</label>	
-    <input type="text" class="form-control" id="address" name="address">	
-  </div>
-
-  <div class="form-group" id="linkedIn_account">	
-    <label for="first" id="linkedIn_account">LinkedIn Account:</label>	
-    <input type="text" class="form-control" id="linkedIn_account" name="linkedIn_account" required>	
-  </div>
-
-  <div class="form-group" id="other_links">	
-    <label for="first" id="other_links">Other Links:</label>	
-    <input type="text" class="form-control" id="other_links" name="other_links">	
-  </div>
-
-  <div class="form-group" id="project_title">	
-    <label for="first" id="project_title">Project Title:</label>	
-    <input type="text" class="form-control" id="project_title" name="project_title">	
-  </div>
-
-  <div class="form-group" id="project_detail">	
-    <label for="first" id="project_detail">Project Detail:</label>	
-    <input type="text" class="form-control" id="project_detail" name="project_detail">	
-  </div>
-
-  <div class="form-group" id="skills">	
-    <label for="first" id="skills">Skills:</label>
-    <input type="text" class="form-control" id="skills" name="skills">	
-  </div>
-
-  <br>	
-  <button type="submit" class="btn btn-primary">Confirm</button>	
-    <button type="reset" class="btn btn-secondary" onclick="resetfun()">Reset</button><br/>	
-</form>	-->
 
 {% endblock content %}
