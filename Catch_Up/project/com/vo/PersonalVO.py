@@ -8,8 +8,7 @@ class PersonalVO(db.Model):
     contact_number = db.Column('contact_number', db.String(20))
     contact_email = db.Column('contact_email', db.String(50))
     address = db.Column('address', db.String(200))
-    linkedIn_account = db.Column('linkedIn_account', db.String(200))
-    other_links = db.Column('other_links', db.String(200))
+    
     personal_loginId = db.Column('personal_loginId', db.Integer, db.ForeignKey(LoginVO.loginId))
 
     def as_dict(self):
@@ -19,8 +18,6 @@ class PersonalVO(db.Model):
             'contact_number': self.contact_number,
             'contact_email': self.contact_email,
             'address': self.address,
-            'linkedIn_account': self.linkedIn_account,
-            'other_links': self.other_links,
             'personal_loginId':self.personal_loginId
         }
 
