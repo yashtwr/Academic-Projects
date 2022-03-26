@@ -259,12 +259,27 @@
 			<input type="text" class="form-control same" id="project_detail" name="project_detail">	
 		</div>
 		<button type="submit" formaction="insertProject" formmethod="POST">ADD</button>
+
+
+
+		<div class="form-group same" id="project_detail">	
+			<label for="first" class="same" id="project_detail">Hobbies:</label>	
+			{% for h in hobbies %}
+			  <input type="text" class="form-control same" id="{{h['Id']}}" name="hobbies{{h['Id']}}" value="{{ h['hobbies'] }}">
+		      <a class= "material-icons md-48 md-dark same" href="deleteHobbies?Id={{h['Id']}}">delete</a>
+                <button type= "submit" formaction="updateHobbies?Id={{h['Id']}}" style="background-color:#fdd54f" formmethod="POST"><i style="background-color:#fdd54f" class= "material-icons md-48 md-dark same">edit</i></button>
+		    {% endfor %}			
+			
+			<input type="text" class="form-control same" id="hobbies" name="hobbies">	
+		</div>
+		<button type="submit" formaction="insertHobbies" formmethod="POST">ADD</button>		
 	  </form>
 	</div>
 	
 	<div id="divla" class="content">
 	  <form class="la">
 		<div class="form-group same" id="linkedIn_account">	
+
 			<label for="first" class="same" id="linkedIn_account">LinkedIn Account:</label>	
 			<input type="text" class="form-control same" id="linkedIn_account" name="linkedIn_account">	
 		</div>
