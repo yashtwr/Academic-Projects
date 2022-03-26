@@ -46,6 +46,9 @@ def userProfile():
         projectVO = ProjectVO()
         projectDAO = ProjectDAO()
 
+        hobbiesVO = HobbiesVO()
+        hobbiesDAO = HobbiesDAO()
+
         loginVO = LoginVO()
         loginDAO = LoginDAO()
         
@@ -85,10 +88,16 @@ def userProfile():
         project = [i.as_dict() for i in lst_project]
         print(project)
 
+
+        hobbiesVO.hobbies_loginId = id
+        lst_hobbies = hobbiesDAO.fetchHobbies(hobbiesVO)
+        hobbies = [i.as_dict() for i in lst_hobbies]
+        print(hobbies)
+
         if 'currentPage' not in session:
             session['currentPage'] = 'personal_information'
 
-        return render_template("profilesetup_changes.html", title = "profileSetup", courses = courses, certificates = certificates, industryExp = industryExp, signup = signup, personal = personal, education = education, projects = project)
+        return render_template("profilesetup_changes.html", title = "profileSetup", courses = courses, certificates = certificates, industryExp = industryExp, signup = signup, personal = personal, education = education, projects = project, hobbies = hobbies)
     except Exception as ex:
         print(ex)
 
@@ -375,5 +384,57 @@ def updateProject():
     projectVO.Id = Id
     #loginId = loginDAO.fetchId(loginVO)
     projectDAO.updateProject(projectVO)
+    session['currentPage'] = 'skills'
+    return redirect(url_for("userProfile"))
+
+
+@app.route('/insertHobbies', methods=["POST"])
+def insertHobbies():
+    hobbiesVO = HobbiesVO()
+    hobbiesDAO = HobbiesDAO()
+    loginVO = LoginVO()
+    loginDAO = LoginDAO()
+    
+
+    loginVO.email = session['login_email']
+    
+    hobbiesVO.hobbies = request.form['hobbies']
+    hobbiesVO.hobbies_loginId = loginDAO.fetchId(loginVO)
+    print('=------------------------------')
+    print(';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;')
+    
+    hobbiesDAO.insertHobbies(hobbiesVO)
+    session['currentPage'] = 'skills'
+
+    return redirect(url_for("userProfile"))
+
+@app.route('/deleteHobbies', methods=["GET"])
+def deleteHobbies():
+    hobbiesVO = HobbiesVO()
+    hobbiesDAO = HobbiesDAO()
+    loginVO = LoginVO()
+    loginDAO = LoginDAO()
+    loginVO.email = session['login_email']
+    login_Id = loginDAO.fetchId(loginVO)
+    hobbiesVO.hobbies_loginId = login_Id
+    Id = request.args.get('Id')
+    hobbiesVO.Id = Id
+    hobbiesDAO.deleteHobbies(hobbiesVO)
+    session['currentPage'] = 'skills'
+    return redirect(url_for("userProfile"))
+
+@app.route('/updateHobbies', methods=["GET","POST"])
+def updateHobbies():
+    hobbiesVO = HobbiesVO()
+    hobbiesDAO = HobbiesDAO()
+    loginVO = LoginVO()
+    loginDAO = LoginDAO()
+    loginVO.email = session['login_email']
+
+    Id = request.args.get('Id')
+    hobbiesVO.hobbies = request.form['hobbies'+str(Id)]
+    hobbiesVO.Id = Id
+    #loginId = loginDAO.fetchId(loginVO)
+    hobbiesDAO.updateHobbies(hobbiesVO)
     session['currentPage'] = 'skills'
     return redirect(url_for("userProfile"))
