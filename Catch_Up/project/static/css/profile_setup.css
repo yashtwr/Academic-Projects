@@ -1,19 +1,19 @@
 div.profile{
 	padding: 25px;
-	margin-left: auto;
+	margin-left: 220px;
 	margin-right: auto;
 }
 
 form.pi{
 	height: auto;
-	width: 170%;
+	width: 380px;
 	background-color: #fdd54f; 
 	border: 2px solid #8fc4b7;
 	border-radius: 15px;
 	border-color: #000000;
 	display: inline-block;
     margin-left: auto;
-    margin-right: auto;
+    #margin-right: auto;
 	margin-top: auto;
 	margin-bottom: 30%;
     text-align: left;
@@ -21,56 +21,56 @@ form.pi{
 
 form.edu{
 	height: auto;
-	width: 170%;
+	width: 380px;
 	background-color: #fdd54f; 
 	border: 2px solid #8fc4b7;
 	border-radius: 15px;
 	border-color: #000000;
 	display: inline-block;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 50px;
+    #margin-right: auto;
 	margin-top: auto;
 	margin-bottom: 30%;
     text-align: left;
 }
 form.exp{
 	height: auto;
-	width: 170%;
+	width: 380px;
 	background-color: #fdd54f; 
 	border: 2px solid #8fc4b7;
 	border-radius: 15px;
 	border-color: #000000;
 	display: inline-block;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 120px;
+    #margin-right: auto;
 	margin-top: auto;
 	margin-bottom: 30%;
     text-align: left;
 }
 form.skills{
 	height: auto;
-	width: 170%;
+	width: 380px;
 	background-color: #fdd54f; 
 	border: 2px solid #8fc4b7;
 	border-radius: 15px;
 	border-color: #000000;
 	display: inline-block;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 200px;
+    #margin-right: auto;
 	margin-top: auto;
 	margin-bottom: 30%;
     text-align: left;
 }
 form.la{
 	height: auto;
-	width: 170%;
+	width: 380px;
 	background-color: #fdd54f; 
 	border: 2px solid #8fc4b7;
 	border-radius: 15px;
 	border-color: #000000;
 	display: inline-block;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 290px;
+    #margin-right: auto;
 	margin-top: auto;
 	margin-bottom: 30%;
     text-align: left;
@@ -87,10 +87,16 @@ form.la{
 	color: #fdd54f;
 	padding: 10px;
 	font-weight: bold;
+	width: 135px;
 }
-#btnpi {
-	height: 150px;
-	width: 50px;
+.btn-box button:hover{
+	background-color: #fdd54f;
+	color: #000;
+}
+
+.btn-box button:focus{
+	background-color: #fdd54f;
+	color: #000;
 }
 
 .content{
@@ -132,7 +138,24 @@ input[type='radio']:checked:after {
         visibility: visible;
         border: 2px solid white;
 }
-#fnamediv{
+div.same{
+	padding: 0px 20px;
+}
+label.same{
+	font-family:Helvetica;
+	font-size: 15px;
+	font-weight: bold;
+}
+input.same{
+    border: 2px solid #cdcdcd;
+    border-color: rgba(0,0,0,.15);
+    background-color: white;
+	box-shadow: 3px 3px;
+}
+input.same:hover{
+	box-shadow: none;
+}
+/*#fnamediv{
 	padding: 0px 20px;
 }
 #fnamelabel{
@@ -220,7 +243,7 @@ input[type='radio']:checked:after {
 }
 #address:hover{
 	box-shadow: none;
-}
+}*/
 
 div#degree_name{
 	padding: 0px 20px;
