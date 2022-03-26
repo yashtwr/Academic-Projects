@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "profile_setup_layout.html" %}
 {% block content %}
 
 <link rel="stylesheet" href = "../static/css/profile_setup.css">
@@ -15,59 +15,59 @@
 
 	<div id="divpi" class="content">
 	  <form class="pi" >
-		<div class="form-group" id="fnamediv">	
-			<label for="first" id="fnamelabel">First Name:</label>	
+		<div class="form-group same" id="fnamediv">	
+			<label for="first" class="same" id="fnamelabel">First Name:</label>	
 			{% if signup %}
-			<input type="text" class="form-control" id="firstname" name="firstname" value="{{signup[0]['firstname']}}">	
+			<input type="text" class="form-control same" id="firstname" name="firstname" value="{{signup[0]['firstname']}}">	
 			{% else %}
-			<input type="text" class="form-control" id="firstname" name="firstname" >	
+			<input type="text" class="form-control same" id="firstname" name="firstname" >	
 			{% endif %}
 		</div>	
-		<div class="form-group" id="lnamediv">	
-			<label for="last" id="lnamelabel">Last Name:</label>	
+		<div class="form-group same" id="lnamediv">	
+			<label for="last" class="same" id="lnamelabel">Last Name:</label>	
 			
 			{% if signup %}
-			<input type="text" class="form-control" id="lastname" name="lastname" value="{{signup[0]['lastname']}}">
+			<input type="text" class="form-control same" id="lastname" name="lastname" value="{{signup[0]['lastname']}}">
 			{% else %}
-			<input type="text" class="form-control" id="lastname" name="lastname">
+			<input type="text" class="form-control same" id="lastname" name="lastname">
 			{% endif %}
 		</div>	
-		<div class="form-group" id="emaildiv">	
-			<label for="email" id="emaillabel">Email:</label>	
+		<div class="form-group same" id="emaildiv">	
+			<label for="email" class="same" id="emaillabel">Email:</label>	
 				
 			{% if personal %}
-			<input type="email" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" class="form-control" placeholder="Enter Email" id="contact_email" name="contact_email" value="{{personal[0]['contact_email']}}">
+			<input type="email" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" class="form-control same" placeholder="Enter Email" id="contact_email" name="contact_email" value="{{personal[0]['contact_email']}}">
 			{% else %}
-			<input type="email" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" class="form-control" placeholder="Enter Email" id="contact_email" name="contact_email">
+			<input type="email" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" class="form-control same" placeholder="Enter Email" id="contact_email" name="contact_email">
 			{% endif %}
 		</div>
-		<div class="form-group" id="contactdiv">	
-			<label for="contactno" id="contactlabel">Contact No:</label>	
+		<div class="form-group same" id="contactdiv">	
+			<label for="contactno" class="same" id="contactlabel">Contact No:</label>	
 				
 			{% if personal %}
-			<input type="text" pattern="[0-9]{10}" class="form-control" id="contact_number" name="contact_number" value="{{personal[0]['contact_number']}}">
+			<input type="text" pattern="[0-9]{10}" class="form-control same" id="contact_number" name="contact_number" value="{{personal[0]['contact_number']}}">
 			{% else %}
-			<input type="text" pattern="[0-9]{10}" class="form-control" id="contact_number" name="contact_number">
+			<input type="text" pattern="[0-9]{10}" class="form-control same" id="contact_number" name="contact_number">
 			{% endif %}
 		</div>
-		<div class="form-group" id="addressdiv">	
-			<label for="address" id="addresslabel">Address:</label>	
+		<div class="form-group same" id="addressdiv">	
+			<label for="address" class="same" id="addresslabel">Address:</label>	
 
 			{% if personal %}
-			<input type="text" class="form-control" id="address" name="address" value="{{personal[0]['address']}}">	
+			<input type="text" class="form-control same" id="address" name="address" value="{{personal[0]['address']}}">	
 			{% else %}
-			<input type="text" class="form-control" id="address" name="address">	
+			<input type="text" class="form-control same" id="address" name="address">	
 			{% endif %}
 			
 		</div>
 
-		<div class="form-group" id="description">	
-			<label for="first" id="description">Description:</label>	
+		<div class="form-group same" id="description">	
+			<label for="first" class="same" id="description">Description:</label>	
 			
 			{% if personal %}
-			<input type="text" class="form-control" id="description" name="description" value="{{personal[0]['description']}}">	
+			<input type="text" class="form-control same" id="description" name="description" value="{{personal[0]['description']}}">	
 			{% else %}
-			<input type="text" class="form-control" id="description" name="description">	
+			<input type="text" class="form-control same" id="description" name="description">	
 			{% endif %}
 			
 		</div>	
@@ -78,19 +78,13 @@
 				<input type="hidden" id="Id" name="Id" value="Null">
 			{% endif %}
 		<button type="submit" formaction="insertPersonalInfo" formmethod="POST">UPDATE</button>
-
-		Probably not on this page
-		<div class="form-group" id="hobbies">	
-			<label for="first" id="hobbies">Hobbies:</label>	
-			<input type="text" class="form-control" id="hobbies" name="hobbies">	
-		</div>
 	  </form>
 	</div>
 	
 
 
 	<div id="divedu" class="content">
-	  <form class="edu" >
+	  <form class="edu">
 		<!--<div class="form-group" id="leveledudiv">	
 			<label for="category" id="leveledulabel">Level:</label>	
             <label>	
@@ -103,34 +97,34 @@
             <input type="radio" id="phd" name="level" value="recruiter"> Phd </label>	
         </div>-->
 		
-		<div class="form-group" id="degree_name">	
+		<!--<div class="form-group" id="degree_name">	
 			<label for="last" id="degree_name">Degree:</label>	
 			<input type="text" class="form-control" id="degree_name" name="degree_name">	
-		</div>
+		</div>-->
 		
-		<div class="form-group" >	
-			<label for="last" id="">Department:</label>	
+		<div class="form-group same" >	
+			<label for="last" class="same" id="degree_name">Degree:</label>	
 			{% if courses%}
-			<input type="text" class="form-control" id="department" name="department" value="{{courses[0]['department']}}">
+			<input type="text" class="form-control same" id="department" name="department" value="{{courses[0]['department']}}">
 			{%else%}
-			<input type="text" class="form-control" id="department" name="department" >
+			<input type="text" class="form-control same" id="department" name="department">
 			
 			{%endif%}	
 		</div>
 		
 		<!-- add and delete courses-->
 		    <!-- add and delete courses-->
-            <div class="form-group">
-                <label for="first">Course No.:</label>
+            <div class="form-group same">
+                <label for="first" class="same">Course No.:</label>
                 {% for course in courses %}
 
-                <input type="text" class="form-control" id="{{course['Id']}}" name="course_no{{course['Id']}}"
+                <input type="text same" class="form-control" id="{{course['Id']}}" name="course_no{{course['Id']}}"
                        value="{{ course['course_no'] }}">
                 <a class= "material-icons md-48 md-dark" href="deleteCourse?courseid={{course['course_no']}}">delete</a>
                 <button type= "submit" formaction="updateCourse?Id={{course['Id']}}" style="background-color:#fdd54f" formmethod="POST"><i style="background-color:#fdd54f" class= "material-icons md-48 md-dark">edit</i></button>
                 <!--<a href="updateCourse?courseid={{course['course_no']}}&{{courses['Id']}}">UPDATE</a>-->
                 {% endfor %}
-                <input type="text" class="form-control" id="course_no1" name="course_no1">
+                <input type="text same" class="form-control" id="course_no1" name="course_no1">
                 <button type="submit" formaction="insertCourse" formmethod="POST">ADD</button>
                 <!--<a name="insertCourse" href=""-->
                    <!--onclick="this.href='insertCourse?courseid='+document.getElementById('course_no1').value+'&department='+document.getElementById('department').value">ADD</a>-->
@@ -145,70 +139,66 @@
 
 
 
-		<div class="form-group" id="institution_name">	
-			<label for="first" id="institution_name">Institution name:</label>	
-			<input type="text" class="form-control" id="institution_name" name="institution_name">	
+		<div class="form-group same" id="institution_name">	
+			<label for="first" class="same" id="institution_name">Institution name:</label>	
+			<input type="text" class="form-control same" id="institution_name" name="institution_name">	
 		</div>	
   
-		<div class="form-group" id="start_date">	
-			<label for="last" id="start_date">Start Year:</label>	
-			<input type="text" class="form-control" id="start_date" name="start_date">	
+		<div class="form-group same" id="start_date">	
+			<label for="last" class="same" id="start_date">Start Year:</label>	
+			<input type="text" class="form-control same" id="start_date" name="start_date">	
 		</div>
 			
-		<div class="form-group" id="end_date">	
-			<label for="first" id="end_date">End Year:</label>	
-			<input type="text" class="form-control" id="end_date" name="end_date">	
+		<div class="form-group same" id="end_date">	
+			<label for="first" class="same" id="end_date">End Year:</label>	
+			<input type="text" class="form-control same" id="end_date" name="end_date">	
 		</div>
 		
-		<div class="form-group" id="cgpa">	
-			<label for="first" id="cgpa">CGPA:</label>	
-			<input type="number" min="0" value="0" step=".01" class="form-control" id="cgpa" name="cgpa">	
+		<div class="form-group same" id="cgpa">	
+			<label for="first" class="same" id="cgpa">CGPA:</label>	
+			<input type="number" min="0" value="0" step=".01" class="form-control same" id="cgpa" name="cgpa">	
 		</div>
 		
 	  </form>
 	</div>
-	
-
-
-
 
 	<div id="divexp" class="content">
 	  <form class="exp" method="post" action="/insertIndustryExp">
-		<div class="form-group">	
-			<label for="first" >Company Name:</label>	
+		<div class="form-group same">	
+			<label for="first" class="same">Company Name:</label>	
 			{% if industryExp %}
-				<input type="text" class="form-control" id="company_name" name="company_name" value="{{industryExp[0]['company_name']}}">	
+				<input type="text" class="form-control same" id="company_name" name="company_name" value="{{industryExp[0]['company_name']}}">	
 			{% else %}
-				<input type="text" class="form-control" id="company_name" name="company_name">	
+				<input type="text" class="form-control same" id="company_name" name="company_name">	
 			{% endif %}
 		</div>
 		
-		<div class="form-group">	
-			<label for="first">Designation:</label>	
+		<div class="form-group same">	
+			<label for="first" class="same">Designation:</label>	
 			{% if industryExp %}
-				<input type="text" class="form-control" id="designation" name="designation" value="{{industryExp[0]['designation']}}">	
+				<input type="text" class="form-control same" id="designation" name="designation" value="{{industryExp[0]['designation']}}">	
 			{% else %}
-				<input type="text" class="form-control" id="designation" name="designation" >	
+				<input type="text" class="form-control same" id="designation" name="designation" >	
 			{%endif%}
 		</div>
 
-		<div class="form-group" >	
-			<label for="first" >Work Description:</label>	
+		<div class="form-group same" >	
+			<label for="first" class="same" >Work Description:</label>	
 			{% if industryExp %}
-				<input type="text" class="form-control" id="work_description" name="work_description" value="{{industryExp[0]['work_description']}}">	
+				<input type="text" class="form-control same" id="work_description" name="work_description" value="{{industryExp[0]['work_description']}}">	
 			{%else%}
-				<input type="text" class="form-control" id="work_description" name="work_description">	
+				<input type="text" class="form-control same" id="work_description" name="work_description">	
 			{%endif%}
 		</div>
 
-		<div class="form-group" >	
-			<label for="first">No. of Months:</label>	
+		<div class="form-group same" >	
+			<label for="first" class="same">No. of Months:</label>	
 			{% if industryExp %}
-				<input type="number" min="1" class="form-control" id="no_of_months" name="no_of_months" value="{{industryExp[0]['no_of_months']}}">
+				<input type="number" min="1" class="form-control same" id="no_of_months" name="no_of_months" value="{{industryExp[0]['no_of_months']}}">
 
 				<input type="hidden" id="Id" name="Id" value="{{industryExp[0]['Id']}}">
 			{% else %}
-				<input type="number" min="1" class="form-control" id="no_of_months" name="no_of_months">
+				<input type="number" min="1" class="form-control same" id="no_of_months" name="no_of_months">
 				<input type="hidden" id="Id" name="Id" value="Null">
 			{% endif %}
 		</div>
@@ -225,41 +215,41 @@
 	<div id="divskills" class="content">
 	  <form class="skills">
 
-		<div class="form-group">	
-			<label for="first" >Certificates:</label>	
+		<div class="form-group same">	
+			<label for="first" class="same" >Certificates:</label>	
 			{% for certificate in certificates %}
 				
-			  <input type="text" class="form-control" id="{{certificate['Id']}}" name="certificate{{certificate['Id']}}" value="{{ certificate['certificates'] }}">
+			  <input type="text" class="form-control same" id="{{certificate['Id']}}" name="certificate{{certificate['Id']}}" value="{{ certificate['certificates'] }}">
 		      <a class= "material-icons md-48 md-dark" href="deleteCertificates?Id={{certificate['Id']}}">delete</a>
                 <button type= "submit" formaction="updateCertificates?Id={{certificate['Id']}}" style="background-color:#fdd54f" formmethod="POST"><i style="background-color:#fdd54f" class= "material-icons md-48 md-dark">edit</i></button>
 		      {% endfor %}
 
-		      <input type="text" class="form-control" id="certificates1" name="certificates1">  
+		      <input type="text" class="form-control same" id="certificates1" name="certificates1">  
 		    
 		    <a name="insertCertificates" href="" onclick="this.href='insertCertificates?certificates='+document.getElementById('certificates1').value">ADD</a>
 		</div>		
-		<div class="form-group" id="project_title">	
-			<label for="first" id="project_title">Project Title:</label>	
-			<input type="text" class="form-control" id="project_title" name="project_title">	
+		<div class="form-group same" id="project_title">	
+			<label for="first" class="same" id="project_title">Project Title:</label>	
+			<input type="text" class="form-control same" id="project_title" name="project_title">	
 		</div>
 
-		<div class="form-group" id="project_detail">	
-			<label for="first" id="project_detail">Project Detail:</label>	
-			<input type="text" class="form-control" id="project_detail" name="project_detail">	
+		<div class="form-group same" id="project_detail">	
+			<label for="first" class="same" id="project_detail">Project Detail:</label>	
+			<input type="text" class="form-control same" id="project_detail" name="project_detail">	
 		</div>
 	  </form>
 	</div>
 	
 	<div id="divla" class="content">
 	  <form class="la">
-		<div class="form-group" id="linkedIn_account">	
-			<label for="first" id="linkedIn_account">LinkedIn Account:</label>	
-			<input type="text" class="form-control" id="linkedIn_account" name="linkedIn_account">	
+		<div class="form-group same" id="linkedIn_account">	
+			<label for="first" class="same" id="linkedIn_account">LinkedIn Account:</label>	
+			<input type="text" class="form-control same" id="linkedIn_account" name="linkedIn_account">	
 		</div>
 
-		<div class="form-group" id="other_links">	
-			<label for="first" id="other_links">Other Links:</label>	
-			<input type="text" class="form-control" id="other_links" name="other_links">	
+		<div class="form-group same" id="other_links">	
+			<label for="first" class="same" id="other_links">Other Links:</label>	
+			<input type="text" class="form-control same" id="other_links" name="other_links">	
 		</div>
 	  </form>
 	</div>
