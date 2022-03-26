@@ -85,25 +85,9 @@
 
 	<div id="divedu" class="content">
 	  <form class="edu">
-		<!--<div class="form-group" id="leveledudiv">	
-			<label for="category" id="leveledulabel">Level:</label>	
-            <label>	
-            <input type="radio" id="undergrad" name="level" value="student" required> Undergrad </label> 	
-            	
-            <label>	
-            <input type="radio" id="grad" name="level" value="faculty"> Grad </label>	
-            	
-            <label>	
-            <input type="radio" id="phd" name="level" value="recruiter"> Phd </label>	
-        </div>-->
-		
-		<!--<div class="form-group" id="degree_name">	
-			<label for="last" id="degree_name">Degree:</label>	
-			<input type="text" class="form-control" id="degree_name" name="degree_name">	
-		</div>-->
 		
 		<div class="form-group same" >	
-			<label for="last" class="same" id="degree_name">Degree:</label>	
+			<label for="last" class="same" id="degree_name">Department:</label>	
 			{% if courses%}
 			<input type="text" class="form-control same" id="department" name="department" value="{{courses[0]['department']}}">
 			{%else%}
@@ -128,25 +112,61 @@
 
         </div>
 
+		
+		<div class="form-group same" id="degree_name">	
+			<label for="last" class="same" id="degree_name">Degree:</label>	
+			{% if education %}
+			<input type="text" class="form-control same" id="degree_name" name="degree_name" value="{{education[0]['degree_name']}}">	
+			{% else %}
+			<input type="text" class="form-control same" id="degree_name" name="degree_name">	
+			{% endif %}
+		</div>
+
 		<div class="form-group same" id="institution_name">	
 			<label for="first" class="same" id="institution_name">Institution name:</label>	
+			{% if education %}
+			<input type="text" class="form-control same" id="institution_name" name="institution_name" value="{{education[0]['institution_name']}}">	
+			{% else %}
 			<input type="text" class="form-control same" id="institution_name" name="institution_name">	
+			{% endif %}
 		</div>	
   
 		<div class="form-group same" id="start_date">	
 			<label for="last" class="same" id="start_date">Start Year:</label>	
+			
+			{% if education %}
+			<input type="text" class="form-control same" id="start_date" name="start_date" value="{{education[0]['start_date']}}">	
+			{% else %}
 			<input type="text" class="form-control same" id="start_date" name="start_date">	
+			{% endif %}
 		</div>
 			
 		<div class="form-group same" id="end_date">	
 			<label for="first" class="same" id="end_date">End Year:</label>	
+			
+			{% if education %}
+			<input type="text" class="form-control same" id="end_date" name="end_date" value="{{education[0]['end_date']}}">	
+			{% else %}
 			<input type="text" class="form-control same" id="end_date" name="end_date">	
+			{% endif %}
 		</div>
 		
 		<div class="form-group same" id="cgpa">	
 			<label for="first" class="same" id="cgpa">CGPA:</label>	
+			{% if education %}
+			<input type="number" min="0" step=".01" class="form-control same" id="cgpa" name="cgpa" value="{{education[0]['cgpa']}}">	
+			{% else %}
 			<input type="number" min="0" value="0" step=".01" class="form-control same" id="cgpa" name="cgpa">	
+			{% endif %}
+
 		</div>
+		{% if education %}
+			<input type="hidden" id="Id" name="Id" value="{{education[0]['Id']}}">
+		{% else %}
+			<input type="hidden" id="Id" name="Id" value="Null">
+		{% endif %}
+		<button type="submit" formaction="insertEducation" formmethod="POST">UPDATE</button>
+
 		
 	  </form>
 	</div>
@@ -217,15 +237,28 @@
             <input type="text" class="form-control same" id="certificate" name="certificates">
             <button name="insertCertificates" formaction="insertCertificates" formmethod="post" style="background-color:#fdd54f; border-width:0; margin: 10px 0px;"><i style="background-color:#fdd54f;" class="material-icons md-48 md-dark">add_circle</i></button>
 		</div>		
-		<div class="form-group same" id="project_title">
+		
+		<div class="form-group same" id="project_title">	
 			<label for="first" class="same" id="project_title">Project Title:</label>	
+			{% for project in projects %}
+			<input type="text" class="form-control same" id="{{project['Id']}}" name="project_title{{project['Id']}}" value="{{ project['project_title'] }}">
+		    {% endfor %}			
 			<input type="text" class="form-control same" id="project_title" name="project_title">	
 		</div>
 
 		<div class="form-group same" id="project_detail">	
 			<label for="first" class="same" id="project_detail">Project Detail:</label>	
+			{% for project in projects %}
+				
+			  <input type="text" class="form-control same" id="{{project['Id']}}" name="project_detail{{project['Id']}}" value="{{ project['project_detail'] }}">
+		      <a class= "material-icons md-48 md-dark same" href="deleteProject?Id={{project['Id']}}">delete</a>
+                <button type= "submit" formaction="updateProject?Id={{project['Id']}}" style="background-color:#fdd54f" formmethod="POST"><i style="background-color:#fdd54f" class= "material-icons md-48 md-dark same">edit</i></button>
+		    {% endfor %}			
+			
 			<input type="text" class="form-control same" id="project_detail" name="project_detail">	
 		</div>
+		<button type="submit" formaction="insertProject" formmethod="POST">ADD</button>
+
 	  </form>
 	</div>
 	
