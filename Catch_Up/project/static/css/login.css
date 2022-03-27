@@ -23,7 +23,8 @@ div.form
 
 #loginbtn{
 	margin: 10px 0px 20px 20px;
-	background-color: #000000
+	background-color: #000000;
+	color: #fdd54f;
 }
 #fpbtn{
 	padding: 10px 20px 20px;
