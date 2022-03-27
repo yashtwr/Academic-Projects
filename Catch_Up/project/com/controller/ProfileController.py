@@ -173,7 +173,7 @@ def deleteCourse():
     return redirect(url_for("userProfile"))
 
 
-@app.route('/insertCertificates', methods=["GET"])
+@app.route('/insertCertificates', methods=["POST"])
 def insertCertificates():
     certificatesVO = CertificatesVO()
     certificatesDAO = CertificatesDAO()
@@ -182,7 +182,7 @@ def insertCertificates():
 
     loginVO.email = session['login_email']
 
-    certificatesVO.certificates = request.args.get('certificates')
+    certificatesVO.certificates = request.form['certificates']
 
     certificatesVO.certificates_loginId = loginDAO.fetchId(loginVO)
     certificatesDAO.insertCertificates(certificatesVO)
