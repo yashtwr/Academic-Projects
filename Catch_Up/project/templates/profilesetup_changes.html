@@ -107,7 +107,7 @@
             <a class= "material-icons md-40 md-dark" href="deleteCourse?courseid={{course['course_no']}}" style="color:black; background-color: transparent; text-decoration: none;">delete</a>
             <button type= "submit" formaction="updateCourse?Id={{course['Id']}}" style="background-color:#fdd54f; margin:10px 0px; border-width:0;" formmethod="POST"><i style="background-color:#fdd54f" class= "material-icons md-36">edit</i></button>
             {% endfor %}
-            <input type="text" class="form-control same" id="course_no1" name="course_no1">
+            <input type="text" class="form-control same" id="course_no1" name="courseno">
             <button type="submit" formaction="insertCourse" formmethod="POST" style="background-color:#fdd54f; margin:10px 0px; border-width:0;"><i class="material-icons md-48 md-dark">add_circle</i></button>
 
         </div>
