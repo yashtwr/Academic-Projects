@@ -121,7 +121,7 @@ def insertCourse():
 
     loginVO.email = session['login_email']
 
-    courseVO.course_no = request.form['courseno1']
+    courseVO.course_no = request.form['courseno']
     courseVO.department = request.form['department']
     # courseVO.department = request.args.get('department')
     # courseVO.department = department
