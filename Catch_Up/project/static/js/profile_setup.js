@@ -36,7 +36,7 @@ if (divpi.style.display == "block"){
 function openPI(){
 	btnpi.style.backgroundColor = "#fdd54f";
 	btnpi.style.color="#000";
-	btnpi.removeEventListener("mouseout", changeStyle1);
+	btnpi.removeEventListener("mouseout", mouseOut);
 	
 	divpi.style.display = "block";
 	divedu.style.display = "none";
@@ -47,7 +47,7 @@ function openPI(){
 function openEdu(){
 	btnpi.style.backgroundColor = "#000";
 	btnpi.style.color="#fdd54f";
-	btnpi.addEventListener("mouseout", changeStyle1);
+	btnpi.addEventListener("mouseout", mouseOut);
 	
 	divedu.style.display = "block";
 	divpi.style.display = "none";
@@ -59,7 +59,7 @@ function openEdu(){
 function openExp(){
 	btnpi.style.backgroundColor = "#000";
 	btnpi.style.color="#fdd54f";
-	btnpi.addEventListener("mouseout", changeStyle1);
+	btnpi.addEventListener("mouseout", mouseOut);
 	
 	divexp.style.display = "block";
 	divpi.style.display = "none";
@@ -71,7 +71,7 @@ function openExp(){
 function openSkills(){
 	btnpi.style.backgroundColor = "#000";
 	btnpi.style.color="#fdd54f";
-	btnpi.addEventListener("mouseout", changeStyle1);
+	btnpi.addEventListener("mouseout", mouseOut);
 	
 	divskills.style.display = "block";
 	divpi.style.display = "none";
@@ -83,7 +83,7 @@ function openSkills(){
 function openLA(){
 	btnpi.style.backgroundColor = "#000";
 	btnpi.style.color="#fdd54f";
-	btnpi.addEventListener("mouseout", changeStyle1);
+	btnpi.addEventListener("mouseout", mouseOut);
 	
 	divla.style.display = "block";
 	divpi.style.display = "none";
