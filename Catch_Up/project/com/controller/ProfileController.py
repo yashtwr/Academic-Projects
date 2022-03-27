@@ -1,511 +1,320 @@
-# importing Flask and other modules
-from flask import Flask, request, render_template, redirect, url_for, session
-from project.com.vo.LoginVO import LoginVO
-from project.com.vo.CoursesVO import CoursesVO
-from project.com.dao.LoginDAO import LoginDAO
-from project.com.dao.CoursesDAO import CoursesDAO
-from project.com.vo.EducationVO import EducationVO
-from project.com.dao.EducationDAO import EducationDAO
-from project.com.vo.CertificatesVO import CertificatesVO
-from project.com.dao.CertificatesDAO import CertificatesDAO
-from project.com.vo.HobbiesVO import HobbiesVO
-from project.com.dao.HobbiesDAO import HobbiesDAO
-from project.com.vo.IndustryExpVO import IndustryVO
-from project.com.dao.IndustryExpDAO import IndustryDAO
-from project.com.vo.PersonalVO import PersonalVO
-from project.com.dao.PersonalDAO import PersonalDAO
-from project.com.vo.ProjectVO import ProjectVO
-from project.com.dao.ProjectDAO import ProjectDAO
-from project.com.vo.SkillsVO import SkillsVO
-from project.com.dao.SkillsDAO import SkillsDAO
-from project.com.vo.SignUpVO import SignUpVO
-from project.com.dao.SignUpDAO import SignUpDAO
-from project.com.vo.AccountsVO import AccountsVO
-from project.com.dao.AccountsDAO import AccountsDAO
-
-from project import app
-
-
-@app.route('/profile', methods=["GET", "POST"])
-def userProfile():
-    try:
-        courseVO = CoursesVO()
-        courseDAO = CoursesDAO()
-        certificatesVO = CertificatesVO()
-        certificatesDAO = CertificatesDAO()
-        industryVO = IndustryVO()
-        industryDAO = IndustryDAO()
-
-        personalVO = PersonalVO()
-        personalDAO = PersonalDAO()
-        signupVO = SignUpVO()
-        signupDAO = SignUpDAO()
-
-        educationVO = EducationVO()
-        educationDAO = EducationDAO()
-
-        projectVO = ProjectVO()
-        projectDAO = ProjectDAO()
-
-        hobbiesVO = HobbiesVO()
-        hobbiesDAO = HobbiesDAO()
-
-        accountsVO = AccountsVO()
-        accountsDAO = AccountsDAO()
-
-        loginVO = LoginVO()
-        loginDAO = LoginDAO()
-
-        loginVO.email = session['login_email']
-        id = loginDAO.fetchId(loginVO)
-
-        courseVO.course_loginId = id
-        lst = courseDAO.fetchCourses(courseVO)
-        courses = [i.as_dict() for i in lst]
-
-        certificatesVO.certificates_loginId = id
-        lst_certi = certificatesDAO.fetchCertificates(CertificatesVO)
-        certificates = [i.as_dict() for i in lst_certi]
-
-        industryVO.industry_loginId = id
-        lst_industry = industryDAO.fetchIndustryExp(industryVO)
-        industryExp = [i.as_dict() for i in lst_industry]
-        print(industryExp)
-
-        personalVO.personal_loginId = id
-        lst_personal = personalDAO.fetchPersonal(personalVO)
-        personal = [i.as_dict() for i in lst_personal]
-        print(personal)
-
-        signupVO.signup_LoginId = id
-        lst_signup = signupDAO.fetchUser(signupVO)
-        signup = [i.as_dict() for i in lst_signup]
-        print(signup)
-
-        educationVO.education_loginId = id
-        lst_education = educationDAO.fetchEducation(educationVO)
-        education = [i.as_dict() for i in lst_education]
-        print(education)
-
-        projectVO.project_loginId = id
-        lst_project = projectDAO.fetchProjects(projectVO)
-        project = [i.as_dict() for i in lst_project]
-        print(project)
-
-
-        hobbiesVO.hobbies_loginId = id
-        lst_hobbies = hobbiesDAO.fetchHobbies(hobbiesVO)
-        hobbies = [i.as_dict() for i in lst_hobbies]
-        print(hobbies)
-
-        accountsVO.accounts_loginId = id
-        lst_accounts = accountsDAO.fetchAccounts(accountsVO)
-        accounts = [i.as_dict() for i in lst_accounts]
-
-        if 'currentPage' not in session:
-            session['currentPage'] = 'personal_information'
-
-        return render_template("profilesetup_changes.html", title="profileSetup", courses=courses,
-                               certificates=certificates, industryExp=industryExp, signup=signup, personal=personal,
-                               education=education, projects = project, hobbies = hobbies, accounts = accounts)
-    except Exception as ex:
-        print(ex)
-
-
-@app.route('/insertCourse', methods=["GET","POST"])
-def insertCourse():
-    courseVO = CoursesVO()
-    courseDAO = CoursesDAO()
-    loginVO = LoginVO()
-    loginDAO = LoginDAO()
-
-    loginVO.email = session['login_email']
-
-    courseVO.course_no = request.form['courseno']
-    courseVO.department = request.form['department']
-    # courseVO.department = request.args.get('department')
-    # courseVO.department = department
-    courseVO.course_loginId = loginDAO.fetchId(loginVO)
-
-    courseDAO.insertCourses(courseVO)
-    session['currentPage'] = 'education'
-    return redirect(url_for("userProfile"))
-
-@app.route('/updateCourse', methods=["GET","POST"])
-def updateCourse():
-    courseVO = CoursesVO()
-    courseDAO = CoursesDAO()
-    loginVO = LoginVO()
-    loginDAO = LoginDAO()
-    loginVO.email = session['login_email']
-
-    Id = request.args.get('Id')
-    course_no = request.form['course_no'+str(Id)]
-    department = request.form['department']
-    loginId = loginDAO.fetchId(loginVO)
-
-    courseVO.Id = Id
-    courseVO.course_no = course_no
-    courseVO.department = department
-    courseVO.course_loginId = loginId
-    courseDAO.updateCourses(courseVO)
-    session['currentPage'] = 'education'
-    return redirect(url_for("userProfile"))
-
-@app.route('/deleteCourse', methods=["GET"])
-def deleteCourse():
-    courseVO = CoursesVO()
-    courseDAO = CoursesDAO()
-    loginVO = LoginVO()
-    loginDAO = LoginDAO()
-    
-    loginVO.email = session['login_email']
-    
-    course_no = request.args.get('courseid')
-    courseVO.course_no= course_no
-
-    login_id = loginDAO.fetchId(loginVO)
-    courseVO.course_loginId = login_id
-
-    courseDAO.deleteCourses(courseVO)
-    session['currentPage'] = 'education'
-    return redirect(url_for("userProfile"))
-
-
-@app.route('/insertCertificates', methods=["GET"])
-def insertCertificates():
-    certificatesVO = CertificatesVO()
-    certificatesDAO = CertificatesDAO()
-    loginVO = LoginVO()
-    loginDAO = LoginDAO()
-    
-    loginVO.email = session['login_email']
-    
-    certificatesVO.certificates = request.args.get('certificates')
-    
-    certificatesVO.certificates_loginId = loginDAO.fetchId(loginVO)
-    certificatesDAO.insertCertificates(certificatesVO)
-    session['currentPage'] = 'skills'
-
-    return redirect(url_for("userProfile"))
-
-@app.route('/updateCertificates', methods=["GET","POST"])
-def updateCertificates():
-    certificatesVO = CertificatesVO()
-    certificatesDAO = CertificatesDAO()
-    loginVO = LoginVO()
-    loginDAO = LoginDAO()
-    loginVO.email = session['login_email']
-
-    Id = request.args.get('Id')
-    certificates = request.form['certificate'+str(Id)]
-    loginId = loginDAO.fetchId(loginVO)
-
-    certificatesVO.Id = Id
-    certificatesVO.certificates = certificates
-    certificatesVO.course_loginId = loginId
-    certificatesDAO.upadateCertificates(certificatesVO)
-    session['currentPage'] = 'skills'
-    return redirect(url_for("userProfile"))
-
-
-@app.route('/deleteCertificates', methods=["GET"])
-def deleteCertificates():
-    certificatesVO = CertificatesVO()
-    certificatesDAO = CertificatesDAO()
-    loginVO = LoginVO()
-    loginDAO = LoginDAO()
-    
-    loginVO.email = session['login_email']
-    Id = request.args.get('Id')
-    certificatesVO.Id = Id
-    certificatesVO.certificates_loginId = loginDAO.fetchId(loginVO)
-    certificatesDAO.deleteCertificates(certificatesVO)
-    session['currentPage'] = 'skills'
-    return redirect(url_for("userProfile"))
-
-@app.route('/insertIndustryExp', methods=["POST"])
-def insertIndustryExp():
-    industryVO = IndustryVO()
-    industryDAO = IndustryDAO()
-    loginVO = LoginVO()
-    loginDAO = LoginDAO()
-    
-    loginVO.email = session['login_email']
-
-    industryVO.company_name = request.form['company_name']
-    industryVO.designation = request.form['designation']
-    industryVO.work_description = request.form['work_description']
-    industryVO.no_of_months = request.form['no_of_months']
-    
-    #courseVO.department = department
-    login_Id = loginDAO.fetchId(loginVO)
-    industryVO.industry_loginId = login_Id
-    
-    if request.form['Id'] == 'Null':
-        industryDAO.insertIndustryExp(industryVO)
-    else:
-        industryVO.Id = request.form['Id']
-        industryDAO.updateIndustryExp(industryVO)
-
-    session['currentPage'] = 'experience'
-    return redirect(url_for("userProfile"))
-
-@app.route('/deleteIndustryExp', methods=["GET"])
-def deleteIndustryExp():
-    industryVO = IndustryVO()
-    industryDAO = IndustryDAO()
-    loginVO = LoginVO()
-    loginDAO = LoginDAO()
-    loginVO.email = session['login_email']
-    login_Id = loginDAO.fetchId(loginVO)
-    industryVO.industry_loginId = login_Id
-    Id = request.args.get('Id')
-    industryVO.Id = Id
-    industryDAO.deleteIndustryExp(industryVO)
-    session['currentPage'] = 'experience'
-    return redirect(url_for("userProfile"))
-
-
-@app.route('/insertPersonalInfo', methods=["POST"])
-def insertPersonalInfo():    
-    personalVO = PersonalVO()
-    personalDAO = PersonalDAO()
-    signupVO = SignUpVO()
-    signupDAO = SignUpDAO()
-
-    loginVO = LoginVO()
-    loginDAO = LoginDAO()
-    loginVO.email = session['login_email']
-
-    #Id = request.args.get('Id')
-    #course_no = request.form['course_no'+str(Id)]
-    #department = request.form['department']
-    id = loginDAO.fetchId(loginVO)
-
-    firstname = request.form['firstname']
-    lastname = request.form['lastname']
-    contact_email = request.form['contact_email']
-    contact_number = request.form['contact_number']
-    address = request.form['address']
-    description = request.form['description']
-
-    signupVO.firstname = firstname
-    signupVO.lastname = lastname
-    signupVO.signup_LoginId = id
-    personalVO.personal_loginId = id
-    personalVO.contact_email = contact_email
-    personalVO.contact_number = contact_number
-    personalVO.address = address
-    personalVO.description = description
-    
-    if request.form['Id'] == 'Null':
-        personalDAO.insertPersonal(personalVO)
-    else:
-        personalVO.Id = request.form['Id']
-        personalDAO.updatePersonal(personalVO)
-    
-    signupDAO.updateUser(signupVO)
-
-    session['currentPage'] = 'personal_information'
-    return redirect(url_for("userProfile"))
-
-
-
-@app.route('/insertEducation', methods=["GET","POST"])
-def insertEducation():
-    
-    educationVO = EducationVO()
-    educationDAO = EducationDAO()
-
-
-    loginVO = LoginVO()
-    loginDAO = LoginDAO()
-    loginVO.email = session['login_email']
-
-    #Id = request.args.get('Id')
-    #course_no = request.form['course_no'+str(Id)]
-    #department = request.form['department']
-    id = loginDAO.fetchId(loginVO)
-
-    degree_name = request.form['degree_name']
-    start_date = request.form['start_date']
-    institution_name = request.form['institution_name']
-    end_date = request.form['end_date']
-    cgpa = request.form['cgpa']
-    
-    educationVO.degree_name = degree_name
-    educationVO.start_date = start_date
-    educationVO.institution_name = institution_name
-    educationVO.end_date = end_date
-    educationVO.cgpa = cgpa
-    educationVO.education_loginId = id
-    
-    if request.form['Id'] == 'Null':
-        educationDAO.insertEducation(educationVO)
-    else:
-        educationVO.Id = request.form['Id']
-        educationDAO.updateEducation(educationVO)
-    
-    session['currentPage'] = 'education'
-    return redirect(url_for("userProfile"))
-
-@app.route('/insertProject', methods=["POST"])
-def insertProject():
-    projectVO = ProjectVO()
-    projectDAO = ProjectDAO()
-    loginVO = LoginVO()
-    loginDAO = LoginDAO()
-    
-
-    loginVO.email = session['login_email']
-    
-    projectVO.project_title = request.form['project_title']
-    projectVO.project_detail = request.form['project_detail']
-    projectVO.project_loginId = loginDAO.fetchId(loginVO)
-    print('=------------------------------')
-    print(';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;')
-    
-    projectDAO.insertProject(projectVO)
-    session['currentPage'] = 'skills'
-
-    return redirect(url_for("userProfile"))
-@app.route('/deleteProject', methods=["GET"])
-def deleteProject():
-    projectVO = ProjectVO()
-    projectDAO = ProjectDAO()
-    loginVO = LoginVO()
-    loginDAO = LoginDAO()
-    loginVO.email = session['login_email']
-    login_Id = loginDAO.fetchId(loginVO)
-    projectVO.project_loginId = login_Id
-    Id = request.args.get('Id')
-    projectVO.Id = Id
-    projectDAO.deleteProject(projectVO)
-    session['currentPage'] = 'skills'
-    return redirect(url_for("userProfile"))
-@app.route('/updateProject', methods=["GET","POST"])
-def updateProject():
-    projectVO = ProjectVO()
-    projectDAO = ProjectDAO()
-    loginVO = LoginVO()
-    loginDAO = LoginDAO()
-    loginVO.email = session['login_email']
-
-    Id = request.args.get('Id')
-    projectVO.project_title = request.form['project_title'+str(Id)]
-    projectVO.project_detail = request.form['project_detail'+str(Id)]
-    projectVO.Id = Id
-    #loginId = loginDAO.fetchId(loginVO)
-    projectDAO.updateProject(projectVO)
-    session['currentPage'] = 'skills'
-    return redirect(url_for("userProfile"))
-
-
-@app.route('/insertHobbies', methods=["POST"])
-def insertHobbies():
-    hobbiesVO = HobbiesVO()
-    hobbiesDAO = HobbiesDAO()
-    loginVO = LoginVO()
-    loginDAO = LoginDAO()
-    
-
-    loginVO.email = session['login_email']
-    
-    hobbiesVO.hobbies = request.form['hobbies']
-    hobbiesVO.hobbies_loginId = loginDAO.fetchId(loginVO)
-    print('=------------------------------')
-    print(';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;')
-    
-    hobbiesDAO.insertHobbies(hobbiesVO)
-    session['currentPage'] = 'skills'
-
-    return redirect(url_for("userProfile"))
-
-@app.route('/deleteHobbies', methods=["GET"])
-def deleteHobbies():
-    hobbiesVO = HobbiesVO()
-    hobbiesDAO = HobbiesDAO()
-    loginVO = LoginVO()
-    loginDAO = LoginDAO()
-    loginVO.email = session['login_email']
-    login_Id = loginDAO.fetchId(loginVO)
-    hobbiesVO.hobbies_loginId = login_Id
-    Id = request.args.get('Id')
-    hobbiesVO.Id = Id
-    hobbiesDAO.deleteHobbies(hobbiesVO)
-    session['currentPage'] = 'skills'
-    return redirect(url_for("userProfile"))
-
-@app.route('/updateHobbies', methods=["GET","POST"])
-def updateHobbies():
-    hobbiesVO = HobbiesVO()
-    hobbiesDAO = HobbiesDAO()
-    loginVO = LoginVO()
-    loginDAO = LoginDAO()
-    loginVO.email = session['login_email']
-
-    Id = request.args.get('Id')
-    hobbiesVO.hobbies = request.form['hobbies'+str(Id)]
-    hobbiesVO.Id = Id
-    #loginId = loginDAO.fetchId(loginVO)
-    hobbiesDAO.updateHobbies(hobbiesVO)
-    session['currentPage'] = 'skills'
-    return redirect(url_for("userProfile"))
-
-@app.route('/insertAccount', methods = ["GET","POST"])
-def insertAccount():
-    accountsVO = AccountsVO()
-    accountsDAO = AccountsDAO()
-    loginVO = LoginVO()
-    loginDAO = LoginDAO()
-    loginVO.email = session['login_email']
-    loginId = loginDAO.fetchId(loginVO)
-
-    platform = request.form['platform']
-    link = request.form['link']
-
-    accountsVO.platform = platform
-    accountsVO.link = link
-    accountsVO.accounts_loginId = loginId
-    accountsDAO.insertAccounts(accountsVO)
-    session['currentPage'] = 'accounts'
-    return redirect(url_for("userProfile"))
-
-@app.route('/updateAccounts', methods=["GET", "POST"])
-def updateAccounts():
-    accountsVO = AccountsVO()
-    accountsDAO = AccountsDAO()
-    loginVO = LoginVO()
-    loginDAO = LoginDAO()
-    loginVO.email = session['login_email']
-    loginId = loginDAO.fetchId(loginVO)
-
-    Id = request.args.get('Id')
-    platform = request.form['platform'+Id]
-    link = request.form['link'+Id]
-
-    accountsVO.Id = Id
-    accountsVO.platform = platform
-    accountsVO.link = link
-    accountsVO.accounts_loginId = loginId
-    accountsDAO.updateAccounts(accountsVO)
-    session['currentPage'] = 'accounts'
-    return redirect(url_for("userProfile"))
-
-@app.route('/deleteAccounts', methods=["GET"])
-def deleteAccounts():
-    accountsVO = AccountsVO()
-    accountsDAO = AccountsDAO()
-    loginVO = LoginVO()
-    loginDAO = LoginDAO()
-
-    loginVO.email = session['login_email']
-    Id = request.args.get('Id')
-    accountsVO.Id = Id
-    accountsVO.accounts_loginId = loginDAO.fetchId(loginVO)
-    accountsDAO.deleteAccounts(accountsVO)
-    session['currentPage'] = 'acconuts'
-    return redirect(url_for("userProfile"))
-
-
+{% extends "profile_setup_layout.html" %}
+{% block content %}
+
+<link rel="stylesheet" href = "../static/css/profile_setup.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <div class = "profile">
+	<h1 id="title">Profile</h1>
+	<div class = "btn-box">
+		<button id="btnpi" onclick="openPI()"> Personal Information </button>
+		<button id="btnedu" onclick="openEdu()"> Education </button>
+		<button id="btnexp" onclick="openExp()"> Experience </button>
+		<button id="btnskills" onclick="openSkills()"> Skills </button>
+		<button id="btnla" onclick="openLA()"> Linked Account </button>
+	</div>
+
+	<div id="divpi" class="content">
+	  <form class="pi" >
+		<div class="form-group same" id="fnamediv">	
+			<label for="first" class="same" id="fnamelabel">First Name:</label>	
+			{% if signup %}
+			<input type="text" class="form-control same" id="firstname" name="firstname" value="{{signup[0]['firstname']}}">	
+			{% else %}
+			<input type="text" class="form-control same" id="firstname" name="firstname" >	
+			{% endif %}
+		</div>	
+		<div class="form-group same" id="lnamediv">	
+			<label for="last" class="same" id="lnamelabel">Last Name:</label>	
+			
+			{% if signup %}
+			<input type="text" class="form-control same" id="lastname" name="lastname" value="{{signup[0]['lastname']}}">
+			{% else %}
+			<input type="text" class="form-control same" id="lastname" name="lastname">
+			{% endif %}
+		</div>	
+		<div class="form-group same" id="emaildiv">	
+			<label for="email" class="same" id="emaillabel">Email:</label>	
+				
+			{% if personal %}
+			<input type="email" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" class="form-control same" placeholder="Enter Email" id="contact_email" name="contact_email" value="{{personal[0]['contact_email']}}">
+			{% else %}
+			<input type="email" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" class="form-control same" placeholder="Enter Email" id="contact_email" name="contact_email">
+			{% endif %}
+		</div>
+		<div class="form-group same" id="contactdiv">	
+			<label for="contactno" class="same" id="contactlabel">Contact No:</label>	
+				
+			{% if personal %}
+			<input type="text" pattern="[0-9]{10}" class="form-control same" id="contact_number" name="contact_number" value="{{personal[0]['contact_number']}}">
+			{% else %}
+			<input type="text" pattern="[0-9]{10}" class="form-control same" id="contact_number" name="contact_number">
+			{% endif %}
+		</div>
+		<div class="form-group same" id="addressdiv">	
+			<label for="address" class="same" id="addresslabel">Address:</label>	
+
+			{% if personal %}
+			<input type="text" class="form-control same" id="address" name="address" value="{{personal[0]['address']}}">	
+			{% else %}
+			<input type="text" class="form-control same" id="address" name="address">	
+			{% endif %}
+			
+		</div>
+
+		<div class="form-group same" id="description">	
+			<label for="first" class="same" id="description">Description:</label>	
+			
+			{% if personal %}
+			<input type="text" class="form-control same" id="description" name="description" value="{{personal[0]['description']}}">	
+			{% else %}
+			<input type="text" class="form-control same" id="description" name="description">	
+			{% endif %}
+			
+		</div>	
+
+			{% if personal %}
+				<input type="hidden" id="Id" name="Id" value="{{personal[0]['Id']}}">
+			{% else %}
+				<input type="hidden" id="Id" name="Id" value="Null">
+			{% endif %}
+		<button type= "submit" formaction="insertPersonalInfo" style="background-color:black; color:#fdd54f; border-width:0; margin: 0px 0px 10px 15px;" formmethod="POST">Update</button>
+	  </form>
+	</div>
+	
+
+
+	<div id="divedu" class="content">
+	  <form class="edu">
+
+		<div class="form-group same" >
+			<label for="last" class="same" id="degree_name">Department:</label>
+			{% if courses%}
+			<input type="text" class="form-control same" id="department" name="department" value="{{courses[0]['department']}}">
+			{%else%}
+			<input type="text" class="form-control same" id="department" name="department">
+
+			{%endif%}
+		</div>
+
+		<!-- add and delete courses-->
+		    <!-- add and delete courses-->
+        <div class="form-group same" style="margin: 0px;">
+            <label for="first" class="same">Course No.:</label>
+            {% for course in courses %}
+
+            <input type="text" class="form-control same" id="{{course['Id']}}" name="course_no{{course['Id']}}"
+                   value="{{ course['course_no'] }}"/>
+            <a class= "material-icons md-40 md-dark" href="deleteCourse?courseid={{course['course_no']}}" style="color:black; background-color: transparent; text-decoration: none;">delete</a>
+            <button type= "submit" formaction="updateCourse?Id={{course['Id']}}" style="background-color:#fdd54f; margin:10px 0px; border-width:0;" formmethod="POST"><i style="background-color:#fdd54f" class= "material-icons md-36">edit</i></button>
+            {% endfor %}
+            <input type="text" class="form-control same" id="course_no1" name="courseno">
+            <button type="submit" formaction="insertCourse" formmethod="POST" style="background-color:#fdd54f; margin:10px 0px; border-width:0;"><i class="material-icons md-48 md-dark">add_circle</i></button>
+
+        </div>
+
+
+		<div class="form-group same" id="degree_name">
+			<label for="last" class="same" id="degree_name">Degree:</label>
+			{% if education %}
+			<input type="text" class="form-control same" id="degree_name" name="degree_name" value="{{education[0]['degree_name']}}">
+			{% else %}
+			<input type="text" class="form-control same" id="degree_name" name="degree_name">
+			{% endif %}
+		</div>
+
+		<div class="form-group same" id="institution_name">
+			<label for="first" class="same" id="institution_name">Institution name:</label>
+			{% if education %}
+			<input type="text" class="form-control same" id="institution_name" name="institution_name" value="{{education[0]['institution_name']}}">
+			{% else %}
+			<input type="text" class="form-control same" id="institution_name" name="institution_name">
+			{% endif %}
+		</div>
+
+		<div class="form-group same" id="start_date">
+			<label for="last" class="same" id="start_date">Start Year:</label>
+
+			{% if education %}
+			<input type="text" class="form-control same" id="start_date" name="start_date" value="{{education[0]['start_date']}}">
+			{% else %}
+			<input type="text" class="form-control same" id="start_date" name="start_date">
+			{% endif %}
+		</div>
+
+		<div class="form-group same" id="end_date">
+			<label for="first" class="same" id="end_date">End Year:</label>
+
+			{% if education %}
+			<input type="text" class="form-control same" id="end_date" name="end_date" value="{{education[0]['end_date']}}">
+			{% else %}
+			<input type="text" class="form-control same" id="end_date" name="end_date">
+			{% endif %}
+		</div>
+
+		<div class="form-group same" id="cgpa">
+			<label for="first" class="same" id="cgpa">CGPA:</label>
+			{% if education %}
+			<input type="number" min="0" step=".01" class="form-control same" id="cgpa" name="cgpa" value="{{education[0]['cgpa']}}">
+			{% else %}
+			<input type="number" min="0" value="0" step=".01" class="form-control same" id="cgpa" name="cgpa">
+			{% endif %}
+
+		</div>
+		{% if education %}
+			<input type="hidden" id="Id" name="Id" value="{{education[0]['Id']}}">
+		{% else %}
+			<input type="hidden" id="Id" name="Id" value="Null">
+		{% endif %}
+		<button type="submit" formaction="insertEducation" formmethod="POST" style="background-color:black; color:#fdd54f; margin: 0px 0px 10px 20px;">Update</button>
+
+	  </form>
+	</div>
+
+	<div id="divexp" class="content">
+	  <form class="exp" method="post" action="/insertIndustryExp">
+		<div class="form-group same">
+			<label for="first" class="same">Company Name:</label>
+			{% if industryExp %}
+				<input type="text" class="form-control same" id="company_name" name="company_name" value="{{industryExp[0]['company_name']}}">
+			{% else %}
+				<input type="text" class="form-control same" id="company_name" name="company_name">
+			{% endif %}
+		</div>
+
+		<div class="form-group same">
+			<label for="first" class="same">Designation:</label>
+			{% if industryExp %}
+				<input type="text" class="form-control same" id="designation" name="designation" value="{{industryExp[0]['designation']}}">
+			{% else %}
+				<input type="text" class="form-control same" id="designation" name="designation" >
+			{%endif%}
+		</div>
+
+		<div class="form-group same" >
+			<label for="first" class="same" >Work Description:</label>
+			{% if industryExp %}
+				<input type="text" class="form-control same" id="work_description" name="work_description" value="{{industryExp[0]['work_description']}}">
+			{%else%}
+				<input type="text" class="form-control same" id="work_description" name="work_description">
+			{%endif%}
+		</div>
+
+		<div class="form-group same" >
+			<label for="first" class="same">No. of Months:</label>
+			{% if industryExp %}
+				<input type="number" min="1" class="form-control same" id="no_of_months" name="no_of_months" value="{{industryExp[0]['no_of_months']}}">
+
+				<input type="hidden" id="Id" name="Id" value="{{industryExp[0]['Id']}}">
+			{% else %}
+				<input type="number" min="1" class="form-control same" id="no_of_months" name="no_of_months">
+				<input type="hidden" id="Id" name="Id" value="Null">
+			{% endif %}
+		</div>
+
+        {% if industryExp %}
+          <button type="submit" formaction="insertIndustryExp" formmethod="post" style="background-color:#fdd54f; border-width:0; margin: 0px 0px 5px 10px;"><i style="background-color:#fdd54f;" class="material-icons md-48 md-dark">edit</i></button>
+          <button type="submit" formaction="deleteIndustryExp?Id={{industryExp['Id']}}" formmethod="GET" style="background-color:#fdd54f; border-width:0; "><i style="background-color:#fdd54f;" class="material-icons md-48 md-dark">delete</i></button>
+          <!--<button type="submit" formaction="deleteIndustryExp?Id={{industryExp['Id']}}" formmethod="GET"><i class="material-icons md-48 md-dark">delete</i></button>-->
+          {%else%}
+          <button type="submit" formaction="insertIndustryExp" formmethod="post" style="background-color:#fdd54f; border-width:0; margin: 0px 0px 5px 10px;"><i style="background-color:#fdd54f;" class="material-icons md-48 md-dark">add_circle</i></button>
+          {%endif%}
+	  </form>
+	</div>
+
+	<div id="divskills" class="content">
+	  <form class="skills">
+
+		<div class="form-group same" style="margin:5px 0px 0px 0px;">
+			<label for="first" class="same" >Certificates:</label>
+			{% for certificate in certificates %}
+
+			  <input type="text" class="form-control same" id="{{certificate['Id']}}" name="certificate{{certificate['Id']}}" value="{{ certificate['certificates'] }}">
+		      <a class= "material-icons md-48 md-dark" href="deleteCertificates?Id={{certificate['Id']}}" style="color:black; background-color: transparent; text-decoration: none;">delete</a>
+                <button type= "submit" formaction="updateCertificates?Id={{certificate['Id']}}" style="background-color:#fdd54f; border-width:0; margin: 10px 0px;" formmethod="POST"><i style="background-color:#fdd54f" class= "material-icons md-48 md-dark">edit</i></button>
+		      {% endfor %}
+
+            <input type="text" class="form-control same" id="certificate" name="certificates">
+            <button name="insertCertificates" formaction="insertCertificates" formmethod="post" style="background-color:#fdd54f; border-width:0; margin: 10px 0px;"><i style="background-color:#fdd54f;" class="material-icons md-48 md-dark">add_circle</i></button>
+		</div>
+
+		<div class="form-group same" id="project_title">
+			<label for="first" class="same" id="project_title">Project Title:</label>
+			{% for project in projects %}
+			<input type="text" class="form-control same" id="{{project['Id']}}" name="project_title{{project['Id']}}" value="{{ project['project_title'] }}">
+		    {% endfor %}
+			<input type="text" class="form-control same" id="project_title" name="project_title">
+		</div>
+
+		<div class="form-group same" id="project_detail">
+			<label for="first" class="same" id="project_detail">Project Detail:</label>
+			{% for project in projects %}
+
+			  <input type="text" class="form-control same" id="{{project['Id']}}" name="project_detail{{project['Id']}}" value="{{ project['project_detail'] }}">
+		      <a class= "material-icons md-48 md-dark same" href="deleteProject?Id={{project['Id']}}" style="color:black; background-color: transparent; text-decoration: none;">delete</a>
+                <button type= "submit" formaction="updateProject?Id={{project['Id']}}" style="background-color:#fdd54f; margin:10px 0px; border-width:0px;" formmethod="POST"><i style="background-color:#fdd54f" class= "material-icons md-48 md-dark same">edit</i></button>
+		    {% endfor %}
+
+			<input type="text" class="form-control same" id="project_detail" name="project_detail">
+			<button type="submit" formaction="insertProject" formmethod="POST" style="background-color:#fdd54f; border-width:0; margin: 10px 0px;"><i style="background-color:#fdd54f;" class="material-icons md-48 md-dark">add_circle</i></button>
+		</div>
+		<div class="form-group same" id="project_detail">
+			<label for="first" class="same" id="project_detail">Hobbies:</label>
+			{% for h in hobbies %}
+			  <input type="text" class="form-control same" id="{{h['Id']}}" name="hobbies{{h['Id']}}" value="{{ h['hobbies'] }}">
+		      <a class= "material-icons md-48 md-dark same" href="deleteHobbies?Id={{h['Id']}}" style="color:black; background-color: transparent; text-decoration: none;">delete</a>
+                <button type= "submit" formaction="updateHobbies?Id={{h['Id']}}" style="background-color:#fdd54f; margin:10px 0px; border-width:0px;" formmethod="POST"><i style="background-color:#fdd54f" class= "material-icons md-48 md-dark same">edit</i></button>
+		    {% endfor %}
+
+			<input type="text" class="form-control same" id="hobbies" name="hobbies">
+			<button type="submit" formaction="insertHobbies" formmethod="POST" style="background-color:#fdd54f; margin:10px 0px; border-width:0px;"><i style="background-color:#fdd54f" class= "material-icons md-48 md-dark same">edit</i></button>
+		</div>
+
+
+
+	  </form>
+	</div>
+	
+	<div id="divla" class="content">
+	  <form class="la">
+
+        {% for account in accounts %}
+        <div class="form-group same" id="other_links" style="margin: 5px 0px 0px 0px;">
+            <label for="first" class="same" id="linkedIn_account">Platform:</label>
+            <input type="text" class="form-control same" id="linkedIn_account" name="platform{{account['Id']}}" value = "{{account['platform']}}">
+            <label for="first" class="same"  style="margin: 10px 0px;">Link:</label>
+            <input type="text" class="form-control same" id="{{['Id']}}" name="link{{account['Id']}}"
+                   value="{{ account['link'] }}">
+            <a class= "material-icons md-40 md-dark" href="deleteAccounts?Id={{account['Id']}}" style="color:black; background-color: transparent; text-decoration: none;">delete</a>
+            <button type= "submit" formaction="updateAccounts?Id={{account['Id']}}" style="background-color:#fdd54f; border-width:0; margin: 10px 0px;" formmethod="POST"><i style="background-color:#fdd54f" class= "material-icons md-36">edit</i></button>
+        </div>
+        {% endfor %}
+        <div class="form-group same" id="other_links" style="margin: 0px;">
+            <label for="first" class="same" id="linkedIn_account">Platform:</label>
+            <input type="text" class="form-control same" id="linkedIn_account" name="platform">
+            <label for="first" class="same" id="linkedIn_account" style="margin: 10px 0px;">Link:</label>
+            <input type="text" class="form-control same" id="course_no1" name="link">
+            <button type="submit" formaction="insertAccount" formmethod="POST" style="background-color:#fdd54f; border-width:0; margin: 10px 0px;"><i style="background-color:#fdd54f;" class="material-icons md-48 md-dark">add_circle</i></button>
+        </div>
+
+
+	  </form>
+	</div>
+	
+</div>
+</form>
+
+<script src = "../static/js/profile_setup.js"></script>
+{%if session['currentPage']=='personal_information' %}
+<script> openPI();console.log("this is printed");</script>
+
+{%elif session['currentPage']=='education' %}
+<script>openEdu();console.log("this is printed");</script>
+{%elif session['currentPage']== 'experience'%}
+<script>openExp();console.log("this is printed");</script>
+{%elif session['currentPage']== 'skills' %}
+<script>openSkills();console.log("this is printed");</script>
+{%else%}
+<script>openLA();console.log("this is printed");</script>
+{%endif%}
+
+{% endblock content %}
