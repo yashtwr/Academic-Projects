@@ -77,7 +77,7 @@
 			{% else %}
 				<input type="hidden" id="Id" name="Id" value="Null">
 			{% endif %}
-		<button type= "submit" formaction="insertPersonalInfo" style="background-color:#fdd54f; border-width:0; margin: 0px 0px 0px 13px;" formmethod="POST"><i style="background-color:#fdd54f" class= "material-icons md-36">edit</i></button>
+		<button type= "submit" formaction="insertPersonalInfo" style="background-color:black; color:#fdd54f; border-width:0; margin: 0px 0px 10px 15px;" formmethod="POST">Update</button>
 	  </form>
 	</div>
 	
@@ -85,17 +85,17 @@
 
 	<div id="divedu" class="content">
 	  <form class="edu">
-		
-		<div class="form-group same" >	
-			<label for="last" class="same" id="degree_name">Department:</label>	
+
+		<div class="form-group same" >
+			<label for="last" class="same" id="degree_name">Department:</label>
 			{% if courses%}
 			<input type="text" class="form-control same" id="department" name="department" value="{{courses[0]['department']}}">
 			{%else%}
 			<input type="text" class="form-control same" id="department" name="department">
-			
-			{%endif%}	
+
+			{%endif%}
 		</div>
-		
+
 		<!-- add and delete courses-->
 		    <!-- add and delete courses-->
         <div class="form-group same" style="margin: 0px;">
@@ -112,51 +112,51 @@
 
         </div>
 
-		
-		<div class="form-group same" id="degree_name">	
-			<label for="last" class="same" id="degree_name">Degree:</label>	
+
+		<div class="form-group same" id="degree_name">
+			<label for="last" class="same" id="degree_name">Degree:</label>
 			{% if education %}
-			<input type="text" class="form-control same" id="degree_name" name="degree_name" value="{{education[0]['degree_name']}}">	
+			<input type="text" class="form-control same" id="degree_name" name="degree_name" value="{{education[0]['degree_name']}}">
 			{% else %}
-			<input type="text" class="form-control same" id="degree_name" name="degree_name">	
+			<input type="text" class="form-control same" id="degree_name" name="degree_name">
 			{% endif %}
 		</div>
 
-		<div class="form-group same" id="institution_name">	
-			<label for="first" class="same" id="institution_name">Institution name:</label>	
+		<div class="form-group same" id="institution_name">
+			<label for="first" class="same" id="institution_name">Institution name:</label>
 			{% if education %}
-			<input type="text" class="form-control same" id="institution_name" name="institution_name" value="{{education[0]['institution_name']}}">	
+			<input type="text" class="form-control same" id="institution_name" name="institution_name" value="{{education[0]['institution_name']}}">
 			{% else %}
-			<input type="text" class="form-control same" id="institution_name" name="institution_name">	
-			{% endif %}
-		</div>	
-  
-		<div class="form-group same" id="start_date">	
-			<label for="last" class="same" id="start_date">Start Year:</label>	
-			
-			{% if education %}
-			<input type="text" class="form-control same" id="start_date" name="start_date" value="{{education[0]['start_date']}}">	
-			{% else %}
-			<input type="text" class="form-control same" id="start_date" name="start_date">	
+			<input type="text" class="form-control same" id="institution_name" name="institution_name">
 			{% endif %}
 		</div>
-			
-		<div class="form-group same" id="end_date">	
-			<label for="first" class="same" id="end_date">End Year:</label>	
-			
+
+		<div class="form-group same" id="start_date">
+			<label for="last" class="same" id="start_date">Start Year:</label>
+
 			{% if education %}
-			<input type="text" class="form-control same" id="end_date" name="end_date" value="{{education[0]['end_date']}}">	
+			<input type="text" class="form-control same" id="start_date" name="start_date" value="{{education[0]['start_date']}}">
 			{% else %}
-			<input type="text" class="form-control same" id="end_date" name="end_date">	
+			<input type="text" class="form-control same" id="start_date" name="start_date">
 			{% endif %}
 		</div>
-		
-		<div class="form-group same" id="cgpa">	
-			<label for="first" class="same" id="cgpa">CGPA:</label>	
+
+		<div class="form-group same" id="end_date">
+			<label for="first" class="same" id="end_date">End Year:</label>
+
 			{% if education %}
-			<input type="number" min="0" step=".01" class="form-control same" id="cgpa" name="cgpa" value="{{education[0]['cgpa']}}">	
+			<input type="text" class="form-control same" id="end_date" name="end_date" value="{{education[0]['end_date']}}">
 			{% else %}
-			<input type="number" min="0" value="0" step=".01" class="form-control same" id="cgpa" name="cgpa">	
+			<input type="text" class="form-control same" id="end_date" name="end_date">
+			{% endif %}
+		</div>
+
+		<div class="form-group same" id="cgpa">
+			<label for="first" class="same" id="cgpa">CGPA:</label>
+			{% if education %}
+			<input type="number" min="0" step=".01" class="form-control same" id="cgpa" name="cgpa" value="{{education[0]['cgpa']}}">
+			{% else %}
+			<input type="number" min="0" value="0" step=".01" class="form-control same" id="cgpa" name="cgpa">
 			{% endif %}
 
 		</div>
@@ -165,43 +165,42 @@
 		{% else %}
 			<input type="hidden" id="Id" name="Id" value="Null">
 		{% endif %}
-		<button type="submit" formaction="insertEducation" formmethod="POST">UPDATE</button>
+		<button type="submit" formaction="insertEducation" formmethod="POST" style="background-color:black; color:#fdd54f; margin: 0px 0px 10px 20px;">Update</button>
 
-		
 	  </form>
 	</div>
 
 	<div id="divexp" class="content">
 	  <form class="exp" method="post" action="/insertIndustryExp">
-		<div class="form-group same">	
-			<label for="first" class="same">Company Name:</label>	
+		<div class="form-group same">
+			<label for="first" class="same">Company Name:</label>
 			{% if industryExp %}
-				<input type="text" class="form-control same" id="company_name" name="company_name" value="{{industryExp[0]['company_name']}}">	
+				<input type="text" class="form-control same" id="company_name" name="company_name" value="{{industryExp[0]['company_name']}}">
 			{% else %}
-				<input type="text" class="form-control same" id="company_name" name="company_name">	
+				<input type="text" class="form-control same" id="company_name" name="company_name">
 			{% endif %}
 		</div>
-		
-		<div class="form-group same">	
-			<label for="first" class="same">Designation:</label>	
+
+		<div class="form-group same">
+			<label for="first" class="same">Designation:</label>
 			{% if industryExp %}
-				<input type="text" class="form-control same" id="designation" name="designation" value="{{industryExp[0]['designation']}}">	
+				<input type="text" class="form-control same" id="designation" name="designation" value="{{industryExp[0]['designation']}}">
 			{% else %}
-				<input type="text" class="form-control same" id="designation" name="designation" >	
+				<input type="text" class="form-control same" id="designation" name="designation" >
 			{%endif%}
 		</div>
 
-		<div class="form-group same" >	
-			<label for="first" class="same" >Work Description:</label>	
+		<div class="form-group same" >
+			<label for="first" class="same" >Work Description:</label>
 			{% if industryExp %}
-				<input type="text" class="form-control same" id="work_description" name="work_description" value="{{industryExp[0]['work_description']}}">	
+				<input type="text" class="form-control same" id="work_description" name="work_description" value="{{industryExp[0]['work_description']}}">
 			{%else%}
-				<input type="text" class="form-control same" id="work_description" name="work_description">	
+				<input type="text" class="form-control same" id="work_description" name="work_description">
 			{%endif%}
 		</div>
 
-		<div class="form-group same" >	
-			<label for="first" class="same">No. of Months:</label>	
+		<div class="form-group same" >
+			<label for="first" class="same">No. of Months:</label>
 			{% if industryExp %}
 				<input type="number" min="1" class="form-control same" id="no_of_months" name="no_of_months" value="{{industryExp[0]['no_of_months']}}">
 
@@ -211,7 +210,7 @@
 				<input type="hidden" id="Id" name="Id" value="Null">
 			{% endif %}
 		</div>
-	  
+
         {% if industryExp %}
           <button type="submit" formaction="insertIndustryExp" formmethod="post" style="background-color:#fdd54f; border-width:0; margin: 0px 0px 5px 10px;"><i style="background-color:#fdd54f;" class="material-icons md-48 md-dark">edit</i></button>
           <button type="submit" formaction="deleteIndustryExp?Id={{industryExp['Id']}}" formmethod="GET" style="background-color:#fdd54f; border-width:0; "><i style="background-color:#fdd54f;" class="material-icons md-48 md-dark">delete</i></button>
@@ -221,14 +220,14 @@
           {%endif%}
 	  </form>
 	</div>
-	
+
 	<div id="divskills" class="content">
 	  <form class="skills">
 
 		<div class="form-group same" style="margin:5px 0px 0px 0px;">
-			<label for="first" class="same" >Certificates:</label>	
+			<label for="first" class="same" >Certificates:</label>
 			{% for certificate in certificates %}
-				
+
 			  <input type="text" class="form-control same" id="{{certificate['Id']}}" name="certificate{{certificate['Id']}}" value="{{ certificate['certificates'] }}">
 		      <a class= "material-icons md-48 md-dark" href="deleteCertificates?Id={{certificate['Id']}}" style="color:black; background-color: transparent; text-decoration: none;">delete</a>
                 <button type= "submit" formaction="updateCertificates?Id={{certificate['Id']}}" style="background-color:#fdd54f; border-width:0; margin: 10px 0px;" formmethod="POST"><i style="background-color:#fdd54f" class= "material-icons md-48 md-dark">edit</i></button>
@@ -236,39 +235,41 @@
 
             <input type="text" class="form-control same" id="certificate" name="certificates">
             <button name="insertCertificates" formaction="insertCertificates" formmethod="post" style="background-color:#fdd54f; border-width:0; margin: 10px 0px;"><i style="background-color:#fdd54f;" class="material-icons md-48 md-dark">add_circle</i></button>
-		</div>		
-		
-		<div class="form-group same" id="project_title">	
-			<label for="first" class="same" id="project_title">Project Title:</label>	
+		</div>
+
+		<div class="form-group same" id="project_title">
+			<label for="first" class="same" id="project_title">Project Title:</label>
 			{% for project in projects %}
 			<input type="text" class="form-control same" id="{{project['Id']}}" name="project_title{{project['Id']}}" value="{{ project['project_title'] }}">
-		    {% endfor %}			
-			<input type="text" class="form-control same" id="project_title" name="project_title">	
+		    {% endfor %}
+			<input type="text" class="form-control same" id="project_title" name="project_title">
 		</div>
 
-		<div class="form-group same" id="project_detail">	
-			<label for="first" class="same" id="project_detail">Project Detail:</label>	
+		<div class="form-group same" id="project_detail">
+			<label for="first" class="same" id="project_detail">Project Detail:</label>
 			{% for project in projects %}
-				
+
 			  <input type="text" class="form-control same" id="{{project['Id']}}" name="project_detail{{project['Id']}}" value="{{ project['project_detail'] }}">
-		      <a class= "material-icons md-48 md-dark same" href="deleteProject?Id={{project['Id']}}">delete</a>
-                <button type= "submit" formaction="updateProject?Id={{project['Id']}}" style="background-color:#fdd54f" formmethod="POST"><i style="background-color:#fdd54f" class= "material-icons md-48 md-dark same">edit</i></button>
-		    {% endfor %}			
-			
-			<input type="text" class="form-control same" id="project_detail" name="project_detail">	
+		      <a class= "material-icons md-48 md-dark same" href="deleteProject?Id={{project['Id']}}" style="color:black; background-color: transparent; text-decoration: none;">delete</a>
+                <button type= "submit" formaction="updateProject?Id={{project['Id']}}" style="background-color:#fdd54f; margin:10px 0px; border-width:0px;" formmethod="POST"><i style="background-color:#fdd54f" class= "material-icons md-48 md-dark same">edit</i></button>
+		    {% endfor %}
+
+			<input type="text" class="form-control same" id="project_detail" name="project_detail">
+			<button type="submit" formaction="insertProject" formmethod="POST" style="background-color:#fdd54f; border-width:0; margin: 10px 0px;"><i style="background-color:#fdd54f;" class="material-icons md-48 md-dark">add_circle</i></button>
 		</div>
-		<div class="form-group same" id="project_detail">	
-			<label for="first" class="same" id="project_detail">Hobbies:</label>	
+		<div class="form-group same" id="project_detail">
+			<label for="first" class="same" id="project_detail">Hobbies:</label>
 			{% for h in hobbies %}
 			  <input type="text" class="form-control same" id="{{h['Id']}}" name="hobbies{{h['Id']}}" value="{{ h['hobbies'] }}">
-		      <a class= "material-icons md-48 md-dark same" href="deleteHobbies?Id={{h['Id']}}">delete</a>
-                <button type= "submit" formaction="updateHobbies?Id={{h['Id']}}" style="background-color:#fdd54f" formmethod="POST"><i style="background-color:#fdd54f" class= "material-icons md-48 md-dark same">edit</i></button>
-		    {% endfor %}			
-			
-			<input type="text" class="form-control same" id="hobbies" name="hobbies">	
+		      <a class= "material-icons md-48 md-dark same" href="deleteHobbies?Id={{h['Id']}}" style="color:black; background-color: transparent; text-decoration: none;">delete</a>
+                <button type= "submit" formaction="updateHobbies?Id={{h['Id']}}" style="background-color:#fdd54f; margin:10px 0px; border-width:0px;" formmethod="POST"><i style="background-color:#fdd54f" class= "material-icons md-48 md-dark same">edit</i></button>
+		    {% endfor %}
+
+			<input type="text" class="form-control same" id="hobbies" name="hobbies">
+			<button type="submit" formaction="insertHobbies" formmethod="POST" style="background-color:#fdd54f; margin:10px 0px; border-width:0px;"><i style="background-color:#fdd54f" class= "material-icons md-48 md-dark same">edit</i></button>
 		</div>
 
-		<button type="submit" formaction="insertProject" formmethod="POST">ADD</button>
+
 
 	  </form>
 	</div>
