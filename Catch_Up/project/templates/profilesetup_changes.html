@@ -96,31 +96,31 @@
 					<th>Course Number</th>
 				</tr>
 
-		  		{%set count = 1%}
-		  		{% for course in courses%}
+		  		<!--{%set count = 1%}-->
+		  		{% for i in range(courses|length)%}
 		  		<tr id="row1" class="card-2">
-					<td id="No.">{{count}}</td>
-					<td  id="department{{course['Id']}}" name="department{{course['Id']}}" >{{ course['department'] }}</td>
+					<td id="No.">{{i+1}}</td>
+					<td  id="department{{courses[i]['Id']}}" name="department{{courses[i]['Id']}}" >{{ courses[i]['department'] }}</td>
 
-					<td  id="course_no{{course['Id']}}" name="course_no{{course['Id']}}">{{ course['course_no'] }}</td>
+					<td  id="course_no{{courses[i]['Id']}}" name="course_no{{courses[i]['Id']}}">{{ courses[i]['course_no'] }}</td>
 					<td align="center">
-					<a class= "material-icons md-40 md-dark" href="deleteCourse?Id={{course['Id']}}" style="color:black; background-color: transparent; text-decoration: none;" >delete</a>
+					<a class= "material-icons md-40 md-dark" href="deleteCourse?Id={{courses[i]['Id']}}" style="color:black; background-color: transparent; text-decoration: none;" >delete</a>
 					</td>
 					<td align="center">
-						<input type="hidden" value="{{course['Id']}}" id="Id">
+						<input type="hidden" value="{{courses[i]['Id']}}" id="Id">
 
-						<input type= "button" id="edit_button{{['Id']}}" class="material-icons md-36" style="background-color:#fdd54f; border-width:0; margin: 10px 0px;" value="edit"  onclick="edit_row_course({{course['Id']}})">
+						<input type= "button" id="edit_button{{['Id']}}" class="material-icons md-36" style="background-color:#fdd54f; border-width:0; margin: 10px 0px;" value="edit"  onclick="edit_row_course({{courses[i]['Id']}})">
 
-						<button type="submit" id="save_button{{['Id']}}" onclick="save_row_course({{course['Id'] }})"  style="border-width:0; "><i  class="material-icons md-48 md-dark">add_circle</i></button>
+						<button type="submit" id="save_button{{['Id']}}" onclick="save_row_course({{courses[i]['Id'] }})"  style="border-width:0; "><i  class="material-icons md-48 md-dark">add_circle</i></button>
 					</td>	
-					{% set count = count+ 1%}
+					<!--{% set count = count+ 1%}-->
 				</tr>
 				
 				
 
 				{%endfor%}
 				<tr class="card-2">
-					<td>{{count+1}}</td>
+					<td>{{(courses|length)+1}}</td>
 					<td><input width="50" type="text" id="department" name="department"></td>
 					<td><input width="50" type="text" id="courseno" name="courseno"></td>
 					<td align="center"><button type="submit" formaction="insertCourse" formmethod="POST" style="border-width:0; "><i  class="material-icons md-48 md-dark">add_circle</i></button></td>
@@ -276,47 +276,31 @@
 					<th>Certificates</th>
 				</tr>
 
-		  		{%set count = 1%}
-		  		{% for certificate in certificates %}
+		  		<!--{%set count = 0%}-->
+		  		{% for i in range(certificates|length) %}
 		  		<tr id="row1" class="card-2">
-					<td id="No.">{{count}}</td>
-					<td  id="certificate{{certificate['Id']}}" name="certificate{{certificate['Id']}}">{{ certificate['certificates']}}</td>
+					<td id="No.">{{i+1}}</td>
+					<td  id="certificate{{certificates[i]['Id']}}" name="certificate{{certificates[i]['Id']}}">{{ certificates[i]['certificates']}}</td>
 					<td align="center">
-					<a class= "material-icons md-40 md-dark" href="deleteCertificates?Id={{certificate['Id']}}" style="color:black; background-color: transparent; text-decoration: none;" >delete</a>
+					<a class= "material-icons md-40 md-dark" href="deleteCertificates?Id={{certificates[i]['Id']}}" style="color:black; background-color: transparent; text-decoration: none;" >delete</a>
 					</td>
 					<td align="center">
-						<input type="hidden" value="{{certificate['Id']}}" id="Id">
+						<input type="hidden" value="{{certificates[i]['Id']}}" id="Id">
 
-						<input type= "button" id="edit_button{{['Id']}}" class="material-icons md-36" style="background-color:#fdd54f; border-width:0; margin: 10px 0px;" value="edit"  onclick="edit_row_certi({{certificate['Id']}})">
+						<input type= "button" id="edit_button{{['Id']}}" class="material-icons md-36" style="background-color:#fdd54f; border-width:0; margin: 10px 0px;" value="edit"  onclick="edit_row_certi({{certificates[i]['Id']}})">
 
-						<button type="submit" id="save_button{{['Id']}}" onclick="save_row_certi({{certificate['Id']}})"  style="border-width:0; "><i  class="material-icons md-48 md-dark">add_circle</i></button>
+						<button type="submit" id="save_button{{['Id']}}" onclick="save_row_certi({{certificates[i]['Id']}})"  style="border-width:0; "><i  class="material-icons md-48 md-dark">add_circle</i></button>
 					</td>	
-					{% set count = count+ 1%}
+					<!--{% set count = count+ 1%}-->
 				</tr>
-				
-				
-
 				{%endfor%}
 				<tr class="card-2">
-					<td>{{count+1}}</td>
+					<td>{{(certificates|length) + 1}}</td>
 					<td><input width="50" type="text" id="certificate" name="certificates"></td>
 					<td align="center"><button type="submit" formaction="insertCertificates" formmethod="POST" style="border-width:0; "><i  class="material-icons md-48 md-dark">add_circle</i></button></td>
 				</tr>
 	  		</table>
 	  	</div>
-<!-- 
-		<div class="form-group same" style="margin:5px 0px 0px 0px;">
-			<label for="first" class="same" >Certificates:</label>
-			{% for certificate in certificates %}
-
-			  <input type="text" class="form-control same" id="{{certificate['Id']}}" name="certificate{{certificate['Id']}}" value="{{ certificate['certificates'] }}">
-		      <a class= "material-icons md-48 md-dark" href="deleteCertificates?Id={{certificate['Id']}}" style="color:black; background-color: transparent; text-decoration: none;">delete</a>
-                <button type= "submit" formaction="updateCertificates?Id={{certificate['Id']}}" style="background-color:#fdd54f; border-width:0; margin: 10px 0px;" formmethod="POST"><i style="background-color:#fdd54f" class= "material-icons md-48 md-dark">edit</i></button>
-		      {% endfor %}
-
-            <input type="text" class="form-control same" id="certificate" name="certificates">
-            <button name="insertCertificates" formaction="insertCertificates" formmethod="post" style="background-color:#fdd54f; border-width:0; margin: 10px 0px;"><i style="background-color:#fdd54f;" class="material-icons md-48 md-dark">add_circle</i></button>
-		</div> -->
 
 
 	  	<div id="wrapper">
@@ -327,31 +311,31 @@
 					<th>Project Description</th>
 				</tr>
 
-		  		{%set count = 1%}
-		  		{% for project in projects %}
-		  		<tr id="row1" class="card-2">
-					<td id="No.">{{count}}</td>
-					<td  id="project_title{{project['Id']}}" name="project_title{{project['Id']}}" >{{ project['project_title'] }}</td>
 
-					<td  id="project_detail{{project['Id']}}" name="project_detail{{project['Id']}}">{{ project['project_detail'] }}</td>
+		  		{% for i in range(projects|length) %}
+		  		<tr id="row1" class="card-2">
+					<td id="No.">{{i+1}}</td>
+					<td  id="project_title{{projects[i]['Id']}}" name="project_title{{projects[i]['Id']}}" >{{ projects[i]['project_title'] }}</td>
+
+					<td  id="project_detail{{projects[i]['Id']}}" name="project_detail{{projects[i]['Id']}}">{{ projects[i]['project_detail'] }}</td>
 					<td align="center">
-					<a class= "material-icons md-40 md-dark" href="deleteProject?Id={{project['Id']}}" style="color:black; background-color: transparent; text-decoration: none;" >delete</a>
+					<a class= "material-icons md-40 md-dark" href="deleteProject?Id={{projects[i]['Id']}}" style="color:black; background-color: transparent; text-decoration: none;" >delete</a>
 					</td>
 					<td align="center">
-						<input type="hidden" value="{{project['Id']}}" id="Id">
+						<input type="hidden" value="{{projects[i]['Id']}}" id="Id">
 
-						<input type= "button" id="edit_button{{['Id']}}" class="material-icons md-36" style="background-color:#fdd54f; border-width:0; margin: 10px 0px;" value="edit"  onclick="edit_row_project({{project['Id']}})">
+						<input type= "button" id="edit_button{{['Id']}}" class="material-icons md-36" style="background-color:#fdd54f; border-width:0; margin: 10px 0px;" value="edit"  onclick="edit_row_project({{projects[i]['Id']}})">
 
-						<button type="submit" id="save_button{{['Id']}}" onclick="save_row_project({{project['Id']}})"  style="border-width:0; "><i  class="material-icons md-48 md-dark">add_circle</i></button>
+						<button type="submit" id="save_button{{['Id']}}" onclick="save_row_projects[i]({{projects[i]['Id']}})"  style="border-width:0; "><i  class="material-icons md-48 md-dark">add_circle</i></button>
 					</td>	
-					{% set count = count+ 1%}
+
 				</tr>
 				
 				
 
 				{%endfor%}
 				<tr class="card-2">
-					<td>{{count+1}}</td>
+					<td>{{(projects|length)+1}}</td>
 					<td><input width="50" type="text" id="project_title" name="project_title"></td>
 					<td><input width="50" type="text" id="project_detail" name="project_detail"></td>
 					<td align="center"><button type="submit" formaction="insertProject" formmethod="POST" style="border-width:0; "><i  class="material-icons md-48 md-dark">add_circle</i></button></td>
@@ -392,29 +376,29 @@
 					<th>Hobbies</th>
 				</tr>
 
-		  		{%set count = 1%}
-		  		{% for h in hobbies %}
+		  		<!--{%set count = 1%}-->
+		  		{% for i in range(hobbies|length) %}
 		  		<tr id="row1" class="card-2">
-					<td id="No.">{{count}}</td>
-					<td id="hobbies{{h['Id']}}" name="hobbies{{h['Id']}}">{{ h['hobbies'] }}</td>
+					<td id="No.">{{i+1}}</td>
+					<td id="hobbies{{hobbies[i]['Id']}}" name="hobbies{{hobbies[i]['Id']}}">{{ hobbies[i]['hobbies'] }}</td>
 					<td align="center">
-					<a class= "material-icons md-40 md-dark" href="deleteHobbies?Id={{h['Id']}}" style="color:black; background-color: transparent; text-decoration: none;" >delete</a>
+					<a class= "material-icons md-40 md-dark" href="deleteHobbies?Id={{hobbies[i]['Id']}}" style="color:black; background-color: transparent; text-decoration: none;" >delete</a>
 					</td>
 					<td align="center">
-						<input type="hidden" value="{{h['Id']}}" id="Id">
+						<input type="hidden" value="{{hobbies[i]['Id']}}" id="Id">
 
-						<input type= "button" id="edit_button{{['Id']}}" class="material-icons md-36" style="background-color:#fdd54f; border-width:0; margin: 10px 0px;" value="edit"  onclick="edit_row_hobbies({{h['Id']}})">
+						<input type= "button" id="edit_button{{['Id']}}" class="material-icons md-36" style="background-color:#fdd54f; border-width:0; margin: 10px 0px;" value="edit"  onclick="edit_row_hobbies({{hobbies[i]['Id']}})">
 
-						<button type="submit" id="save_button{{['Id']}}" onclick="save_row_hobbies({{h['Id']}})"  style="border-width:0; "><i  class="material-icons md-48 md-dark">add_circle</i></button>
+						<button type="submit" id="save_button{{['Id']}}" onclick="save_row_hobbies({{hobbies[i]['Id']}})"  style="border-width:0; "><i  class="material-icons md-48 md-dark">add_circle</i></button>
 					</td>	
-					{% set count = count+ 1%}
+					<!--{% set count = count+ 1%}-->
 				</tr>
 				
 				
 
 				{%endfor%}
 				<tr class="card-2">
-					<td>{{count+1}}</td>
+					<td>{{(hobbies|length)+1}}</td>
 					<td><input width="50" type="text" id="hobbies" name="hobbies"></td>
 					<td align="center"><button type="submit" formaction="insertHobbies" formmethod="POST" style="border-width:0; "><i  class="material-icons md-48 md-dark">add_circle</i></button></td>
 				</tr>
@@ -610,36 +594,36 @@
 					<th>Link</th>
 				</tr>
 
-		  		{%set count = 1%}
-		  		{% for account in accounts %}
+		  		<!--{%set count = 1%}-->
+		  		{% for i in range(accounts|length) %}
 		  		<tr id="row1" class="card-2">
-					<td id="No.">{{count}}</td>
-					<td id="platform{{account['Id']}}" name="platform{{account['Id']}}">{{account['platform']}}</td>
-					<td id="link{{account['Id']}}" name="link{{account['Id']}}">{{account['link']}}</td>
+					<td id="No.">{{i+1}}</td>
+					<td id="platform{{accounts[i]['Id']}}" name="platform{{accounts[i]['Id']}}">{{accounts[i]['platform']}}</td>
+					<td id="link{{accounts[i]['Id']}}" name="link{{accounts[i]['Id']}}">{{accounts[i]['link']}}</td>
 					
 					<td align="center">
 					<!-- <input type="button" id="edit_button1" value="Edit" class="edit" onclick="edit_row('1')">
 					<input type="button" id="save_button1" value="Save" class="save" onclick="save_row('1')">
 					<input type="button" value="Delete" class="delete" onclick="delete_row('1')"> -->
-					<a class= "material-icons md-40 md-dark" href="deleteAccounts?Id={{account['Id']}}" style="color:black; background-color: transparent; text-decoration: none;" >delete</a>
+					<a class= "material-icons md-40 md-dark" href="deleteAccounts?Id={{accounts[i]['Id']}}" style="color:black; background-color: transparent; text-decoration: none;" >delete</a>
 
             		
 					</td>
 					<td align="center">
-						<input type="hidden" value="{{account['Id']}}" id="Id">
+						<input type="hidden" value="{{accounts[i]['Id']}}" id="Id">
 
-						<input type= "button" id="edit_button{{['Id']}}" class="material-icons md-36" style="background-color:#fdd54f; border-width:0; margin: 10px 0px;" value="edit"  onclick="edit_row({{account['Id']}})">
-<!-- formaction="updateAccounts?Id={{account['Id']}}" formmethod="POST" -->
-						<button type="submit" id="save_button{{['Id']}}" onclick="save_row({{account['Id']}})"  style="border-width:0; "><i  class="material-icons md-48 md-dark">add_circle</i></button>
+						<input type= "button" id="edit_button{{['Id']}}" class="material-icons md-36" style="background-color:#fdd54f; border-width:0; margin: 10px 0px;" value="edit"  onclick="edit_row({{accounts[i]['Id']}})">
+
+						<button type="submit" id="save_button{{['Id']}}" onclick="save_row({{accounts[i]['Id']}})"  style="border-width:0; "><i  class="material-icons md-48 md-dark">add_circle</i></button>
 					</td>	
-					{% set count = count+ 1%}
+					<!--{% set count = count+ 1%}-->
 				</tr>
 				
 				
 
 				{%endfor%}
 				<tr class="card-2">
-					<td>{{count+1}}</td>
+					<td>{{(accounts|length)+1}}</td>
 					<td><input width="50" type="text" id="platform" name="platform"></td>
 					<td><input width="50" type="text" id="link" name="link"></td>
 					<td align="center"><button type="submit" formaction="insertAccount" formmethod="POST" style="border-width:0; "><i  class="material-icons md-48 md-dark">add_circle</i></button></td>
