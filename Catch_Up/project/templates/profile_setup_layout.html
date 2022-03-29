@@ -1,477 +1,92 @@
-{% extends "profile_setup_layout.html" %}
-{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
 
-<link rel="stylesheet" href = "../static/css/profile_setup.css">
-<link rel="stylesheet" href = "../static/css/table.css">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <div class = "profile">
-	<h1 id="title">Profile</h1>
-	<div class = "btn-box">
-		<button id="btnpi" onclick="openPI()"> Personal Information </button>
-		<button id="btnedu" onclick="openEdu()"> Education </button>
-		<button id="btnexp" onclick="openExp()"> Experience </button>
-		<button id="btnskills" onclick="openSkills()"> Skills </button>
-		<button id="btnla" onclick="openLA()"> Linked Account </button>
-	</div>
+  <!-- Required meta tags -->
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="icon" href="../static/pictures/university-of-waterloo-logo.png" type="image/icon type">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="../static/css/main.css">
 
-	<div id="divpi" class="content">
-	  <form class="pi" >
-		<div class="form-group same" id="fnamediv">	
-			<label for="first" class="same" id="fnamelabel">First Name:</label>	
-			{% if signup %}
-			<input type="text" class="form-control same" id="firstname" name="firstname" value="{{signup[0]['firstname']}}">	
-			{% else %}
-			<input type="text" class="form-control same" id="firstname" name="firstname" >	
-			{% endif %}
-		</div>	
-		<div class="form-group same" id="lnamediv">	
-			<label for="last" class="same" id="lnamelabel">Last Name:</label>	
-			
-			{% if signup %}
-			<input type="text" class="form-control same" id="lastname" name="lastname" value="{{signup[0]['lastname']}}">
-			{% else %}
-			<input type="text" class="form-control same" id="lastname" name="lastname">
-			{% endif %}
-		</div>	
-		<div class="form-group same" id="emaildiv">	
-			<label for="email" class="same" id="emaillabel">Email:</label>	
-				
-			{% if personal %}
-			<input type="email" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" class="form-control same" placeholder="Enter Email" id="contact_email" name="contact_email" value="{{personal[0]['contact_email']}}">
-			{% else %}
-			<input type="email" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" class="form-control same" placeholder="Enter Email" id="contact_email" name="contact_email">
-			{% endif %}
-		</div>
-		<div class="form-group same" id="contactdiv">	
-			<label for="contactno" class="same" id="contactlabel">Contact No:</label>	
-				
-			{% if personal %}
-			<input type="text" pattern="[0-9]{10}" class="form-control same" id="contact_number" name="contact_number" value="{{personal[0]['contact_number']}}">
-			{% else %}
-			<input type="text" pattern="[0-9]{10}" class="form-control same" id="contact_number" name="contact_number">
-			{% endif %}
-		</div>
-		<div class="form-group same" id="addressdiv">	
-			<label for="address" class="same" id="addresslabel">Address:</label>	
+  {% if title %}
 
-			{% if personal %}
-			<input type="text" class="form-control same" id="address" name="address" value="{{personal[0]['address']}}">	
-			{% else %}
-			<input type="text" class="form-control same" id="address" name="address">	
-			{% endif %}
-			
-		</div>
-
-		<div class="form-group same" id="description">	
-			<label for="first" class="same" id="description">Description:</label>	
-			
-			{% if personal %}
-			<input type="text" class="form-control same" id="description" name="description" value="{{personal[0]['description']}}">	
-			{% else %}
-			<input type="text" class="form-control same" id="description" name="description">	
-			{% endif %}
-			
-		</div>	
-
-			{% if personal %}
-				<input type="hidden" id="Id" name="Id" value="{{personal[0]['Id']}}">
-			{% else %}
-				<input type="hidden" id="Id" name="Id" value="Null">
-			{% endif %}
-		<button type= "submit" formaction="insertPersonalInfo" style="background-color:black; color:#fdd54f; border-width:0; margin: 0px 0px 10px 15px;" formmethod="POST">Update</button>
-	  </form>
-	</div>
-	
+    <title>CatchUp - {{ title }}</title>
+  {% else %}
+     <title>CatchUP</title>
+  {% endif %}
+</head>
 
 
-	<div id="divedu" class="content">
-	  <form class="edu">
-
-		<div class="form-group same" >
-			<label for="last" class="same" id="degree_name">Department:</label>
-			{% if courses%}
-			<input type="text" class="form-control same" id="department" name="department" value="{{courses[0]['department']}}">
-			{%else%}
-			<input type="text" class="form-control same" id="department" name="department">
-
-			{%endif%}
-		</div>
-
-		<!-- add and delete courses-->
-		    <!-- add and delete courses-->
-        <div class="form-group same" style="margin: 0px;">
-            <label for="first" class="same">Course No.:</label>
-            {% for course in courses %}
-
-            <input type="text" class="form-control same" id="{{course['Id']}}" name="course_no{{course['Id']}}"
-                   value="{{ course['course_no'] }}"/>
-            <a class= "material-icons md-40 md-dark" href="deleteCourse?courseid={{course['course_no']}}" style="color:black; background-color: transparent; text-decoration: none;">delete</a>
-            <button type= "submit" formaction="updateCourse?Id={{course['Id']}}" style="background-color:#fdd54f; margin:10px 0px; border-width:0;" formmethod="POST"><i style="background-color:#fdd54f" class= "material-icons md-36">edit</i></button>
-            {% endfor %}
-            <input type="text" class="form-control same" id="course_no1" name="courseno">
-            <button type="submit" formaction="insertCourse" formmethod="POST" style="background-color:#fdd54f; margin:10px 0px; border-width:0;"><i class="material-icons md-48 md-dark">add_circle</i></button>
-
+<body>
+<header class="site-header fixed-top">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel">
+        <div class="container ">
+          <a class="navbar-brand mr-4 fontStyle"  href="/"><img height="40" src="../static/pictures/university-of-waterloo-logo.png"/>
+          Catch-Up</a>
+          <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button> -->
+          <!-- <div class="collapse navbar-collapse" id="navbarToggle"> -->
+            <div class="navbar-nav mr-auto">
+                {% if session %}
+                    <a class="nav-item nav-link fontStyle" style ="color:white" href="/loadDashboard">Dashboard</a>
+                {% endif %}
+                    <a class="nav-item nav-link fontStyle" style ="color:white" href="/AboutUs">About Us</a>
+            </div>
+            <!-- Navbar Right Side -->
+             {% if not session %}
+            <div class="navbar-nav">
+              <a class="nav-item nav-link fontStyle" style ="color:white" href="/">Login</a>
+              <a class="nav-item nav-link fontStyle" style ="color:white" href="/signup">Register</a>
+            </div>
+            {% else %}
+            <div class="navbar-nav">
+              <a class="nav-item nav-link fontStyle" style ="color:white" href="/profile">Edit Profile</a>
+              <a class="nav-item nav-link fontStyle" style ="color:white" href="/userLogoutSession">Logout</a>
+            </div>
+            {% endif %}
+          <!-- </div> -->
         </div>
+      </nav>
+      
+<div class="uw-section--inner ">
+        <div class="uw-site--cbar">
+        <!--<div class="uw-site--c1 uw-cbar" style="background-color: #fffaaa"></div>
+        <div class="uw-site--c2 uw-cbar" style="background-color: #ffea30"></div>
+        <div class="uw-site--c3 uw-cbar" style="background-color: #fdd54f"></div>
+        <div class="uw-site--c4 uw-cbar" style="background-color: #e4b429"></div>-->
+        <div class="uw-site--c1 uw-cbar" style="background-color: #d0b4ef"></div>
+        <div class="uw-site--c2 uw-cbar" style="background-color: #be33da"></div>
+        <div class="uw-site--c3 uw-cbar" style="background-color: #8100b4"></div>
+        <div class="uw-site--c4 uw-cbar" style="background-color: #57058b"></div>
+      
+      
+      </div>
+    </div>
 
-
-		<div class="form-group same" id="degree_name">
-			<label for="last" class="same" id="degree_name">Degree:</label>
-			{% if education %}
-			<input type="text" class="form-control same" id="degree_name" name="degree_name" value="{{education[0]['degree_name']}}">
-			{% else %}
-			<input type="text" class="form-control same" id="degree_name" name="degree_name">
-			{% endif %}
-		</div>
-
-		<div class="form-group same" id="institution_name">
-			<label for="first" class="same" id="institution_name">Institution name:</label>
-			{% if education %}
-			<input type="text" class="form-control same" id="institution_name" name="institution_name" value="{{education[0]['institution_name']}}">
-			{% else %}
-			<input type="text" class="form-control same" id="institution_name" name="institution_name">
-			{% endif %}
-		</div>
-
-		<div class="form-group same" id="start_date">
-			<label for="last" class="same" id="start_date">Start Year:</label>
-
-			{% if education %}
-			<input type="text" class="form-control same" id="start_date" name="start_date" value="{{education[0]['start_date']}}">
-			{% else %}
-			<input type="text" class="form-control same" id="start_date" name="start_date">
-			{% endif %}
-		</div>
-
-		<div class="form-group same" id="end_date">
-			<label for="first" class="same" id="end_date">End Year:</label>
-
-			{% if education %}
-			<input type="text" class="form-control same" id="end_date" name="end_date" value="{{education[0]['end_date']}}">
-			{% else %}
-			<input type="text" class="form-control same" id="end_date" name="end_date">
-			{% endif %}
-		</div>
-
-		<div class="form-group same" id="cgpa">
-			<label for="first" class="same" id="cgpa">CGPA:</label>
-			{% if education %}
-			<input type="number" min="0" step=".01" class="form-control same" id="cgpa" name="cgpa" value="{{education[0]['cgpa']}}">
-			{% else %}
-			<input type="number" min="0" value="0" step=".01" class="form-control same" id="cgpa" name="cgpa">
-			{% endif %}
-
-		</div>
-		{% if education %}
-			<input type="hidden" id="Id" name="Id" value="{{education[0]['Id']}}">
-		{% else %}
-			<input type="hidden" id="Id" name="Id" value="Null">
-		{% endif %}
-		<button type="submit" formaction="insertEducation" formmethod="POST" style="background-color:black; color:#fdd54f; margin: 0px 0px 10px 20px;">Update</button>
-
-	  </form>
-	</div>
-
-	<div id="divexp" class="content">
-	  <form class="exp" method="post" action="/insertIndustryExp">
-		<div class="form-group same">
-			<label for="first" class="same">Company Name:</label>
-			{% if industryExp %}
-				<input type="text" class="form-control same" id="company_name" name="company_name" value="{{industryExp[0]['company_name']}}">
-			{% else %}
-				<input type="text" class="form-control same" id="company_name" name="company_name">
-			{% endif %}
-		</div>
-
-		<div class="form-group same">
-			<label for="first" class="same">Designation:</label>
-			{% if industryExp %}
-				<input type="text" class="form-control same" id="designation" name="designation" value="{{industryExp[0]['designation']}}">
-			{% else %}
-				<input type="text" class="form-control same" id="designation" name="designation" >
-			{%endif%}
-		</div>
-
-		<div class="form-group same" >
-			<label for="first" class="same" >Work Description:</label>
-			{% if industryExp %}
-				<input type="text" class="form-control same" id="work_description" name="work_description" value="{{industryExp[0]['work_description']}}">
-			{%else%}
-				<input type="text" class="form-control same" id="work_description" name="work_description">
-			{%endif%}
-		</div>
-
-		<div class="form-group same" >
-			<label for="first" class="same">No. of Months:</label>
-			{% if industryExp %}
-				<input type="number" min="1" class="form-control same" id="no_of_months" name="no_of_months" value="{{industryExp[0]['no_of_months']}}">
-
-				<input type="hidden" id="Id" name="Id" value="{{industryExp[0]['Id']}}">
-			{% else %}
-				<input type="number" min="1" class="form-control same" id="no_of_months" name="no_of_months">
-				<input type="hidden" id="Id" name="Id" value="Null">
-			{% endif %}
-		</div>
-
-        {% if industryExp %}
-          <button type="submit" formaction="insertIndustryExp" formmethod="post" style="background-color:#fdd54f; border-width:0; margin: 0px 0px 5px 10px;"><i style="background-color:#fdd54f;" class="material-icons md-48 md-dark">edit</i></button>
-          <button type="submit" formaction="deleteIndustryExp?Id={{industryExp['Id']}}" formmethod="GET" style="background-color:#fdd54f; border-width:0; "><i style="background-color:#fdd54f;" class="material-icons md-48 md-dark">delete</i></button>
-          <!--<button type="submit" formaction="deleteIndustryExp?Id={{industryExp['Id']}}" formmethod="GET"><i class="material-icons md-48 md-dark">delete</i></button>-->
-          {%else%}
-          <button type="submit" formaction="insertIndustryExp" formmethod="post" style="background-color:#fdd54f; border-width:0; margin: 0px 0px 5px 10px;"><i style="background-color:#fdd54f;" class="material-icons md-48 md-dark">add_circle</i></button>
-          {%endif%}
-	  </form>
-	</div>
-
-	<div id="divskills" class="content">
-	  <form class="skills" id="skills">
-
-		<div class="form-group same" style="margin:5px 0px 0px 0px;">
-			<label for="first" class="same" >Certificates:</label>
-			{% for certificate in certificates %}
-
-			  <input type="text" class="form-control same" id="{{certificate['Id']}}" name="certificate{{certificate['Id']}}" value="{{ certificate['certificates'] }}">
-		      <a class= "material-icons md-48 md-dark" href="deleteCertificates?Id={{certificate['Id']}}" style="color:black; background-color: transparent; text-decoration: none;">delete</a>
-                <button type= "submit" formaction="updateCertificates?Id={{certificate['Id']}}" style="background-color:#fdd54f; border-width:0; margin: 10px 0px;" formmethod="POST"><i style="background-color:#fdd54f" class= "material-icons md-48 md-dark">edit</i></button>
-		      {% endfor %}
-
-            <input type="text" class="form-control same" id="certificate" name="certificates">
-            <button name="insertCertificates" formaction="insertCertificates" formmethod="post" style="background-color:#fdd54f; border-width:0; margin: 10px 0px;"><i style="background-color:#fdd54f;" class="material-icons md-48 md-dark">add_circle</i></button>
-		</div>
-
-		<div class="form-group same" id="project_title">
-			<label for="first" class="same" id="project_title">Project Title:</label>
-			{% for project in projects %}
-			<input type="text" class="form-control same" id="{{project['Id']}}" name="project_title{{project['Id']}}" value="{{ project['project_title'] }}">
-		    {% endfor %}
-			<input type="text" class="form-control same" id="project_title" name="project_title">
-		</div>
-
-		<div class="form-group same" id="project_detail">
-			<label for="first" class="same" id="project_detail">Project Detail:</label>
-			{% for project in projects %}
-
-			  <input type="text" class="form-control same" id="{{project['Id']}}" name="project_detail{{project['Id']}}" value="{{ project['project_detail'] }}">
-		      <a class= "material-icons md-48 md-dark same" href="deleteProject?Id={{project['Id']}}" style="color:black; background-color: transparent; text-decoration: none;">delete</a>
-                <button type= "submit" formaction="updateProject?Id={{project['Id']}}" style="background-color:#fdd54f; margin:10px 0px; border-width:0px;" formmethod="POST"><i style="background-color:#fdd54f" class= "material-icons md-48 md-dark same">edit</i></button>
-		    {% endfor %}
-
-			<input type="text" class="form-control same" id="project_detail" name="project_detail">
-			<button type="submit" formaction="insertProject" formmethod="POST" style="background-color:#fdd54f; border-width:0; margin: 10px 0px;"><i style="background-color:#fdd54f;" class="material-icons md-48 md-dark">add_circle</i></button>
-		</div>
-
-
-
-
-
-		<div id="wrapper">
-	  		<table class="card-2" style="background-color: #EEEEEE" align='center' cellspacing=2 cellpadding=5 id="data_table" border=2>
-		  		<tr class="card-2">
-					<th>No.</th>
-					<th>Hobbies</th>
-				</tr>
-
-		  		{%set count = 1%}
-		  		{% for h in hobbies %}
-		  		<tr id="row1" class="card-2">
-					<td id="No.">{{count}}</td>
-					<td id="hobbies{{h['Id']}}" name="hobbies{{h['Id']}}">{{ h['hobbies'] }}</td>
-					<td align="center">
-					<a class= "material-icons md-40 md-dark" href="deleteHobbies?Id={{h['Id']}}" style="color:black; background-color: transparent; text-decoration: none;" >delete</a>
-					</td>
-					<td align="center">
-						<input type="hidden" value="{{h['Id']}}" id="Id">
-
-						<input type= "button" id="edit_button{{['Id']}}" class="material-icons md-36" style="background-color:#fdd54f; border-width:0; margin: 10px 0px;" value="edit"  onclick="edit_row_hobbies({{h['Id']}})">
-
-						<button type="submit" id="save_button{{['Id']}}" onclick="save_row_hobbies({{h['Id']}})"  style="border-width:0; "><i  class="material-icons md-48 md-dark">add_circle</i></button>
-					</td>	
-					{% set count = count+ 1%}
-				</tr>
-				
-				
-
-				{%endfor%}
-				<tr class="card-2">
-					<td>{{count+1}}</td>
-					<td><input width="50" type="text" id="hobbies" name="hobbies"></td>
-					<td align="center"><button type="submit" formaction="insertHobbies" formmethod="POST" style="border-width:0; "><i  class="material-icons md-48 md-dark">add_circle</i></button></td>
-				</tr>
-	  		</table>
-	  	</div>
-
-
-
-<!-- 		<div class="form-group same" id="project_detail">
-			<label for="first" class="same" id="project_detail">Hobbies:</label>
-			{% for h in hobbies %}
-			  <input type="text" class="form-control same" id="{{h['Id']}}" name="hobbies{{h['Id']}}" value="{{ h['hobbies'] }}">
-		      <a class= "material-icons md-48 md-dark same" href="deleteHobbies?Id={{h['Id']}}" style="color:black; background-color: transparent; text-decoration: none;">delete</a>
-                <button type= "submit" formaction="updateHobbies?Id={{h['Id']}}" style="background-color:#fdd54f; margin:10px 0px; border-width:0px;" formmethod="POST"><i style="background-color:#fdd54f" class= "material-icons md-48 md-dark same">edit</i></button>
-		    {% endfor %}
-
-			<input type="text" class="form-control same" id="hobbies" name="hobbies">
-			<button type="submit" formaction="insertHobbies" formmethod="POST" style="background-color:#fdd54f; margin:10px 0px; border-width:0px;"><i style="background-color:#fdd54f" class= "material-icons md-48 md-dark same">edit</i></button>
-		</div>
- -->
-
-
-	  </form>
-	</div>
-	
-
-
-
-	<script type="text/javascript" >
-
-	function edit_row(no) {
-    	
-        // document.getElementById("edit_button" + no).style.display = "none";
-        
-        //document.getElementById("edit_button" + no).style.display = "none";
-        //document.getElementById("save_button" + no).style.display = "block";
-        
-        var platform = document.getElementById("platform"+no);
-        var link = document.getElementById("link"+no);
-
-        var platform_data = platform.innerHTML;
-        var link_data = link.innerHTML;
-
-        platform.innerHTML = "<input type='text' width='50' id='platform_data" + no + "' value='" + platform_data + "'>";
-        link.innerHTML="<input type='text' width='50' id='link_data" + no + "' value='" + link_data + "'>";
-        document.getElementById("edit_button" + no).style.display = "none";
-    }
-
-    function save_row(no) {
-    	
-        var platform = document.getElementById("platform_data"+no).value;
-        
-        var link = document.getElementById("link_data" + no).value;
-        
-        
-        document.getElementById("platform" + no).innerHTML = platform;
-        document.getElementById("link" + no).innerHTML = link;
-
-        document.getElementById("la").method = "POST"
-
-        document.getElementById("la").action = "/updateAccounts?Id="+no+"&platform"+no+"="+platform+"&link"+no+"="+link
-
-		document.getElementById("la").submit();
-    }
-    function edit_row_hobbies(no) {
-    	
-        // document.getElementById("edit_button" + no).style.display = "none";
-        
-        //document.getElementById("edit_button" + no).style.display = "none";
-        //document.getElementById("save_button" + no).style.display = "block";
-        
-        var hobbies = document.getElementById("hobbies"+no);
-        var hobbies_data = hobbies.innerHTML;
-        alert(hobbies_data)
-
-        hobbies.innerHTML = "<input type='text' width='50' id='hobbies_data" + no + "' value='" + hobbies_data + "'>";
-        // document.getElementById("edit_button" + no).style.display = "none";
-    }
-
-    function save_row_hobbies(no) {
-    	var hobbies = document.getElementById("hobbies_data"+no).value;
-        alert(hobbies)
-        document.getElementById("hobbies" + no).innerHTML = hobbies;
-        document.getElementById("skills").method = "POST"
-
-        document.getElementById("skills").action = "/updateHobbies?Id="+no+"&hobbies="+hobbies
-
-		document.getElementById("skills").submit();
-    }
-
-</script>
-
-	<div id="divla" class="content">
-	  <form class="la" id="la">
-	  	<div id="wrapper">
-	  		<table class="card-2" style="background-color: #EEEEEE" align='center' cellspacing=2 cellpadding=5 id="data_table" border=2>
-		  		<tr class="card-2">
-					<th>No.</th>
-					<th>Platform</th>
-					<th>Link</th>
-				</tr>
-
-		  		{%set count = 1%}
-		  		{% for account in accounts %}
-		  		<tr id="row1" class="card-2">
-					<td id="No.">{{count}}</td>
-					<td id="platform{{account['Id']}}" name="platform{{account['Id']}}">{{account['platform']}}</td>
-					<td id="link{{account['Id']}}" name="link{{account['Id']}}">{{account['link']}}</td>
-					
-					<td align="center">
-					<!-- <input type="button" id="edit_button1" value="Edit" class="edit" onclick="edit_row('1')">
-					<input type="button" id="save_button1" value="Save" class="save" onclick="save_row('1')">
-					<input type="button" value="Delete" class="delete" onclick="delete_row('1')"> -->
-					<a class= "material-icons md-40 md-dark" href="deleteAccounts?Id={{account['Id']}}" style="color:black; background-color: transparent; text-decoration: none;" >delete</a>
-
-            		
-					</td>
-					<td align="center">
-						<input type="hidden" value="{{account['Id']}}" id="Id">
-
-						<input type= "button" id="edit_button{{['Id']}}" class="material-icons md-36" style="background-color:#fdd54f; border-width:0; margin: 10px 0px;" value="edit"  onclick="edit_row({{account['Id']}})">
-<!-- formaction="updateAccounts?Id={{account['Id']}}" formmethod="POST" -->
-						<button type="submit" id="save_button{{['Id']}}" onclick="save_row({{account['Id']}})"  style="border-width:0; "><i  class="material-icons md-48 md-dark">add_circle</i></button>
-					</td>	
-					{% set count = count+ 1%}
-				</tr>
-				
-				
-
-				{%endfor%}
-				<tr class="card-2">
-					<td>{{count+1}}</td>
-					<td><input width="50" type="text" id="platform" name="platform"></td>
-					<td><input width="50" type="text" id="link" name="link"></td>
-					<td align="center"><button type="submit" formaction="insertAccount" formmethod="POST" style="border-width:0; "><i  class="material-icons md-48 md-dark">add_circle</i></button></td>
-				</tr>
-	  		</table>
-	  	</div>
-
-
-<!--          {% for account in accounts %}
-        <div class="form-group same" id="other_links" style="margin: 5px 0px 0px 0px;">
-            <label for="first" class="same" id="linkedIn_account">Platform:</label>
-            <input type="text" class="form-control same" id="linkedIn_account" name="platform{{account['Id']}}" value = "{{account['platform']}}">
-            <label for="first" class="same"  style="margin: 10px 0px;">Link:</label>
-            <input type="text" class="form-control same" id="{{['Id']}}" name="link{{account['Id']}}"
-                   value="{{ account['link'] }}">
-            
-            <a class= "material-icons md-40 md-dark" href="deleteAccounts?Id={{account['Id']}}" style="color:black; background-color: transparent; text-decoration: none;">delete</a>
-            <button type= "submit" formaction="updateAccounts?Id={{account['Id']}}" style="background-color:#fdd54f; border-width:0; margin: 10px 0px;" formmethod="POST"><i style="background-color:#fdd54f" class= "material-icons md-36">edit</i></button>
-        </div>
-        {% endfor %}
-        <div class="form-group same" id="other_links" style="margin: 0px;">
-            <label for="first" class="same" id="linkedIn_account">Platform:</label>
-            <input type="text" class="form-control same" id="linkedIn_account" name="platform">
-            <label for="first" class="same" id="linkedIn_account" style="margin: 10px 0px;">Link:</label>
-            <input type="text" class="form-control same" id="course_no1" name="link">
-            <button type="submit" formaction="insertAccount" formmethod="POST" style="background-color:#fdd54f; border-width:0; margin: 10px 0px;"><i style="background-color:#fdd54f;" class="material-icons md-48 md-dark">add_circle</i></button>
-        </div>
- -->
-
-	  </form>
-	</div>
-	
+    </header>
+<div class="container">
+  <div class="row">
+    <!--<div class="col-sm-4 col-md-4 col-lg-4">
+	  </div>
+	<div class="col-sm-4 col-md-4 col-lg-4">-->
+  {% block content %}{% endblock %}
+  <!--</div>-->
 </div>
-</form>
+</div>
 
-<script src = "../static/js/profile_setup.js"></script>
-{%if session['currentPage']=='personal_information' %}
-<script> openPI();console.log("this is printed");</script>
+      <nav class=" navbar-expand-md navbar-dark bg-steel fixed-bottom" >
+        <div class="container" style="text-align: center;">
+          <a class="navbar-brand mr-4 fontStyle2"  href="/"><img height="30" src="../static/pictures/university-of-waterloo-logo.png"/>
+          &copy CatchUp Uwaterloo</a>
+        </div>
+      </nav>
 
-{%elif session['currentPage']=='education' %}
-<script>openEdu();console.log("this is printed");</script>
-{%elif session['currentPage']== 'experience'%}
-<script>openExp();console.log("this is printed");</script>
-{%elif session['currentPage']== 'skills' %}
-<script>openSkills();console.log("this is printed");</script>
-{%else%}
-<script>openLA();console.log("this is printed");</script>
-{%endif%}
 
-{% endblock content %}
+</body>
+</html>
