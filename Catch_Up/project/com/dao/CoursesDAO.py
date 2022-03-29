@@ -15,7 +15,7 @@ class CoursesDAO:
 
     # delete records from database
     def deleteCourses(self, coursesVO):
-        CoursesVO.query.filter_by(course_no=coursesVO.course_no, course_loginId=coursesVO.course_loginId).delete()
+        CoursesVO.query.filter_by(Id=coursesVO.Id).delete()
         db.session.commit()
 
     def updateCourses(self, coursesVO):
