@@ -134,8 +134,8 @@ def updateCourse():
     loginVO.email = session['login_email']
 
     Id = request.args.get('Id')
-    course_no = request.form['course_no' + str(Id)]
-    department = request.form['department']
+    course_no = request.args.get('course_no')
+    department = request.args.get('department')
     loginId = loginDAO.fetchId(loginVO)
 
     courseVO.Id = Id
@@ -156,12 +156,10 @@ def deleteCourse():
 
     loginVO.email = session['login_email']
 
-    course_no = request.args.get('courseid')
-    courseVO.course_no = course_no
-
-    login_id = loginDAO.fetchId(loginVO)
-    courseVO.course_loginId = login_id
-
+    courseVO.Id = request.args.get('Id')
+    # courseVO.course_no = ""
+    # login_id = loginDAO.fetchId(loginVO)
+    # courseVO.course_loginId = login_id
     courseDAO.deleteCourses(courseVO)
     session['currentPage'] = 'education'
     return redirect(url_for("userProfile"))
@@ -194,7 +192,8 @@ def updateCertificates():
     loginVO.email = session['login_email']
 
     Id = request.args.get('Id')
-    certificates = request.form['certificate' + str(Id)]
+    # certificates = request.form['certificate' + str(Id)]
+    certificates = request.args.get('certificates')
     loginId = loginDAO.fetchId(loginVO)
 
     certificatesVO.Id = Id
@@ -392,10 +391,12 @@ def updateProject():
     loginVO.email = session['login_email']
 
     Id = request.args.get('Id')
-    projectVO.project_title = request.form['project_title' + str(Id)]
-    projectVO.project_detail = request.form['project_detail' + str(Id)]
+    projectVO.project_title = request.args.get('project_title')
+    projectVO.project_detail = request.args.get('project_detail')
     projectVO.Id = Id
-    # loginId = loginDAO.fetchId(loginVO)
+    loginId = loginDAO.fetchId(loginVO)
+    projectVO.project_loginId = loginId
+    
     projectDAO.updateProject(projectVO)
     session['currentPage'] = 'skills'
     return redirect(url_for("userProfile"))
@@ -514,3 +515,5 @@ def deleteAccounts():
     accountsDAO.deleteAccounts(accountsVO)
     session['currentPage'] = 'acconuts'
     return redirect(url_for("userProfile"))
+
+
