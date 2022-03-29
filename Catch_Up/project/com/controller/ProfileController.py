@@ -446,9 +446,11 @@ def updateHobbies():
     loginVO.email = session['login_email']
 
     Id = request.args.get('Id')
-    hobbiesVO.hobbies = request.form['hobbies' + str(Id)]
+    hobbiesVO.hobbies = request.args.get('hobbies')
     hobbiesVO.Id = Id
-    # loginId = loginDAO.fetchId(loginVO)
+    loginId = loginDAO.fetchId(loginVO)
+    hobbiesVO.hobbies_loginId = loginId
+
     hobbiesDAO.updateHobbies(hobbiesVO)
     session['currentPage'] = 'skills'
     return redirect(url_for("userProfile"))
@@ -512,5 +514,3 @@ def deleteAccounts():
     accountsDAO.deleteAccounts(accountsVO)
     session['currentPage'] = 'acconuts'
     return redirect(url_for("userProfile"))
-
-
