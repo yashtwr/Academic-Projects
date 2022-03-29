@@ -70,32 +70,26 @@ def userProfile():
         industryVO.industry_loginId = id
         lst_industry = industryDAO.fetchIndustryExp(industryVO)
         industryExp = [i.as_dict() for i in lst_industry]
-        print(industryExp)
 
         personalVO.personal_loginId = id
         lst_personal = personalDAO.fetchPersonal(personalVO)
         personal = [i.as_dict() for i in lst_personal]
-        print(personal)
 
         signupVO.signup_LoginId = id
         lst_signup = signupDAO.fetchUser(signupVO)
         signup = [i.as_dict() for i in lst_signup]
-        print(signup)
 
         educationVO.education_loginId = id
         lst_education = educationDAO.fetchEducation(educationVO)
         education = [i.as_dict() for i in lst_education]
-        print(education)
 
         projectVO.project_loginId = id
         lst_project = projectDAO.fetchProjects(projectVO)
         project = [i.as_dict() for i in lst_project]
-        print(project)
 
         hobbiesVO.hobbies_loginId = id
         lst_hobbies = hobbiesDAO.fetchHobbies(hobbiesVO)
         hobbies = [i.as_dict() for i in lst_hobbies]
-        print(hobbies)
 
         accountsVO.accounts_loginId = id
         lst_accounts = accountsDAO.fetchAccounts(accountsVO)
@@ -490,14 +484,16 @@ def updateAccounts():
     loginId = loginDAO.fetchId(loginVO)
 
     Id = request.args.get('Id')
-    platform = request.form['platform' + Id]
-    link = request.form['link' + Id]
+    platform = request.args.get('platform'+Id)
+    link = request.args.get('link'+Id)
+    print(id, ' ', platform,' ', link)
 
     accountsVO.Id = Id
     accountsVO.platform = platform
     accountsVO.link = link
     accountsVO.accounts_loginId = loginId
     accountsDAO.updateAccounts(accountsVO)
+
     session['currentPage'] = 'accounts'
     return redirect(url_for("userProfile"))
 
