@@ -85,8 +85,51 @@
 
 
 	<div id="divedu" class="content">
-	  <form class="edu">
+	  <form class="edu" id="edu">
 
+
+	  	<div id="wrapper">
+	  		<table class="card-2" style="background-color: #EEEEEE" align='center' cellspacing=2 cellpadding=5 id="data_table" border=2>
+		  		<tr class="card-2">
+					<th>No.</th>
+					<th>Department</th>
+					<th>Course Number</th>
+				</tr>
+
+		  		{%set count = 1%}
+		  		{% for course in courses%}
+		  		<tr id="row1" class="card-2">
+					<td id="No.">{{count}}</td>
+					<td  id="department{{course['Id']}}" name="department{{course['Id']}}" >{{ course['department'] }}</td>
+
+					<td  id="course_no{{course['Id']}}" name="course_no{{course['Id']}}">{{ course['course_no'] }}</td>
+					<td align="center">
+					<a class= "material-icons md-40 md-dark" href="deleteCourse?Id={{course['Id']}}" style="color:black; background-color: transparent; text-decoration: none;" >delete</a>
+					</td>
+					<td align="center">
+						<input type="hidden" value="{{course['Id']}}" id="Id">
+
+						<input type= "button" id="edit_button{{['Id']}}" class="material-icons md-36" style="background-color:#fdd54f; border-width:0; margin: 10px 0px;" value="edit"  onclick="edit_row_course({{course['Id']}})">
+
+						<button type="submit" id="save_button{{['Id']}}" onclick="save_row_course({{course['Id'] }})"  style="border-width:0; "><i  class="material-icons md-48 md-dark">add_circle</i></button>
+					</td>	
+					{% set count = count+ 1%}
+				</tr>
+				
+				
+
+				{%endfor%}
+				<tr class="card-2">
+					<td>{{count+1}}</td>
+					<td><input width="50" type="text" id="department" name="department"></td>
+					<td><input width="50" type="text" id="courseno" name="courseno"></td>
+					<td align="center"><button type="submit" formaction="insertCourse" formmethod="POST" style="border-width:0; "><i  class="material-icons md-48 md-dark">add_circle</i></button></td>
+				</tr>
+	  		</table>
+	  	</div>
+
+
+<!-- 
 		<div class="form-group same" >
 			<label for="last" class="same" id="degree_name">Department:</label>
 			{% if courses%}
@@ -96,10 +139,10 @@
 
 			{%endif%}
 		</div>
-
+ -->
 		<!-- add and delete courses-->
 		    <!-- add and delete courses-->
-        <div class="form-group same" style="margin: 0px;">
+        <!-- <div class="form-group same" style="margin: 0px;">
             <label for="first" class="same">Course No.:</label>
             {% for course in courses %}
 
@@ -112,7 +155,7 @@
             <button type="submit" formaction="insertCourse" formmethod="POST" style="background-color:#fdd54f; margin:10px 0px; border-width:0;"><i class="material-icons md-48 md-dark">add_circle</i></button>
 
         </div>
-
+ -->
 
 		<div class="form-group same" id="degree_name">
 			<label for="last" class="same" id="degree_name">Degree:</label>
@@ -223,8 +266,45 @@
 	</div>
 
 	<div id="divskills" class="content">
-	  <form class="skills">
+	  <form class="skills" id="skills">
 
+
+	  	<div id="wrapper">
+	  		<table class="card-2" style="background-color: #EEEEEE" align='center' cellspacing=2 cellpadding=5 id="data_table" border=2>
+		  		<tr class="card-2">
+					<th>No.</th>
+					<th>Certificates</th>
+				</tr>
+
+		  		{%set count = 1%}
+		  		{% for certificate in certificates %}
+		  		<tr id="row1" class="card-2">
+					<td id="No.">{{count}}</td>
+					<td  id="certificate{{certificate['Id']}}" name="certificate{{certificate['Id']}}">{{ certificate['certificates']}}</td>
+					<td align="center">
+					<a class= "material-icons md-40 md-dark" href="deleteCertificates?Id={{certificate['Id']}}" style="color:black; background-color: transparent; text-decoration: none;" >delete</a>
+					</td>
+					<td align="center">
+						<input type="hidden" value="{{certificate['Id']}}" id="Id">
+
+						<input type= "button" id="edit_button{{['Id']}}" class="material-icons md-36" style="background-color:#fdd54f; border-width:0; margin: 10px 0px;" value="edit"  onclick="edit_row_certi({{certificate['Id']}})">
+
+						<button type="submit" id="save_button{{['Id']}}" onclick="save_row_certi({{certificate['Id']}})"  style="border-width:0; "><i  class="material-icons md-48 md-dark">add_circle</i></button>
+					</td>	
+					{% set count = count+ 1%}
+				</tr>
+				
+				
+
+				{%endfor%}
+				<tr class="card-2">
+					<td>{{count+1}}</td>
+					<td><input width="50" type="text" id="certificate" name="certificates"></td>
+					<td align="center"><button type="submit" formaction="insertCertificates" formmethod="POST" style="border-width:0; "><i  class="material-icons md-48 md-dark">add_circle</i></button></td>
+				</tr>
+	  		</table>
+	  	</div>
+<!-- 
 		<div class="form-group same" style="margin:5px 0px 0px 0px;">
 			<label for="first" class="same" >Certificates:</label>
 			{% for certificate in certificates %}
@@ -236,9 +316,51 @@
 
             <input type="text" class="form-control same" id="certificate" name="certificates">
             <button name="insertCertificates" formaction="insertCertificates" formmethod="post" style="background-color:#fdd54f; border-width:0; margin: 10px 0px;"><i style="background-color:#fdd54f;" class="material-icons md-48 md-dark">add_circle</i></button>
-		</div>
+		</div> -->
 
-		<div class="form-group same" id="project_title">
+
+	  	<div id="wrapper">
+	  		<table class="card-2" style="background-color: #EEEEEE" align='center' cellspacing=2 cellpadding=5 id="data_table" border=2>
+		  		<tr class="card-2">
+					<th>No.</th>
+					<th>Project Title</th>
+					<th>Project Description</th>
+				</tr>
+
+		  		{%set count = 1%}
+		  		{% for project in projects %}
+		  		<tr id="row1" class="card-2">
+					<td id="No.">{{count}}</td>
+					<td  id="project_title{{project['Id']}}" name="project_title{{project['Id']}}" >{{ project['project_title'] }}</td>
+
+					<td  id="project_detail{{project['Id']}}" name="project_detail{{project['Id']}}">{{ project['project_detail'] }}</td>
+					<td align="center">
+					<a class= "material-icons md-40 md-dark" href="deleteProject?Id={{project['Id']}}" style="color:black; background-color: transparent; text-decoration: none;" >delete</a>
+					</td>
+					<td align="center">
+						<input type="hidden" value="{{project['Id']}}" id="Id">
+
+						<input type= "button" id="edit_button{{['Id']}}" class="material-icons md-36" style="background-color:#fdd54f; border-width:0; margin: 10px 0px;" value="edit"  onclick="edit_row_project({{project['Id']}})">
+
+						<button type="submit" id="save_button{{['Id']}}" onclick="save_row_project({{project['Id']}})"  style="border-width:0; "><i  class="material-icons md-48 md-dark">add_circle</i></button>
+					</td>	
+					{% set count = count+ 1%}
+				</tr>
+				
+				
+
+				{%endfor%}
+				<tr class="card-2">
+					<td>{{count+1}}</td>
+					<td><input width="50" type="text" id="project_title" name="project_title"></td>
+					<td><input width="50" type="text" id="project_detail" name="project_detail"></td>
+					<td align="center"><button type="submit" formaction="insertProject" formmethod="POST" style="border-width:0; "><i  class="material-icons md-48 md-dark">add_circle</i></button></td>
+				</tr>
+	  		</table>
+	  	</div>
+
+
+		<!-- <div class="form-group same" id="project_title">
 			<label for="first" class="same" id="project_title">Project Title:</label>
 			{% for project in projects %}
 			<input type="text" class="form-control same" id="{{project['Id']}}" name="project_title{{project['Id']}}" value="{{ project['project_title'] }}">
@@ -258,7 +380,50 @@
 			<input type="text" class="form-control same" id="project_detail" name="project_detail">
 			<button type="submit" formaction="insertProject" formmethod="POST" style="background-color:#fdd54f; border-width:0; margin: 10px 0px;"><i style="background-color:#fdd54f;" class="material-icons md-48 md-dark">add_circle</i></button>
 		</div>
-		<div class="form-group same" id="project_detail">
+ -->
+
+
+
+
+		<div id="wrapper">
+	  		<table class="card-2" style="background-color: #EEEEEE" align='center' cellspacing=2 cellpadding=5 id="data_table" border=2>
+		  		<tr class="card-2">
+					<th>No.</th>
+					<th>Hobbies</th>
+				</tr>
+
+		  		{%set count = 1%}
+		  		{% for h in hobbies %}
+		  		<tr id="row1" class="card-2">
+					<td id="No.">{{count}}</td>
+					<td id="hobbies{{h['Id']}}" name="hobbies{{h['Id']}}">{{ h['hobbies'] }}</td>
+					<td align="center">
+					<a class= "material-icons md-40 md-dark" href="deleteHobbies?Id={{h['Id']}}" style="color:black; background-color: transparent; text-decoration: none;" >delete</a>
+					</td>
+					<td align="center">
+						<input type="hidden" value="{{h['Id']}}" id="Id">
+
+						<input type= "button" id="edit_button{{['Id']}}" class="material-icons md-36" style="background-color:#fdd54f; border-width:0; margin: 10px 0px;" value="edit"  onclick="edit_row_hobbies({{h['Id']}})">
+
+						<button type="submit" id="save_button{{['Id']}}" onclick="save_row_hobbies({{h['Id']}})"  style="border-width:0; "><i  class="material-icons md-48 md-dark">add_circle</i></button>
+					</td>	
+					{% set count = count+ 1%}
+				</tr>
+				
+				
+
+				{%endfor%}
+				<tr class="card-2">
+					<td>{{count+1}}</td>
+					<td><input width="50" type="text" id="hobbies" name="hobbies"></td>
+					<td align="center"><button type="submit" formaction="insertHobbies" formmethod="POST" style="border-width:0; "><i  class="material-icons md-48 md-dark">add_circle</i></button></td>
+				</tr>
+	  		</table>
+	  	</div>
+
+
+
+<!-- 		<div class="form-group same" id="project_detail">
 			<label for="first" class="same" id="project_detail">Hobbies:</label>
 			{% for h in hobbies %}
 			  <input type="text" class="form-control same" id="{{h['Id']}}" name="hobbies{{h['Id']}}" value="{{ h['hobbies'] }}">
@@ -269,7 +434,7 @@
 			<input type="text" class="form-control same" id="hobbies" name="hobbies">
 			<button type="submit" formaction="insertHobbies" formmethod="POST" style="background-color:#fdd54f; margin:10px 0px; border-width:0px;"><i style="background-color:#fdd54f" class= "material-icons md-48 md-dark same">edit</i></button>
 		</div>
-
+ -->
 
 
 	  </form>
@@ -279,9 +444,7 @@
 
 
 	<script type="text/javascript" >
-
-	document.getElementById("edit_button" + no).style.display = "block";
-    function edit_row(no) {
+	function edit_row(no) {
     	
         // document.getElementById("edit_button" + no).style.display = "none";
         
@@ -290,6 +453,7 @@
         
         var platform = document.getElementById("platform"+no);
         var link = document.getElementById("link"+no);
+
 
         var platform_data = platform.innerHTML;
         var link_data = link.innerHTML;
@@ -315,8 +479,125 @@
 
 		document.getElementById("la").submit();
     }
+    function edit_row_hobbies(no) {
+    	
+        // document.getElementById("edit_button" + no).style.display = "none";
+        
+        //document.getElementById("edit_button" + no).style.display = "none";
+        //document.getElementById("save_button" + no).style.display = "block";
+        
+        var hobbies = document.getElementById("hobbies"+no);
+        var hobbies_data = hobbies.innerHTML;
+        
+        hobbies.innerHTML = "<input type='text' width='50' id='hobbies_data" + no + "' value='" + hobbies_data + "'>";
+        // document.getElementById("edit_button" + no).style.display = "none";
+    }
+
+    function save_row_hobbies(no) {
+    	var hobbies = document.getElementById("hobbies_data"+no).value;
+        document.getElementById("hobbies" + no).innerHTML = hobbies;
+        document.getElementById("skills").method = "POST"
+
+        document.getElementById("skills").action = "/updateHobbies?Id="+no+"&hobbies="+hobbies
+
+		document.getElementById("skills").submit();
+    }
+
+    function edit_row_certi(no) {
+    	
+        // document.getElementById("edit_button" + no).style.display = "none";
+        
+        //document.getElementById("edit_button" + no).style.display = "none";
+        //document.getElementById("save_button" + no).style.display = "block";
+        
+        var certificate = document.getElementById("certificate"+no);
+        var certificate_data = certificate.innerHTML;
+        
+
+        certificate.innerHTML = "<input type='text' width='50' id='certificate_data" + no + "' value='" + certificate_data + "'>";
+        // document.getElementById("edit_button" + no).style.display = "none";
+    }
+
+    function save_row_certi(no) {
+    	var certificate = document.getElementById("certificate_data"+no).value;
+        document.getElementById("certificate" + no).innerHTML = certificate;
+        
+        document.getElementById("skills").method = "POST"
+
+        document.getElementById("skills").action = "/updateCertificates?Id="+no+"&certificates="+certificate
+
+		document.getElementById("skills").submit();
+    }
+    function edit_row_project(no) {
+    	
+        // document.getElementById("edit_button" + no).style.display = "none";
+        
+        //document.getElementById("edit_button" + no).style.display = "none";
+        //document.getElementById("save_button" + no).style.display = "block";
+        
+        var project_title = document.getElementById("project_title"+no);
+        var project_detail = document.getElementById("project_detail"+no);
+
+        var project_title_data = project_title.innerHTML;
+        var project_detail_data = project_detail.innerHTML;
+
+        project_title.innerHTML = "<input type='text' width='50' id='project_title_data" + no + "' value='" + project_title_data + "'>";
+        project_detail.innerHTML="<input type='text' width='50' id='project_detail_data" + no + "' value='" + project_detail_data + "'>";
+        document.getElementById("edit_button" + no).style.display = "none";
+    }
+
+    function save_row_project(no) {
+    	
+        var project_title = document.getElementById("project_title_data"+no).value;
+        var project_detail = document.getElementById("project_detail_data" + no).value;
+        
+        document.getElementById("project_title" + no).innerHTML = project_title;
+        document.getElementById("project_detail" + no).innerHTML = project_detail;
+
+        document.getElementById("skills").method = "POST"
+
+        document.getElementById("skills").action = "/updateProject?Id="+no+"&project_title="+project_title+"&project_detail="+project_detail
+
+		document.getElementById("skills").submit();
+    }
+
+	function edit_row_course(no) {
+    	
+        // document.getElementById("edit_button" + no).style.display = "none";
+        
+        //document.getElementById("edit_button" + no).style.display = "none";
+        //document.getElementById("save_button" + no).style.display = "block";
+        var department = document.getElementById("department"+no);
+        var course_no = document.getElementById("course_no"+no);
+        
+
+        var department_data = department.innerHTML;
+        var course_no_data = course_no.innerHTML;
+        
+        department.innerHTML = "<input type='text' width='50' id='department_data" + no + "' value='" + department_data + "'>";
+        course_no.innerHTML="<input type='text' width='50' id='course_no_data" + no + "' value='" + course_no_data + "'>";
+        // document.getElementById("edit_button" + no).style.display = "none";
+    }
+
+    function save_row_course(no) {
+    	
+        var course_no = document.getElementById("course_no_data"+no).value;
+        
+        var department = document.getElementById("department_data" + no).value;
+        
+        
+        document.getElementById("course_no" + no).innerHTML = course_no;
+        document.getElementById("department" + no).innerHTML = department;
+
+        document.getElementById("edu").method = "POST"
+
+        document.getElementById("edu").action = "/updateCourse?Id="+no+"&course_no="+course_no+"&department="+department
+
+		document.getElementById("edu").submit();
+    }
 
 
+    
 </script>
 
 	<div id="divla" class="content">
@@ -367,7 +648,7 @@
 	  	</div>
 
 
-         {% for account in accounts %}
+<!--          {% for account in accounts %}
         <div class="form-group same" id="other_links" style="margin: 5px 0px 0px 0px;">
             <label for="first" class="same" id="linkedIn_account">Platform:</label>
             <input type="text" class="form-control same" id="linkedIn_account" name="platform{{account['Id']}}" value = "{{account['platform']}}">
@@ -386,7 +667,7 @@
             <input type="text" class="form-control same" id="course_no1" name="link">
             <button type="submit" formaction="insertAccount" formmethod="POST" style="background-color:#fdd54f; border-width:0; margin: 10px 0px;"><i style="background-color:#fdd54f;" class="material-icons md-48 md-dark">add_circle</i></button>
         </div>
-
+ -->
 
 	  </form>
 	</div>
