@@ -13,7 +13,7 @@ form.pi{
 	border-color: #000000;
 	display: inline-block;
     margin-left: auto;
-    #margin-right: auto;
+    margin-right: auto;
 	margin-top: auto;
 	margin-bottom: 30%;
     text-align: left;
@@ -28,7 +28,7 @@ form.edu{
 	border-color: #000000;
 	display: inline-block;
     margin-left: 50px;
-    #margin-right: auto;
+    margin-right: auto;
 	margin-top: auto;
 	margin-bottom: 30%;
     text-align: left;
@@ -42,7 +42,7 @@ form.exp{
 	border-color: #000000;
 	display: inline-block;
     margin-left: 120px;
-    #margin-right: auto;
+    margin-right: auto;
 	margin-top: auto;
 	margin-bottom: 30%;
     text-align: left;
@@ -56,21 +56,21 @@ form.skills{
 	border-color: #000000;
 	display: inline-block;
     margin-left: 200px;
-    #margin-right: auto;
+    margin-right: auto;
 	margin-top: auto;
 	margin-bottom: 30%;
     text-align: left;
 }
 form.la{
 	height: auto;
-	width: 380px;
+	width: 700px;
 	background-color: #fdd54f; 
 	border: 2px solid #8fc4b7;
 	border-radius: 15px;
 	border-color: #000000;
-	display: inline-block;
-    margin-left: 290px;
-    #margin-right: auto;
+	
+    /*margin-left: 290px;*/
+    /*margin-right: auto;*/
 	margin-top: auto;
 	margin-bottom: 30%;
     text-align: left;
@@ -155,96 +155,6 @@ input.same{
 input.same:hover{
 	box-shadow: none;
 }
-/*#fnamediv{
-	padding: 0px 20px;
-}
-#fnamelabel{
-	font-family:Helvetica;
-	font-size: 15px;
-	font-weight: bold;
-}
-#firstname{
-    border: 2px solid #cdcdcd;
-    border-color: rgba(0,0,0,.15);
-    background-color: white;
-	box-shadow: 3px 3px;
-}
-#firstname:hover{
-	box-shadow: none;
-}
-
-#lnamediv{
-	padding: 0px 20px;
-}
-#lnamelabel{
-	font-family:Helvetica;
-	font-size: 15px;
-	font-weight: bold;
-}
-#lastname{
-    border: 2px solid #cdcdcd;
-    border-color: rgba(0,0,0,.15);
-    background-color: white;
-	box-shadow: 3px 3px;
-}
-#lastname:hover{
-	box-shadow: none;
-}
-
-#emaildiv{
-	padding: 0px 20px;
-}
-#emaillabel{
-	font-family:Helvetica;
-	font-size: 15px;
-	font-weight: bold;
-}
-#email{
-    border: 2px solid #cdcdcd;
-    border-color: rgba(0,0,0,.15);
-    background-color: white;
-	box-shadow: 3px 3px;
-}
-#email:hover{
-	box-shadow: none;
-}
-
-#contactdiv{
-	padding: 0px 20px;
-}
-#contactlabel{
-	font-family:Helvetica;
-	font-size: 15px;
-	font-weight: bold;
-}
-#contactno{
-    border: 2px solid #cdcdcd;
-    border-color: rgba(0,0,0,.15);
-    background-color: white;
-	box-shadow: 3px 3px;
-}
-#contactno:hover{
-	box-shadow: none;
-}
-
-#addressdiv{
-	padding: 0px 20px;
-}
-#addresslabel{
-	font-family:Helvetica;
-	font-size: 15px;
-	font-weight: bold;
-}
-#address{
-    border: 2px solid #cdcdcd;
-    border-color: rgba(0,0,0,.15);
-    background-color: white;
-	box-shadow: 3px 3px;
-}
-#address:hover{
-	box-shadow: none;
-}*/
-
 div#degree_name{
 	padding: 0px 20px;
 }
