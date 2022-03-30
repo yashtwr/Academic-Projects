@@ -1,3 +1,132 @@
+div.show {
+    padding: 0px;
+    margin-left: 0px;
+    margin-right: 1px;
+}
+
+h1[_ngcontent-rrr-c140] {
+    font-family: Poppins, sans-serif;
+    font-size: 93px;
+    line-height: 1.3em
+}
+
+h1[_ngcontent-rrr-c140] b[_ngcontent-rrr-c140] {
+    font-weight: 700
+}
+
+h2[_ngcontent-rrr-c140] {
+    font-family: Poppins, sans-serif;
+    font-size: 58px;
+    line-height: 1.3em
+}
+
+h2[_ngcontent-rrr-c140] b[_ngcontent-rrr-c140] {
+    font-weight: 700
+}
+
+h3[_ngcontent-rrr-c140] {
+    font-family: Poppins, sans-serif;
+    font-size: 46px;
+    line-height: 1.3em
+}
+
+h3[_ngcontent-rrr-c140] b[_ngcontent-rrr-c140] {
+    font-weight: 700
+}
+
+h4[_ngcontent-rrr-c140],
+.text-heading-4[_ngcontent-rrr-c140] {
+    font-family: Poppins, sans-serif;
+    font-size: 33px;
+    line-height: 1.3em
+}
+
+h4[_ngcontent-rrr-c140] b[_ngcontent-rrr-c140],
+.text-heading-4[_ngcontent-rrr-c140] b[_ngcontent-rrr-c140] {
+    font-weight: 700
+}
+
+h5[_ngcontent-rrr-c140],
+.text-heading-5[_ngcontent-rrr-c140] {
+    font-family: Poppins, sans-serif;
+    font-size: 23px;
+    line-height: 1.3em
+}
+
+h5[_ngcontent-rrr-c140] b[_ngcontent-rrr-c140],
+.text-heading-5[_ngcontent-rrr-c140] b[_ngcontent-rrr-c140] {
+    font-weight: 700
+}
+
+h6[_ngcontent-rrr-c140],
+.text-heading-6[_ngcontent-rrr-c140] {
+    font-family: Poppins, sans-serif;
+    font-size: 19px;
+    line-height: 1.3em
+}
+
+h6[_ngcontent-rrr-c140] b[_ngcontent-rrr-c140],
+.text-heading-6[_ngcontent-rrr-c140] b[_ngcontent-rrr-c140] {
+    font-weight: 700
+}
+
+.text-subtitle-1[_ngcontent-rrr-c140] {
+    font-family: Inter, sans-serif;
+    font-size: 15px;
+    line-height: 130%
+}
+
+.text-subtitle-2[_ngcontent-rrr-c140] {
+    font-family: Inter, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 150%
+}
+
+.text-body-1[_ngcontent-rrr-c140] {
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    line-height: 150%
+}
+
+.text-body-2[_ngcontent-rrr-c140] {
+    font-family: Inter, sans-serif;
+    font-size: 13px;
+    line-height: 150%
+}
+
+.text-caption[_ngcontent-rrr-c140] {
+    font-family: Inter, sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 140%
+}
+
+.text-overline[_ngcontent-rrr-c140] {
+    font-family: Inter, sans-serif;
+    font-size: 10px;
+    line-height: 150%;
+    text-transform: uppercase
+}
+
+b[_ngcontent-rrr-c140] {
+    font-weight: 500
+}
+
+strong[_ngcontent-rrr-c140] {
+    font-weight: 700
+}
+
+em[_ngcontent-rrr-c140] {
+    font-style: italic
+}
+
+.text-h4[_ngcontent-rrr-c140] {
+    font-family: Poppins, sans-serif;
+    font-size: 33px;
+    line-height: 1.3em
+}
+
 html,
 body {
     width: 100%;
@@ -50,13 +179,31 @@ section {
     vertical-align: baseline
 }
 
+.u-borderTop-grey100 {
+    border-top: 1px solid #e6e6e6
+}
+
 .color-teal-100,
 .color-teal-100:hover {
     color: #d1eae6
 }
 
+.u-marginBottom-8 {
+    margin-bottom: 8px
+}
+
+.u-paddingRight-8 {
+    padding-right: 8px
+}
+
 .bg-color-teal-100 {
     background-color: #d1eae6
+}
+
+.u-textTruncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
 }
 
 .color-white,
