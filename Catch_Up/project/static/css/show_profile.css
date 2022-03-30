@@ -197,7 +197,8 @@ section {
 }
 
 .bg-color-teal-100 {
-    background-color: #d1eae6
+    background-color: #000;
+    color: #fdd54f;
 }
 
 .u-textTruncate {
@@ -212,7 +213,8 @@ section {
 }
 
 .bg-color-white {
-    background-color: #fff
+    background-color: #fdd54f;
+    color: #000;
 }
 
 a {
