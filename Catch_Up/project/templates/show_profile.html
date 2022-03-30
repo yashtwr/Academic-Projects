@@ -1,142 +1,9 @@
 {% extends "layout.html" %} {% block content %}
 
-<head>
-    <base href="/">
-    <meta charset="utf-8">
-    <title>Show Profile</title>
-
-    <link rel="stylesheet" href="../static/css/show_profile.css">
+<link rel="stylesheet" href="../static/css/show_profile.css">
 
 
-    <style>
-        h1[_ngcontent-rrr-c140] {
-            font-family: Poppins, sans-serif;
-            font-size: 93px;
-            line-height: 1.3em
-        }
-        
-        h1[_ngcontent-rrr-c140] b[_ngcontent-rrr-c140] {
-            font-weight: 700
-        }
-        
-        h2[_ngcontent-rrr-c140] {
-            font-family: Poppins, sans-serif;
-            font-size: 58px;
-            line-height: 1.3em
-        }
-        
-        h2[_ngcontent-rrr-c140] b[_ngcontent-rrr-c140] {
-            font-weight: 700
-        }
-        
-        h3[_ngcontent-rrr-c140] {
-            font-family: Poppins, sans-serif;
-            font-size: 46px;
-            line-height: 1.3em
-        }
-        
-        h3[_ngcontent-rrr-c140] b[_ngcontent-rrr-c140] {
-            font-weight: 700
-        }
-        
-        h4[_ngcontent-rrr-c140],
-        .text-heading-4[_ngcontent-rrr-c140] {
-            font-family: Poppins, sans-serif;
-            font-size: 33px;
-            line-height: 1.3em
-        }
-        
-        h4[_ngcontent-rrr-c140] b[_ngcontent-rrr-c140],
-        .text-heading-4[_ngcontent-rrr-c140] b[_ngcontent-rrr-c140] {
-            font-weight: 700
-        }
-        
-        h5[_ngcontent-rrr-c140],
-        .text-heading-5[_ngcontent-rrr-c140] {
-            font-family: Poppins, sans-serif;
-            font-size: 23px;
-            line-height: 1.3em
-        }
-        
-        h5[_ngcontent-rrr-c140] b[_ngcontent-rrr-c140],
-        .text-heading-5[_ngcontent-rrr-c140] b[_ngcontent-rrr-c140] {
-            font-weight: 700
-        }
-        
-        h6[_ngcontent-rrr-c140],
-        .text-heading-6[_ngcontent-rrr-c140] {
-            font-family: Poppins, sans-serif;
-            font-size: 19px;
-            line-height: 1.3em
-        }
-        
-        h6[_ngcontent-rrr-c140] b[_ngcontent-rrr-c140],
-        .text-heading-6[_ngcontent-rrr-c140] b[_ngcontent-rrr-c140] {
-            font-weight: 700
-        }
-        
-        .text-subtitle-1[_ngcontent-rrr-c140] {
-            font-family: Inter, sans-serif;
-            font-size: 15px;
-            line-height: 130%
-        }
-        
-        .text-subtitle-2[_ngcontent-rrr-c140] {
-            font-family: Inter, sans-serif;
-            font-size: 13px;
-            font-weight: 500;
-            line-height: 150%
-        }
-        
-        .text-body-1[_ngcontent-rrr-c140] {
-            font-family: Inter, sans-serif;
-            font-size: 14px;
-            line-height: 150%
-        }
-        
-        .text-body-2[_ngcontent-rrr-c140] {
-            font-family: Inter, sans-serif;
-            font-size: 13px;
-            line-height: 150%
-        }
-        
-        .text-caption[_ngcontent-rrr-c140] {
-            font-family: Inter, sans-serif;
-            font-size: 12px;
-            font-weight: 300;
-            line-height: 140%
-        }
-        
-        .text-overline[_ngcontent-rrr-c140] {
-            font-family: Inter, sans-serif;
-            font-size: 10px;
-            line-height: 150%;
-            text-transform: uppercase
-        }
-        
-        b[_ngcontent-rrr-c140] {
-            font-weight: 500
-        }
-        
-        strong[_ngcontent-rrr-c140] {
-            font-weight: 700
-        }
-        
-        em[_ngcontent-rrr-c140] {
-            font-style: italic
-        }
-        
-        .text-h4[_ngcontent-rrr-c140] {
-            font-family: Poppins, sans-serif;
-            font-size: 33px;
-            line-height: 1.3em
-        }
-    </style>
-
-
-</head>
-
-<body data-new-gr-c-s-check-loaded="14.1054.0" data-gr-ext-installed="">
+<div class="show">
 
     <div fxhide="true">
         <div class="ng-star-inserted">
@@ -155,7 +22,7 @@
                     </div>
                 </app-avatar-account>
                 <div fxflex="calc(100% - 112px)" fxlayout.gt-xs="row" fxlayout="column" style="flex-direction: row; box-sizing: border-box; display: flex; flex: 1 1 calc(100% - 112px); min-width: calc(100% - 112px);">
-                    <h6>Priyanka Jain</h6>
+                    <h6>Name</h6>
                 </div>
             </div>
         </app-profile-intro>
@@ -163,13 +30,97 @@
 
     <div fxlayout.gt-sm="row" class="u-padding-24-0 u-margin-center ng-tns-c400-75" style="max-width: 800px; width: 95vw; flex-direction: row;">
         <app-profile-group-item class="bg-color-white mat-elevation-z1 u-marginBottom-16 u-display-block ng-tns-c400-75 ng-star-inserted">
-            <div class="u-padding-16" fxlayout="row" fxlayoutgap="8px" class="u-marginBottom-16 ng-star-inserted" style="flex-direction: row; box-sizing: border-box; display: flex;">
-                Waterloo Engineering Hub
-            </div>
+            <app-profile-basic-info class="bg-color-white u-padding-16 mat-elevation-z1 u-display-block ng-tns-c299-24">
+                <p class="text-subtitle-1 u-marginBottom-8"><b>Basic Information</b></p>
+                <div fxlayout="row" fxlayoutalign="start center" style="margin-bottom: 4px; flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
+                    <p class="u-paddingRight-8" style="color: #717171;">About Me:</p>
+                    <p class="u-textTruncate"> description</p>
+                </div>
+                <div fxlayout="row" fxlayoutalign="start center" style="margin-bottom: 4px; flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
+                    <p class="u-paddingRight-8" style="color: #717171;">Contact Number:</p>
+                    <p class="u-textTruncate"> 83771--93</p>
+                </div>
+                <div fxlayout="row" fxlayoutalign="start center" style="margin-bottom: 4px; flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
+                    <p class="u-paddingRight-8" style="color: #717171;">Personal Email:</p>
+                    <p class="u-textTruncate"> hi@gm.com</p>
+                </div>
+                <div fxlayout="row" fxlayoutalign="start center" style="margin-bottom: 4px; flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
+                    <p class="u-paddingRight-8" style="color: #717171;">Address:</p>
+                    <p class="u-textTruncate"> India</p>
+                </div>
+                <div fxlayout="row" fxlayoutalign="start center" style="margin-bottom: 4px; flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
+                    <p class="u-paddingRight-8" style="color: #717171;">LinkedIn account:</p>
+                    <p class="u-textTruncate"> http://.com</p>
+                </div>
+                <div fxlayout="row" fxlayoutalign="start center" style="margin-bottom: 4px; flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
+                    <p class="u-paddingRight-8" style="color: #717171;">Other Account:</p>
+                    <p class="u-textTruncate"> http://.com</p>
+                </div>
+                <div fxlayout="row" fxlayoutalign="start center" style="margin-bottom: 4px; flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
+                    <p class="u-paddingRight-8" style="color: #717171;">Hobbies:</p>
+                    <!-- add for loop  -->
+                    <p class="u-textTruncate"> swim</p>
+                </div>
+                <div class="u-borderTop-grey100 u-padding-16-0 ng-tns-c298-3 ng-star-inserted"></div>
+
+
+
+                <p class="text-subtitle-1 u-marginBottom-8"><b>Education</b></p>
+                <div fxlayout="row" fxlayoutalign="start center" style="margin-bottom: 4px; flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
+                    <p class="u-textTruncate"> Degree_Name, Institution_Name, End_Year</p>
+                </div>
+                <div fxlayout="row" fxlayoutalign="start center" style="margin-bottom: 4px; flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
+                    <p class="u-paddingRight-8" style="color: #717171;">Courses:</p>
+                    <!-- add for loop  -->
+                    <p class="u-textTruncate"> course_department:&nbsp;course_no</p>
+                </div>
+                <div fxlayout="row" fxlayoutalign="start center" style="margin-bottom: 4px; flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
+                    <p class="u-paddingRight-8" style="color: #717171;">Certificates:</p>
+                    <!-- add for loop  -->
+                    <p class="u-textTruncate"> Professional certificates</p>
+                </div>
+                <div fxlayout="row" fxlayoutalign="start center" style="margin-bottom: 4px; flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
+                    <p class="u-paddingRight-8" style="color: #717171;">Skills:</p>
+                    <!-- add for loop  -->
+                    <p class="u-textTruncate"> skill1</p>
+                </div>
+                <div class="u-borderTop-grey100 u-padding-16-0 ng-tns-c298-3 ng-star-inserted"></div>
+
+
+
+                <p class="text-subtitle-1 u-marginBottom-8"><b>Projects</b></p>
+                <div fxlayout="row" fxlayoutalign="start center" style="margin-bottom: 4px; flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
+                    <!-- add for loop  -->
+                    <p class="u-paddingRight-8" style="color: #717171;">Project Title 1:</p>
+                    <p class="u-textTruncate"> Project description</p>
+                </div>
+                <div class="u-borderTop-grey100 u-padding-16-0 ng-tns-c298-3 ng-star-inserted"></div>
+
+
+                <!-- add for loop  -->
+                <p class="text-subtitle-1 u-marginBottom-8"><b>Work Experience</b></p>
+                <div fxlayout="row" fxlayoutalign="start center" style="margin-bottom: 4px; flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
+                    <p class="u-paddingRight-8" style="color: #717171;">Company Name:</p>
+                    <p class="u-textTruncate"> name of the company</p>
+                </div>
+                <div fxlayout="row" fxlayoutalign="start center" style="margin-bottom: 4px; flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
+                    <p class="u-paddingRight-8" style="color: #717171;">Designation:</p>
+                    <p class="u-textTruncate"> status</p>
+                </div>
+                <div fxlayout="row" fxlayoutalign="start center" style="margin-bottom: 4px; flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
+                    <p class="u-paddingRight-8" style="color: #717171;">Work Description:</p>
+                    <p class="u-textTruncate"> type of work</p>
+                </div>
+                <div fxlayout="row" fxlayoutalign="start center" style="margin-bottom: 4px; flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
+                    <p class="u-paddingRight-8" style="color: #717171;">No of Months:</p>
+                    <p class="u-textTruncate"> 23</p>
+                </div>
+                <div class="u-borderTop-grey100 u-padding-16-0 ng-tns-c298-3 ng-star-inserted"></div>
+
         </app-profile-group-item>
     </div>
-</body>
 
-{% endblock content %} {{courses.course_no}} {{courses.department}} {{education.degree_name}} {{education.institution_name}} {{education.start_date}} {{education.end_date}} {{education.cgpa}} {{certificates.certificates}} {{hobbies.hobbies}} {{industry.company_name}}
-{{industry.designation}} {{industry.work_description}} {{industry.no_of_months}} {{personal.description}} {{personal.contact_number}} {{personal.contact_email}} {{personal.address}} {{personal.linkedIn_account}} {{personal.other_links}} {{project.project_title}}
-{{project.project_detail}} {{skills.skills}}
+</div>
+
+
+{% endblock content %}
