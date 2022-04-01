@@ -4,6 +4,14 @@
 <link rel="stylesheet" href = "../static/css/profile_setup.css">
 <link rel="stylesheet" href = "../static/css/table.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<!-- <link rel="stylesheet" type="text/css" href="../static/css/table/bootstrap.min.css"> -->
+
+
+<link rel="stylesheet" type="text/css" href="../static/css/table/util.css">
+<link rel="stylesheet" type="text/css" href="../static/css/table/main.css">
+
+
   <div class = "profile">
 	<h1 id="title">Profile</h1>
 	<div class = "btn-box">
@@ -88,7 +96,7 @@
 	  <form class="edu" id="edu">
 
 
-	  	<div id="wrapper">
+<!-- 	  	<div id="wrapper">
 	  		<table class="card-2" style="background-color: #fdd54f" align='center' cellspacing=2 cellpadding=5 id="data_table" border=2>
 		  		<tr class="card-2">
 					<th>No.</th>
@@ -96,7 +104,6 @@
 					<th>Course Number</th>
 				</tr>
 
-		  		<!--{%set count = 1%}-->
 		  		{% for i in range(courses|length)%}
 		  		<tr id="row1" class="card-2">
 					<td id="No.">{{i+1}}</td>
@@ -113,7 +120,6 @@
 
 						<button type="submit" id="save_button{{['Id']}}" onclick="save_row_course({{courses[i]['Id'] }})"  style="border-width:0; "><i  class="material-icons md-48 md-dark">add_circle</i></button>
 					</td>	
-					<!--{% set count = count+ 1%}-->
 				</tr>
 				
 				
@@ -127,7 +133,67 @@
 				</tr>
 	  		</table>
 	  	</div>
+ -->
+<div class="limiter">
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<div class="table100 ver1 m-b-110">
+				<div class="table100-head">
+					<table>
+						<thead>
+						<tr class="row100 head">
+						<th class="cell100 column1">No.</th>
+						<th class="cell100 column2">Department</th>
+						<th class="cell100 column3">Course Number</th>
+						<th class="cell100 column4"></th>
+						<th class="cell100 column5"></th>
+						</tr>
+						</thead>
+					</table>
+				</div>
+				<div class="table100-body js-pscroll">
+					<table style="table-layout: auto">
+						<tbody>
+							<tr class="row100 body">
+							<td class="cell100 column1"></td>
+							<td class="cell100 column2"><input width="50" type="text" id="department" name="department"></td>
+							<td class="cell100 column3"><input width="50" type="text" id="courseno" name="courseno"></td>
+							<td class="cell100 column4" align="center"><button type="submit" formaction="insertCourse" formmethod="POST" style="border:none; background: transparent;" class="material-icons md-48 md-dark">add_circle</button></td>
+							<td class="cell100 column5"></td>
+						</tr>
+							{% for i in range(courses|length)%}
+				  		<tr class="row100 body">
+							<td class="cell100 column1" id="No.">{{i+1}}</td>
+							<td class="cell100 column2" id="department{{courses[i]['Id']}}" name="department{{courses[i]['Id']}}" >{{ courses[i]['department'] }}</td>
 
+							<td class="cell100 column3"  id="course_no{{courses[i]['Id']}}" name="course_no{{courses[i]['Id']}}">{{ courses[i]['course_no'] }}</td>
+							<td class="cell100 column4" align="center">
+							<a class= "material-icons md-40 md-dark" href="deleteCourse?Id={{courses[i]['Id']}}" style="color:black; background-color: transparent; text-decoration: none;" >delete</a>
+							</td>
+							<td align="center" class="cell100 column5">
+								<input type="hidden" value="{{courses[i]['Id']}}" id="Id">
+
+								<input type= "button" id="edit_button{{['Id']}}" class="material-icons md-36" style=" border-width:0; background-color: transparent;" value="edit"  onclick="edit_row_course({{courses[i]['Id']}})">
+
+								<button type="submit" class="material-icons md-48 md-dark" id="save_button{{['Id']}}" onclick="save_row_course({{courses[i]['Id'] }})" style="border:none; background: transparent;">add_circle</button>
+							</td>	
+
+						</tr>
+						{%endfor%}
+						<!-- 
+						<tr class="row100 body">
+						<td class="cell100 column1">Like a butterfly</td>
+						<td class="cell100 column2">Boxing</td>
+						<td class="cell100 column3">9:00 AM - 11:00 AM</td>
+						</tr> -->
+					
+						</tbody>
+					</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 <!-- 
 		<div class="form-group same" >
@@ -267,51 +333,68 @@
 
 	<div id="divskills" class="content">
 	  <form class="skills" id="skills">
+	  	<div class="limiter">
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<div class="table100 ver1 m-b-110">
+				<div class="table100-head">
+					<table>
+						<thead>
+						<tr class="row100 head">
+						<th class="cell100 column1">No.</th>
+						<th class="cell100 column2">Project Title</th>
+						<th class="cell100 column3">Project Description</th>
+						<th class="cell100 column4"></th>
+						<th class="cell100 column5"></th>
+						</tr>
+						</thead>
+					</table>
+				</div>
+				<div class="table100-body js-pscroll">
+					<table style="table-layout: auto" class="table_links">
+						<tbody>
+
+						<tr class="row100 body">
+							<td class="cell100 column1"></td>
+							<td class="cell100 column2"><input width="50" type="text" id="project_title" name="project_title"></td>
+							<td class="cell100 column3"><input width="50" type="text" id="project_detail" name="project_detail"></td>
+							<td class="cell100 column4" align="center"><button type="submit" formaction="insertProject" formmethod="POST" style="border:none; background: transparent;" class="material-icons md-48 md-dark">add_circle</button></td>
+							<td class="cell100 column5"></td>
+						</tr>
+							{% for i in range(projects|length) %}
+		  		
+				  		<tr class="row100 body">
+							<td class="cell100 column1" id="No.">{{i+1}}</td>
+							<td class="cell100 column2" id="project_title{{projects[i]['Id']}}" name="project_title{{projects[i]['Id']}}" >{{ projects[i]['project_title'] }}</td>		
+							<td class="cell100 column3" id="project_detail{{projects[i]['Id']}}" name="project_detail{{projects[i]['Id']}}">{{ projects[i]['project_detail'] }}</td>
+							<td class="cell100 column4" align="center">
+							<a class= "material-icons md-40 md-dark" href="deleteProject?Id={{projects[i]['Id']}}" style="color:black; background-color: transparent; text-decoration: none;" >delete</a>
+							</td>
+							<td align="center" class="cell100 column5">
+								<input type="hidden" value="{{projects[i]['Id']}}" id="Id">
+							<input type= "button" id="edit_button{{['Id']}}" class="material-icons md-36" style=" border-width:0; background-color: transparent;" value="edit"  onclick="edit_row_project({{projects[i]['Id']}})">
+							<button type="submit" class="material-icons md-48 md-dark" id="save_button{{['Id']}}"onclick="save_row_project({{projects[i]['Id']}})" style="border:none; background: transparent;">add_circle</button>
+								
+							</td>	
+
+						</tr>
+						{%endfor%}
+						</tbody>
+					</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
-	  	<div id="wrapper">
-	  		<table class="card-2" style="background-color: #fdd54f" align='center' cellspacing=2 cellpadding=5 id="data_table" border=2>
-		  		<tr class="card-2">
-					<th>No.</th>
-					<th>Certificates</th>
-				</tr>
-
-		  		<!--{%set count = 0%}-->
-		  		{% for i in range(certificates|length) %}
-		  		<tr id="row1" class="card-2">
-					<td id="No.">{{i+1}}</td>
-					<td  id="certificate{{certificates[i]['Id']}}" name="certificate{{certificates[i]['Id']}}">{{ certificates[i]['certificates']}}</td>
-					<td align="center">
-					<a class= "material-icons md-40 md-dark" href="deleteCertificates?Id={{certificates[i]['Id']}}" style="color:black; background-color: transparent; text-decoration: none;" >delete</a>
-					</td>
-					<td align="center">
-						<input type="hidden" value="{{certificates[i]['Id']}}" id="Id">
-
-						<input type= "button" id="edit_button{{['Id']}}" class="material-icons md-36" style="background-color:#fdd54f; border-width:0; margin: 10px 0px;" value="edit"  onclick="edit_row_certi({{certificates[i]['Id']}})">
-
-						<button type="submit" id="save_button{{['Id']}}" onclick="save_row_certi({{certificates[i]['Id']}})"  style="border-width:0; "><i  class="material-icons md-48 md-dark">add_circle</i></button>
-					</td>	
-					<!--{% set count = count+ 1%}-->
-				</tr>
-				{%endfor%}
-				<tr class="card-2">
-					<td>{{(certificates|length) + 1}}</td>
-					<td><input width="50" type="text" id="certificate" name="certificates"></td>
-					<td align="center"><button type="submit" formaction="insertCertificates" formmethod="POST" style="border-width:0; "><i  class="material-icons md-48 md-dark">add_circle</i></button></td>
-				</tr>
-	  		</table>
-	  	</div>
-
-
-	  	<div id="wrapper">
+<!-- 	  	<div id="wrapper">
 	  		<table class="card-2" style="background-color: #fdd54f" align='center' cellspacing=2 cellpadding=5 id="data_table" border=2>
 		  		<tr class="card-2">
 					<th>No.</th>
 					<th>Project Title</th>
 					<th>Project Description</th>
 				</tr>
-
-
 		  		{% for i in range(projects|length) %}
 		  		<tr id="row1" class="card-2">
 					<td id="No.">{{i+1}}</td>
@@ -330,9 +413,6 @@
 					</td>	
 
 				</tr>
-				
-				
-
 				{%endfor%}
 				<tr class="card-2">
 					<td>{{(projects|length)+1}}</td>
@@ -342,6 +422,91 @@
 				</tr>
 	  		</table>
 	  	</div>
+ -->
+
+	<div class="limiter">
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<div class="table100 ver1 m-b-110">
+				<div class="table100-head">
+					<table>
+						<thead>
+						<tr class="row100 head">
+						<th class="cell100 column11">No.</th>
+						<th class="cell100 column12">Certificate</th>
+						<th class="cell100 column13"></th>
+						<th class="cell100 column14"></th>
+						</tr>
+						</thead>
+					</table>
+				</div>
+				<div class="table100-body js-pscroll">
+					<table style="table-layout: auto" class="table_links">
+						<tbody>
+
+						<tr class="row100 body">
+							<td class="cell100 column11"></td>
+							<td class="cell100 column12"><input width="50" type="text" id="certificate" name="certificates"></td>
+							<td class="cell100 column13" align="center"><button type="submit" formaction="insertCertificates" formmethod="POST" style="border:none; background: transparent;" class="material-icons md-48 md-dark">add_circle</button></td>
+							<td class="cell100 column14"></td>
+						</tr>
+							{% for i in range(certificates|length) %}
+				  		<tr class="row100 body">
+							<td class="cell100 column11" id="No.">{{i+1}}</td>
+							<td class="cell100 column12" id="certificate{{certificates[i]['Id']}}" name="certificate{{certificates[i]['Id']}}">{{ certificates[i]['certificates']}}</td>
+							
+							<td class="cell100 column13" align="center">
+							<a class= "material-icons md-40 md-dark" href="deleteCertificates?Id={{certificates[i]['Id']}}" style="color:black; background-color: transparent; text-decoration: none;" >delete</a>
+							</td>
+							<td align="center" class="cell100 column14">
+								<input type="hidden" value="{{certificates[i]['Id']}}" id="Id">
+							<input type= "button" id="edit_button{{['Id']}}" class="material-icons md-36" style=" border-width:0; background-color: transparent;" value="edit"  onclick="edit_row_certi({{certificates[i]['Id']}})">
+							<button type="submit" class="material-icons md-48 md-dark" id="save_button{{['Id']}}"onclick="save_row_certi({{certificates[i]['Id']}})" style="border:none; background: transparent;">add_circle</button>
+								
+							</td>	
+
+						</tr>
+						{%endfor%}
+						</tbody>
+					</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- 
+	  	<div id="wrapper">
+	  		<table class="card-2" style="background-color: #fdd54f" align='center' cellspacing=2 cellpadding=5 id="data_table" border=2>
+		  		<tr class="card-2">
+					<th>No.</th>
+					<th>Certificates</th>
+				</tr>
+
+		  		{% for i in range(certificates|length) %}
+		  		<tr id="row1" class="card-2">
+					<td id="No.">{{i+1}}</td>
+					<td  id="certificate{{certificates[i]['Id']}}" name="certificate{{certificates[i]['Id']}}">{{ certificates[i]['certificates']}}</td>
+					<td align="center">
+					<a class= "material-icons md-40 md-dark" href="deleteCertificates?Id={{certificates[i]['Id']}}" style="color:black; background-color: transparent; text-decoration: none;" >delete</a>
+					</td>
+					<td align="center">
+						<input type="hidden" value="{{certificates[i]['Id']}}" id="Id">
+
+						<input type= "button" id="edit_button{{['Id']}}" class="material-icons md-36" style="background-color:#fdd54f; border-width:0; margin: 10px 0px;" value="edit"  onclick="edit_row_certi({{certificates[i]['Id']}})">
+
+						<button type="submit" id="save_button{{['Id']}}" onclick="save_row_certi({{certificates[i]['Id']}})"  style="border-width:0; "><i  class="material-icons md-48 md-dark">add_circle</i></button>
+					</td>	
+				</tr>
+				{%endfor%}
+				<tr class="card-2">
+					<td>{{(certificates|length) + 1}}</td>
+					<td><input width="50" type="text" id="certificate" name="certificates"></td>
+					<td align="center"><button type="submit" formaction="insertCertificates" formmethod="POST" style="border-width:0; "><i  class="material-icons md-48 md-dark">add_circle</i></button></td>
+				</tr>
+	  		</table>
+	  	</div>
+ -->
+
 
 
 		<!-- <div class="form-group same" id="project_title">
@@ -369,15 +534,63 @@
 
 
 
-		<div id="wrapper">
+	<div class="limiter">
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<div class="table100 ver1 m-b-110">
+				<div class="table100-head">
+					<table>
+						<thead>
+						<tr class="row100 head">
+						<th class="cell100 column11">No.</th>
+						<th class="cell100 column12">Hobbies</th>
+						<th class="cell100 column13"></th>
+						<th class="cell100 column14"></th>
+						</tr>
+						</thead>
+					</table>
+				</div>
+				<div class="table100-body js-pscroll">
+					<table style="table-layout: auto" class="table_links">
+						<tbody>
+
+						<tr class="row100 body">
+							<td class="cell100 column11"></td>
+							<td class="cell100 column12"><input width="50" type="text" id="hobbies" name="hobbies"></td>
+							<td class="cell100 column13" align="center"><button type="submit" formaction="insertHobbies" formmethod="POST" style="border:none; background: transparent;" class="material-icons md-48 md-dark">add_circle</button></td>
+							<td class="cell100 column14"></td>
+						</tr>
+							{% for i in range(hobbies|length) %}
+				  		<tr class="row100 body">
+							<td class="cell100 column11" id="No.">{{i+1}}</td>
+							<td class="cell100 column12" id="hobbies{{hobbies[i]['Id']}}" name="hobbies{{hobbies[i]['Id']}}">{{ hobbies[i]['hobbies'] }}</td>
+							
+							<td class="cell100 column13" align="center">
+							<a class= "material-icons md-40 md-dark" href="deleteHobbies?Id={{hobbies[i]['Id']}}" style="color:black; background-color: transparent; text-decoration: none;" >delete</a>
+							</td>
+							<td align="center" class="cell100 column14">
+								<input type="hidden" value="{{hobbies[i]['Id']}}" id="Id">
+							<input type= "button" id="edit_button{{['Id']}}" class="material-icons md-36" style=" border-width:0; background-color: transparent;" value="edit"  onclick="edit_row_hobbies({{hobbies[i]['Id']}})">
+							<button type="submit" class="material-icons md-48 md-dark" id="save_button{{['Id']}}"onclick="save_row_hobbies({{hobbies[i]['Id']}})" style="border:none; background: transparent;">add_circle</button>
+								
+							</td>	
+
+						</tr>
+						{%endfor%}
+						</tbody>
+					</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- 		<div id="wrapper">
 	  		<table class="card-2" style="background-color: #fdd54f" align='center' cellspacing=2 cellpadding=5 id="data_table" border=2>
 		  		<tr class="card-2">
 					<th>No.</th>
 					<th>Hobbies</th>
 				</tr>
-
-		  		<!--{%set count = 1%}-->
-		  		{% for i in range(hobbies|length) %}
+	  		{% for i in range(hobbies|length) %}
 		  		<tr id="row1" class="card-2">
 					<td id="No.">{{i+1}}</td>
 					<td id="hobbies{{hobbies[i]['Id']}}" name="hobbies{{hobbies[i]['Id']}}">{{ hobbies[i]['hobbies'] }}</td>
@@ -391,11 +604,7 @@
 
 						<button type="submit" id="save_button{{['Id']}}" onclick="save_row_hobbies({{hobbies[i]['Id']}})"  style="border-width:0; "><i  class="material-icons md-48 md-dark">add_circle</i></button>
 					</td>	
-					<!--{% set count = count+ 1%}-->
 				</tr>
-				
-				
-
 				{%endfor%}
 				<tr class="card-2">
 					<td>{{(hobbies|length)+1}}</td>
@@ -404,7 +613,7 @@
 				</tr>
 	  		</table>
 	  	</div>
-
+ -->
 
 
 <!-- 		<div class="form-group same" id="project_detail">
@@ -427,165 +636,71 @@
 
 
 
-	<script type="text/javascript" >
-	function edit_row(no) {
-    	
-        // document.getElementById("edit_button" + no).style.display = "none";
-        
-        //document.getElementById("edit_button" + no).style.display = "none";
-        //document.getElementById("save_button" + no).style.display = "block";
-        
-        var platform = document.getElementById("platform"+no);
-        var link = document.getElementById("link"+no);
-
-
-        var platform_data = platform.innerHTML;
-        var link_data = link.innerHTML;
-
-        platform.innerHTML = "<input type='text' width='50' id='platform_data" + no + "' value='" + platform_data + "'>";
-        link.innerHTML="<input type='text' width='50' id='link_data" + no + "' value='" + link_data + "'>";
-        document.getElementById("edit_button" + no).style.display = "none";
-    }
-
-    function save_row(no) {
-    	
-        var platform = document.getElementById("platform_data"+no).value;
-        
-        var link = document.getElementById("link_data" + no).value;
-        
-        
-        document.getElementById("platform" + no).innerHTML = platform;
-        document.getElementById("link" + no).innerHTML = link;
-
-        document.getElementById("la").method = "POST"
-
-        document.getElementById("la").action = "/updateAccounts?Id="+no+"&platform"+no+"="+platform+"&link"+no+"="+link
-
-		document.getElementById("la").submit();
-    }
-    function edit_row_hobbies(no) {
-    	
-        // document.getElementById("edit_button" + no).style.display = "none";
-        
-        //document.getElementById("edit_button" + no).style.display = "none";
-        //document.getElementById("save_button" + no).style.display = "block";
-        
-        var hobbies = document.getElementById("hobbies"+no);
-        var hobbies_data = hobbies.innerHTML;
-        
-        hobbies.innerHTML = "<input type='text' width='50' id='hobbies_data" + no + "' value='" + hobbies_data + "'>";
-        // document.getElementById("edit_button" + no).style.display = "none";
-    }
-
-    function save_row_hobbies(no) {
-    	var hobbies = document.getElementById("hobbies_data"+no).value;
-        document.getElementById("hobbies" + no).innerHTML = hobbies;
-        document.getElementById("skills").method = "POST"
-
-        document.getElementById("skills").action = "/updateHobbies?Id="+no+"&hobbies="+hobbies
-
-		document.getElementById("skills").submit();
-    }
-
-    function edit_row_certi(no) {
-    	
-        // document.getElementById("edit_button" + no).style.display = "none";
-        
-        //document.getElementById("edit_button" + no).style.display = "none";
-        //document.getElementById("save_button" + no).style.display = "block";
-        
-        var certificate = document.getElementById("certificate"+no);
-        var certificate_data = certificate.innerHTML;
-        
-
-        certificate.innerHTML = "<input type='text' width='50' id='certificate_data" + no + "' value='" + certificate_data + "'>";
-        // document.getElementById("edit_button" + no).style.display = "none";
-    }
-
-    function save_row_certi(no) {
-    	var certificate = document.getElementById("certificate_data"+no).value;
-        document.getElementById("certificate" + no).innerHTML = certificate;
-        
-        document.getElementById("skills").method = "POST"
-
-        document.getElementById("skills").action = "/updateCertificates?Id="+no+"&certificates="+certificate
-
-		document.getElementById("skills").submit();
-    }
-    function edit_row_project(no) {
-    	
-        // document.getElementById("edit_button" + no).style.display = "none";
-        
-        //document.getElementById("edit_button" + no).style.display = "none";
-        //document.getElementById("save_button" + no).style.display = "block";
-        
-        var project_title = document.getElementById("project_title"+no);
-        var project_detail = document.getElementById("project_detail"+no);
-
-        var project_title_data = project_title.innerHTML;
-        var project_detail_data = project_detail.innerHTML;
-
-        project_title.innerHTML = "<input type='text' width='50' id='project_title_data" + no + "' value='" + project_title_data + "'>";
-        project_detail.innerHTML="<input type='text' width='50' id='project_detail_data" + no + "' value='" + project_detail_data + "'>";
-        document.getElementById("edit_button" + no).style.display = "none";
-    }
-
-    function save_row_project(no) {
-    	
-        var project_title = document.getElementById("project_title_data"+no).value;
-        var project_detail = document.getElementById("project_detail_data" + no).value;
-        
-        document.getElementById("project_title" + no).innerHTML = project_title;
-        document.getElementById("project_detail" + no).innerHTML = project_detail;
-
-        document.getElementById("skills").method = "POST"
-
-        document.getElementById("skills").action = "/updateProject?Id="+no+"&project_title="+project_title+"&project_detail="+project_detail
-
-		document.getElementById("skills").submit();
-    }
-
-	function edit_row_course(no) {
-    	
-        // document.getElementById("edit_button" + no).style.display = "none";
-        
-        //document.getElementById("edit_button" + no).style.display = "none";
-        //document.getElementById("save_button" + no).style.display = "block";
-        var department = document.getElementById("department"+no);
-        var course_no = document.getElementById("course_no"+no);
-        
-
-        var department_data = department.innerHTML;
-        var course_no_data = course_no.innerHTML;
-        
-        department.innerHTML = "<input type='text' width='50' id='department_data" + no + "' value='" + department_data + "'>";
-        course_no.innerHTML="<input type='text' width='50' id='course_no_data" + no + "' value='" + course_no_data + "'>";
-        // document.getElementById("edit_button" + no).style.display = "none";
-    }
-
-    function save_row_course(no) {
-    	
-        var course_no = document.getElementById("course_no_data"+no).value;
-        
-        var department = document.getElementById("department_data" + no).value;
-        
-        
-        document.getElementById("course_no" + no).innerHTML = course_no;
-        document.getElementById("department" + no).innerHTML = department;
-
-        document.getElementById("edu").method = "POST"
-
-        document.getElementById("edu").action = "/updateCourse?Id="+no+"&course_no="+course_no+"&department="+department
-
-		document.getElementById("edu").submit();
-    }
-
-
-    
-</script>
-
 	<div id="divla" class="content">
 	  <form class="la" id="la">
+
+	<div class="limiter">
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<div class="table100 ver1 m-b-110">
+				<div class="table100-head">
+					<table>
+						<thead>
+						<tr class="row100 head">
+						<th class="cell100 column1">No.</th>
+						<th class="cell100 column2">Platform</th>
+						<th class="cell100 column3">Link</th>
+						<th class="cell100 column4"></th>
+						<th class="cell100 column5"></th>
+						</tr>
+						</thead>
+					</table>
+				</div>
+				<div class="table100-body js-pscroll">
+					<table style="table-layout: auto" class="table_links">
+						<tbody>
+
+							<tr class="row100 body">
+							<td class="cell100 column1"></td>
+							<td class="cell100 column2"><input width="50" type="text" id="platform" name="platform"></td>
+							<td class="cell100 column3"><input width="50" type="text" id="link" name="link"></td>
+							<td class="cell100 column4" align="center"><button type="submit" formaction="insertAccount" formmethod="POST" style="border:none; background: transparent;" class="material-icons md-48 md-dark">add_circle</button></td>
+							<td class="cell100 column5"></td>
+						</tr>
+							{% for i in range(accounts|length) %}
+				  		<tr class="row100 body">
+							<td class="cell100 column1" id="No.">{{i+1}}</td>
+							<td class="cell100 column2" id="platform{{accounts[i]['Id']}}" name="platform{{accounts[i]['Id']}}">{{accounts[i]['platform']}}</td>
+							<td class="cell100 column3"  id="link{{accounts[i]['Id']}}" name="link{{accounts[i]['Id']}}">{{accounts[i]['link']}}</td>
+							<td class="cell100 column4" align="center">
+							<a class= "material-icons md-40 md-dark" href="deleteAccounts?Id={{accounts[i]['Id']}}" style="color:black; background-color: transparent; text-decoration: none;" >delete</a>
+							</td>
+							<td align="center" class="cell100 column5">
+								<input type="hidden" value="{{accounts[i]['Id']}}" id="Id">
+
+
+							<input type= "button" id="edit_button{{['Id']}}" class="material-icons md-36" style=" border-width:0; background-color: transparent;" value="edit"  onclick="edit_row({{accounts[i]['Id']}})">
+							<button type="submit" class="material-icons md-48 md-dark" id="save_button{{['Id']}}"onclick="save_row({{accounts[i]['Id']}})" style="border:none; background: transparent;">add_circle</button>
+								
+							</td>	
+
+						</tr>
+						{%endfor%}
+						<!-- 
+						<tr class="row100 body">
+						<td class="cell100 column1">Like a butterfly</td>
+						<td class="cell100 column2">Boxing</td>
+						<td class="cell100 column3">9:00 AM - 11:00 AM</td>
+						</tr> -->
+					
+						</tbody>
+					</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- 
 	  	<div id="wrapper">
 	  		<table class="card-2" style="background-color: #fdd54f" align='center' cellspacing=2 cellpadding=5 id="data_table" border=2>
 		  		<tr class="card-2">
@@ -594,7 +709,6 @@
 					<th>Link</th>
 				</tr>
 
-		  		<!--{%set count = 1%}-->
 		  		{% for i in range(accounts|length) %}
 		  		<tr id="row1" class="card-2">
 					<td id="No.">{{i+1}}</td>
@@ -602,9 +716,6 @@
 					<td id="link{{accounts[i]['Id']}}" name="link{{accounts[i]['Id']}}">{{accounts[i]['link']}}</td>
 					
 					<td align="center">
-					<!-- <input type="button" id="edit_button1" value="Edit" class="edit" onclick="edit_row('1')">
-					<input type="button" id="save_button1" value="Save" class="save" onclick="save_row('1')">
-					<input type="button" value="Delete" class="delete" onclick="delete_row('1')"> -->
 					<a class= "material-icons md-40 md-dark" href="deleteAccounts?Id={{accounts[i]['Id']}}" style="color:black; background-color: transparent; text-decoration: none;" >delete</a>
 
             		
@@ -616,7 +727,6 @@
 
 						<button type="submit" id="save_button{{['Id']}}" onclick="save_row({{accounts[i]['Id']}})"  style="border-width:0; "><i  class="material-icons md-48 md-dark">add_circle</i></button>
 					</td>	
-					<!--{% set count = count+ 1%}-->
 				</tr>
 				
 				
@@ -630,7 +740,7 @@
 				</tr>
 	  		</table>
 	  	</div>
-
+ -->
 
 <!--          {% for account in accounts %}
         <div class="form-group same" id="other_links" style="margin: 5px 0px 0px 0px;">
@@ -660,6 +770,7 @@
 </form>
 
 <script src = "../static/js/profile_setup.js"></script>
+<script src="../static/js/button.js"></script>
 {%if session['currentPage']=='personal_information' %}
 <script> openPI();console.log("this is printed");</script>
 
