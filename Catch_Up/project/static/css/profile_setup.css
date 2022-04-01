@@ -6,7 +6,8 @@ div.profile{
 
 form.pi{
 	height: auto;
-	width: 380px;
+	/*width: 380px;*/
+	width: 675px;
 	background-color: #fdd54f; 
 	border: 2px solid #8fc4b7;
 	border-radius: 15px;
@@ -21,13 +22,13 @@ form.pi{
 
 form.edu{
 	height: auto;
-	width: 380px;
+	width: 675px;
 	background-color: #fdd54f; 
 	border: 2px solid #8fc4b7;
 	border-radius: 15px;
 	border-color: #000000;
 	display: inline-block;
-    margin-left: 50px;
+    /*margin-left: 50px;*/
     margin-right: auto;
 	margin-top: auto;
 	margin-bottom: 30%;
@@ -35,13 +36,14 @@ form.edu{
 }
 form.exp{
 	height: auto;
-	width: 380px;
+	/*width: 380px;*/
+	width: 675px;
 	background-color: #fdd54f; 
 	border: 2px solid #8fc4b7;
 	border-radius: 15px;
 	border-color: #000000;
 	display: inline-block;
-    margin-left: 120px;
+    /*margin-left: 120px;*/
     margin-right: auto;
 	margin-top: auto;
 	margin-bottom: 30%;
@@ -49,13 +51,14 @@ form.exp{
 }
 form.skills{
 	height: auto;
-	width: 380px;
+	/*width: 380px;*/
+	width: 675px;
 	background-color: #fdd54f; 
 	border: 2px solid #8fc4b7;
 	border-radius: 15px;
 	border-color: #000000;
 	display: inline-block;
-    margin-left: 200px;
+    /*margin-left: 200px;*/
     margin-right: auto;
 	margin-top: auto;
 	margin-bottom: 30%;
@@ -63,7 +66,8 @@ form.skills{
 }
 form.la{
 	height: auto;
-	width: 700px;
+	/*width: 380px;*/
+	width: 675px;
 	background-color: #fdd54f; 
 	border: 2px solid #8fc4b7;
 	border-radius: 15px;
