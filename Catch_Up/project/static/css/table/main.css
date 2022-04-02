@@ -137,12 +137,20 @@ th, td {
   font-weight: unset;
   padding-right: 10px;
 }
-
+/**/
 td {
+  /*max-width: 100px;*/
+ overflow: hidden;
+ /*text-overflow: ellipsis;*/
+ /*white-space: nowrap;*/
+
+
+
+ /*display: -webkit-box;*/
+  /*-webkit-line-clamp: 3;*/
   -webkit-box-orient: vertical;  
   overflow: hidden;
 }
-
 
 tr:nth-child(odd) {
             background-color: #ffff99;
@@ -234,7 +242,7 @@ tr:nth-child(odd) {
 .table100.ver1 td {
   font-size: 15px;  
   font-family: georgia,"droid serif","Times New Roman",Times,serif;
-  line-height: 0.2;
+  /*line-height: 0.2;*/
   font-color: #000;
 }
 
