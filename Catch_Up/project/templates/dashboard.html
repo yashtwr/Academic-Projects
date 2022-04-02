@@ -1,6 +1,21 @@
 {% extends "layout.html" %}
 {% block content %}
 
+<link rel="stylesheet" href="../static/css/dashboard.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <h1> Welcome {{email}}.</h1>
+
+<div class="search">
+    <form class="search">
+	<div class="container">
+		<div class="input_search">
+		  <input type="text" class="search" placeholder="Search..">
+		 </div>
+		<div class="btn_search">
+		  <button type="submit" class="material-icons md-48 md-dark search">search</button>
+		</div>
+	</div>
+	</form>
+ </div
 
 {% endblock content%}
