@@ -1,4 +1,3 @@
-
 	function edit_row(no) {
 
         // document.getElementById("edit_button" + no).style.display = "none";
@@ -56,7 +55,7 @@
         console.log('HERE IT IS');
         var add_button  = '<button type="submit" class="material-icons md-48 md-dark" id="save_button'+no+'"onclick="save_row_hobbies('+no+')" style="border:none; background: transparent;">add_circle</button>';
         parent_edit.innerHTML = add_button;
-        hobbies.innerHTML = "<input type='text' width='50' id='hobbies_data" + no + "' value='" + hobbies_data + "'>";
+        hobbies.innerHTML = "<input type='text' style='width: 100%;' id='hobbies_data" + no + "' value='" + hobbies_data + "'>";
         // document.getElementById("edit_button" + no).style.display = "none";
     }
 
@@ -88,7 +87,7 @@
 
 
 
-        certificate.innerHTML = "<input type='text' width='50' id='certificate_data" + no + "' value='" + certificate_data + "'>";
+        certificate.innerHTML = "<input type='text' style='width: 100%;' id='certificate_data" + no + "' value='" + certificate_data + "'>";
         // document.getElementById("edit_button" + no).style.display = "none";
     }
 
