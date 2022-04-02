@@ -3,6 +3,7 @@
 
 <link rel="stylesheet" href = "../static/css/profile_setup.css">
 <link rel="stylesheet" href = "../static/css/table.css">
+<link rel="stylesheet" href = "../static/css/login.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <!-- <link rel="stylesheet" type="text/css" href="../static/css/table/bootstrap.min.css"> -->
@@ -11,7 +12,7 @@
 <link rel="stylesheet" type="text/css" href="../static/css/table/util.css">
 <link rel="stylesheet" type="text/css" href="../static/css/table/main.css">
 
-
+<script src="../static/js/buttonjava.js?2"></script>
   <div class = "profile">
 	<h1 id="title">Profile</h1>
 	<div class = "btn-box">
@@ -86,7 +87,7 @@
 			{% else %}
 				<input type="hidden" id="Id" name="Id" value="Null">
 			{% endif %}
-		<button type= "submit" formaction="insertPersonalInfo" style="background-color:black; color:#fdd54f; border-width:0; margin: 0px 0px 10px 15px;" formmethod="POST">Update</button>
+		<button type= "submit" formaction="insertPersonalInfo" id="loginbtn" class="btn btn-primary" formmethod="POST">Update</button>
 	  </form>
 	</div>
 	
@@ -275,7 +276,7 @@
 		{% else %}
 			<input type="hidden" id="Id" name="Id" value="Null">
 		{% endif %}
-		<button type="submit" formaction="insertEducation" formmethod="POST" style="background-color:black; color:#fdd54f; margin: 0px 0px 10px 20px;">Update</button>
+		<button type="submit" id="loginbtn" class="btn btn-primary" formaction="insertEducation" formmethod="POST" >Update</button>
 
 	  </form>
 	</div>
@@ -322,11 +323,11 @@
 		</div>
 
         {% if industryExp %}
-          <button type="submit" formaction="insertIndustryExp" formmethod="post" style="background-color:#fdd54f; border-width:0; margin: 0px 0px 5px 10px;"><i style="background-color:#fdd54f;" class="material-icons md-48 md-dark">edit</i></button>
-          <button type="submit" formaction="deleteIndustryExp?Id={{industryExp['Id']}}" formmethod="GET" style="background-color:#fdd54f; border-width:0; "><i style="background-color:#fdd54f;" class="material-icons md-48 md-dark">delete</i></button>
+          <button type="submit" id="loginbtn" class="btn btn-primary" formaction="insertIndustryExp" formmethod="post" >Update</button>
+          <button type="submit" id="loginbtn" class="btn btn-primary" formaction="deleteIndustryExp?Id={{industryExp['Id']}}" formmethod="GET" >Delete</button>
           <!--<button type="submit" formaction="deleteIndustryExp?Id={{industryExp['Id']}}" formmethod="GET"><i class="material-icons md-48 md-dark">delete</i></button>-->
           {%else%}
-          <button type="submit" formaction="insertIndustryExp" formmethod="post" style="background-color:#fdd54f; border-width:0; margin: 0px 0px 5px 10px;"><i style="background-color:#fdd54f;" class="material-icons md-48 md-dark">add_circle</i></button>
+          <button type="submit" formaction="insertIndustryExp" id="loginbtn" class="btn btn-primary" formmethod="post" >Submit</button>
           {%endif%}
 	  </form>
 	</div>
@@ -359,7 +360,7 @@
 							<td class="cell100 column2"><input width="50" type="text" id="project_title" name="project_title"></td>
 							<td class="cell100 column3"><input width="50" type="text" id="project_detail" name="project_detail"></td>
 							<td class="cell100 column4" align="center"><button type="submit" formaction="insertProject" formmethod="POST" style="border:none; background: transparent;" class="material-icons md-48 md-dark">add_circle</button></td>
-							<td class="cell100 column5"></td>
+							<td></td>
 						</tr>
 							{% for i in range(projects|length) %}
 		  		
@@ -370,10 +371,10 @@
 							<td class="cell100 column4" align="center">
 							<a class= "material-icons md-40 md-dark" href="deleteProject?Id={{projects[i]['Id']}}" style="color:black; background-color: transparent; text-decoration: none;" >delete</a>
 							</td>
-							<td align="center" class="cell100 column5">
+							<td align="center" >
 								<input type="hidden" value="{{projects[i]['Id']}}" id="Id">
-							<input type= "button" id="edit_button{{['Id']}}" class="material-icons md-36" style=" border-width:0; background-color: transparent;" value="edit"  onclick="edit_row_project({{projects[i]['Id']}})">
-							<button type="submit" class="material-icons md-48 md-dark" id="save_button{{['Id']}}"onclick="save_row_project({{projects[i]['Id']}})" style="border:none; background: transparent;">add_circle</button>
+							<input type= "button" id="project_edit_button{{projects[i]['Id']}}" class="material-icons md-36" style=" border-width:0; background-color: transparent;" value="edit"  onclick="edit_row_project({{projects[i]['Id']}})">
+							<!--<button type="submit" class="material-icons md-48 md-dark" id="save_button{{['Id']}}"onclick="save_row_project({{projects[i]['Id']}})" style="border:none; background: transparent;">add_circle</button>-->
 								
 							</td>	
 
@@ -460,8 +461,8 @@
 							</td>
 							<td align="center" class="cell100 column14">
 								<input type="hidden" value="{{certificates[i]['Id']}}" id="Id">
-							<input type= "button" id="edit_button{{['Id']}}" class="material-icons md-36" style=" border-width:0; background-color: transparent;" value="edit"  onclick="edit_row_certi({{certificates[i]['Id']}})">
-							<button type="submit" class="material-icons md-48 md-dark" id="save_button{{['Id']}}"onclick="save_row_certi({{certificates[i]['Id']}})" style="border:none; background: transparent;">add_circle</button>
+							<input type= "button" id="certificate_edit_button{{certificates[i]['Id']}}" class="material-icons md-36" style=" border-width:0; background-color: transparent;" value="edit"  onclick="edit_row_certi({{certificates[i]['Id']}})">
+							<!--<button type="submit" class="material-icons md-48 md-dark" id="certificates_save_button{{certificates[i]['Id']}}"onclick="save_row_certi({{certificates[i]['Id']}})" style="border:none; background: transparent;">add_circle</button>-->
 								
 							</td>	
 
@@ -570,8 +571,8 @@
 							</td>
 							<td align="center" class="cell100 column14">
 								<input type="hidden" value="{{hobbies[i]['Id']}}" id="Id">
-							<input type= "button" id="edit_button{{['Id']}}" class="material-icons md-36" style=" border-width:0; background-color: transparent;" value="edit"  onclick="edit_row_hobbies({{hobbies[i]['Id']}})">
-							<button type="submit" class="material-icons md-48 md-dark" id="save_button{{['Id']}}"onclick="save_row_hobbies({{hobbies[i]['Id']}})" style="border:none; background: transparent;">add_circle</button>
+							<input type= "button" id="hobbies_edit_button{{hobbies[i]['Id']}}" class="material-icons md-36" style=" border-width:0; background-color: transparent;" value="edit"  onclick="edit_row_hobbies({{hobbies[i]['Id']}})">
+							<!--<button type="submit" class="material-icons md-48 md-dark" id="save_button{{['Id']}}"onclick="save_row_hobbies({{hobbies[i]['Id']}})" style="border:none; background: transparent;">add_circle</button>-->
 								
 							</td>	
 
@@ -677,10 +678,8 @@
 							</td>
 							<td align="center" class="cell100 column5">
 								<input type="hidden" value="{{accounts[i]['Id']}}" id="Id">
-
-
-							<input type= "button" id="edit_button{{['Id']}}" class="material-icons md-36" style=" border-width:0; background-color: transparent;" value="edit"  onclick="edit_row({{accounts[i]['Id']}})">
-							<button type="submit" class="material-icons md-48 md-dark" id="save_button{{['Id']}}"onclick="save_row({{accounts[i]['Id']}})" style="border:none; background: transparent;">add_circle</button>
+							<input type= "button" id="platform_edit_button{{accounts[i]['Id']}}" class="material-icons md-36" style=" border-width:0; background-color: transparent;" value="edit"  onclick="edit_row({{accounts[i]['Id']}})">
+							<!--<button type="submit" class="material-icons md-48 md-dark" id="save_button{{accounts[i]['Id']}}"onclick="save_row({{accounts[i]['Id']}})" style="border:none; background: transparent;">add_circle</button>-->
 								
 							</td>	
 
@@ -768,9 +767,9 @@
 	
 </div>
 </form>
-
 <script src = "../static/js/profile_setup.js"></script>
-<script src="../static/js/button.js"></script>
+<script src = "../static/js/buttonjava.js"></script>
+
 {%if session['currentPage']=='personal_information' %}
 <script> openPI();console.log("this is printed");</script>
 
@@ -785,3 +784,4 @@
 {%endif%}
 
 {% endblock content %}
+
