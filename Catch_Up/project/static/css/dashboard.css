@@ -1,1 +1,42 @@
+form.search{
+	height: 80px;
+	/*width: 380px;*/
+	width: 420px;
+	background-color: #fdd54f; 
+	border: 2px solid #8fc4b7;
+	border-radius: 15px;
+	border-color: #000000;
+	display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+	margin-top: auto;
+	margin-bottom: 30%;
+    text-align: left;
+}
+div.container{
+	display : flex;
+    flex-direction : row;
+}
+div.input_search{
+	margin: 20px 10px 0px 30px;
+}
+div.btn_search{
+	margin: 12px 10px 10px 0px;
+}
 
+input.search{
+	width: 310px;
+	height: 30px;
+}
+input.search{
+    border: 2px solid #cdcdcd;
+    border-color: rgba(0,0,0,.15);
+    background-color: white;
+	border-radius: 10px;
+}
+
+button.search{
+	margin: 10px 0px 15px 0px;
+	border:none;
+	background: transparent;
+}
