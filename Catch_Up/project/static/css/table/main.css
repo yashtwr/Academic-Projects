@@ -1,5 +1,4 @@
 
-
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
 
@@ -137,6 +136,11 @@ table {
 th, td {
   font-weight: unset;
   padding-right: 10px;
+}
+
+td {
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
 }
 
 
