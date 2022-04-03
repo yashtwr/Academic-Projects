@@ -1,51 +1,30 @@
-from project import app, db
+from project import app
 import unittest
-from project.com.vo.LoginVO import LoginVO
-from project.com.vo.SignUpVO import SignUpVO
-
-import pytest
-
-# --------------- WARNING -----------------------------
-# This test file will delete the records of data and will use some dummy data to run the tests.
 
 
-# ------------------ NOTE ------------------------------
-# test cases are running in alphabetical orders.
-# so to maintain order, tests are assigned names as test_a, test_b etc...
 
-
-class TestCases(unittest.TestCase):
-
-    # test_signup
-    def test_a(self):
-        print('***** test_signup *********')
+class FlaskTestCases(unittest.TestCase):
+    def test_signup(self):
         tester = app.test_client(self)
         response = tester.get('/signup', content_type='html/text')
         self.assertEqual(response.status_code, 200)
 
-    # test_signup_loads
-    def test_b(self):
-        print('***** test_signup_loads *********')
+    def test_signup_loads(self):
         tester = app.test_client(self)
         response = tester.get('/signup', content_type='html/text')
-        self.assertTrue(b'Please fill in this form to create an account.' in response.data)
+        self.assertTrue(b'Sign Up' in response.data)
 
-    # test_correct_signup
-    def test_c(self):
-        print('***** test_correct_signup *********')
+    def test_correct_signup(self):
         tester = app.test_client(self)
         tester.get('/signup', content_type='html/text')
         response = tester.post('/insertUser',
                                data=dict(firstname="admin", lastname="tester", email="admin@uwaterloo00.ca",
                                          password="Abcd1234", confirmpassword="Abcd1234", gender="female",
                                          category="student"), follow_redirects=True)
-        print(response.data)
-        self.assertIn(b'Account created successfully', response.data)
+        
+        self.assertTrue(response, "/login")
 
-
-    # test_incorrect_signup
-    def test_d(self):
-        print('***** test_incorrect_signup *********')
+    def test_incorrect_signup(self):
         tester = app.test_client(self)
         tester.get('/signup', content_type='html/text')
         response = tester.post('/insertUser',
@@ -54,73 +33,83 @@ class TestCases(unittest.TestCase):
                                          category="student"), follow_redirects=True)
         self.assertIn(b'User already exists!', response.data)
 
-    # test_login
-    def test_e(self):
-        print('***** test_login *********')
+    def test_login(self):
         tester = app.test_client(self)
-        response = tester.get('/', content_type='html/text')
+        response = tester.get('/login', content_type='html/text')
         self.assertEqual(response.status_code, 200)
 
-    # test_login_loads
-    def test_f(self):
-        print('***** test_login_loads *********')
+    def test_login_loads(self):
         tester = app.test_client(self)
-        response = tester.get('/', content_type='html/text')
+        response = tester.get('/login', content_type='html/text')
         self.assertTrue(b'Forgot Password?' in response.data)
 
-    # test_correct_login
-    def test_g(self):
-        print('***** test_correct_login *********')
+    def test_correct_login(self):
         tester = app.test_client(self)
         response = tester.post('/login', data=dict(email="admin@uwaterloo00.ca", password="Abcd1234"),
                                follow_redirects=True)
-        print('----------------- :::: ', response.data)
-        self.assertIn(b'Welcome', response.data)
+        self.assertTrue(b'Welcome admin@uwaterloo00.ca.', response.data)
 
-    # test_incorrect_login
-    def test_h(self):
-        print('***** test_incorrect_login *********')
+    def test_incorrect_login(self):
         tester = app.test_client(self)
         response = tester.post('/login', data=dict(email="tester@uwaterloo00.ca", password="Abcd1234"),
                                follow_redirects=True)
         self.assertIn(b'Login Failed!', response.data)
 
-    # test_forgot_password
-    def test_i(self):
-        print('***** test_forgot_password *********')
+    def test_forgotPassword(self):
         tester = app.test_client(self)
         response = tester.get('/forgotPassword', content_type='html/text')
         self.assertEqual(response.status_code, 200)
 
-    # test_forgotpassword_loads
-    def test_j(self):
-        print('***** test_forgotpassword_loads *********')
+    def test_forgotPassword_loads(self):
         tester = app.test_client(self)
         response = tester.get('/forgotPassword', content_type='html/text')
         self.assertTrue(b'Save' in response.data)
 
-    # test_forgotpassword_change_password
-    def test_k(self):
-        print('***** test_forgotpassword_change_password *********')
+    def test_forgotPassword_change_password(self):
         tester = app.test_client(self)
         response = tester.post('/updatePassword', data=dict(email="admin@uwaterloo00.ca", confirmpswd="Abcd12345"),
                                follow_redirects=True)
+        self.assertTrue(response, "/login")
 
-        self.assertIn(b'Password updated successfully.', response.data)
-
-        # test_forgotpassword_no_user_exists
-
-    def test_l(self):
-        print('***** test_forgotpassword_no_user_exists *********')
+    def test_forgotPassword_no_user_exist(self):
         tester = app.test_client(self)
         response = tester.post('/updatePassword', data=dict(email="admin@uwaterloo009.ca", confirmpswd="Abcd1234"),
                                follow_redirects=True)
-        self.assertIn(b'Please enter valid username.', response.data)
+        self.assertIn(b'Please enter valid username.',response.data)
+
+    def test_aboutUs(self):
+        tester = app.test_client(self)
+        response = tester.post('/AboutUs', content_type='html/text')
+        self.assertEqual(response.status_code, 200)
+
+    def test_aboutUs_page(self):
+        tester = app.test_client(self)
+        response = tester.post('/AboutUs', content_type='html/text')
+        self.assertTrue(b'About Us' in response.data)
+
+    def test_dashboard(self):
+        tester = app.test_client(self)
+        tester.post('/login', data=dict(email="admin@uwaterloo00.ca", password="Abcd12345"),
+                               follow_redirects=True)
+        response = tester.get('/loadDashboard', content_type='html/text',follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+
+    def test_dashboard_loads(self):
+        tester = app.test_client(self)
+        tester.post('/login', data=dict(email="admin@uwaterloo00.ca", password="Abcd12345"),
+                               follow_redirects=True)
+        response = tester.get('/loadDashboard', content_type='html/text')
+        self.assertTrue(b'Search based on Filters' in response.data)
+
+    def test_logout(self):
+        tester = app.test_client(self)
+        tester.post('/login', data=dict(email="admin@uwaterloo00.ca", password="Abcd12345"),
+                               follow_redirects=True)
+        response = tester.get('/userLogoutSession',follow_redirects=True)
+        self.assertTrue(response, "/login")
+
+    
 
 
 if __name__ == '__main__':
-    b = db.session.query(SignUpVO).delete()
-    a = db.session.query(LoginVO).delete()
-    db.session.commit()
-
     unittest.main()
