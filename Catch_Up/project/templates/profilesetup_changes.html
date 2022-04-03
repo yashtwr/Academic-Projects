@@ -188,7 +188,7 @@
 		<div class="form-group same" id="cgpa">
 			<label for="first" class="same" id="cgpa">CGPA:</label>
 			{% if education %}
-			<input type="number" min="0" step=".01" class="form-control same" id="cgpa" name="cgpa" value="{{education[0]['cgpa']}}">
+			<input type="number" min="0" step=".01" class="form-control same" id="cgpa" name="cgpa" value="{{'%0.2f'| format(education[0]['cgpa']|float)}}">
 			{% else %}
 			<input type="number" min="0" value="0" step=".01" class="form-control same" id="cgpa" name="cgpa">
 			{% endif %}
