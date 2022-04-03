@@ -9,13 +9,75 @@
     <form class="search">
 	<div class="container">
 		<div class="input_search">
-		  <input type="text" class="search" placeholder="Search.." required>
+		  <input type="text" class="search" placeholder="Search..">
 		 </div>
 		<div class="btn_search">
 		  <button type="submit" class="material-icons md-48 md-dark search">search</button>
 		</div>
 	</div>
-	</form>
- </div
+	<div class="filter">
+		<br/>
+		<h4>Search based on Filters</h6>
+		
+		<select id="main_select" onchange="giveSelection(this.value)">
+			<option selected>Select your interest</option>
+			<option value="courses">Courses</option>
+			<option value="department">Department</option>
+			<option value="skills">Skills</option>
+			<option value="hobbies">Hobbies</option>
+			<option value="Experience">Experience</option>
+			
+		</select>
+		<select id="child_select">
+			<option data-option="courses">ECE651</option>
+			<option data-option="courses">ECE650</option>
+			<option data-option="courses">ECE659</option>
+			<option data-option="courses">ECE613</option>
+			<option data-option="courses">ECE606</option>
+			<option data-option="courses">ECE657</option>
+			<option data-option="courses">ECE657a</option>
+			<option data-option="courses">MSCI 718</option>
+			<option data-option="courses">BE 600</option>
+			<option data-option="courses">BE 602</option>
+			<option data-option="courses">Come again to see more</option>
 
+			<option data-option="department">ECE</option>
+			<option data-option="department">BE</option>
+			<option data-option="department">EME</option>
+			<option data-option="department">Phy</option>
+			<option data-option="department">CS</option>
+			<option data-option="department">Arts</option>
+			<option data-option="department">Psyc</option>
+			<option data-option="department">Astr</option>
+			<option data-option="department">Chem</option>
+			<option data-option="department">SE</option>
+			
+			<option data-option="skills">C</option>
+			<option data-option="skills">C++</option>
+			<option data-option="skills">C#</option>
+			<option data-option="skills">Java</option>
+			<option data-option="skills">Python</option>
+			<option data-option="skills">React</option>
+			<option data-option="skills">Node JS</option>
+			<option data-option="skills">AWS</option>
+			
+			<option data-option="hobbies">Coding</option>
+			<option data-option="hobbies">Reading</option>
+			<option data-option="hobbies">Swimming</option>
+			<option data-option="hobbies">Soccer</option>
+			
+			<option data-option="Experience">1 year</option>
+			<option data-option="Experience">Under 3 years</option>
+			<option data-option="Experience">3+ years</option>
+			
+		</select>
+	<button type="submit" id="filter" class="btn btn-primary">Apply</button>
+	</div>
+	</form>
+	
+	<br><br>
+	<div class="result">
+		<h1> Display Result</h1>
+	</div>
+<script src = "../static/js/dashboard.js"></script>
 {% endblock content%}
