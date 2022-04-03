@@ -27,16 +27,49 @@ div.btn_search{
 input.search{
 	width: 310px;
 	height: 30px;
+	border: 2px solid #cdcdcd;
+    border-color: rgba(0,0,0,.15);
+    background-color: black;
+	color: #fdd54f;
+	border-radius: 10px;
 }
-input.search{
+/*input.search{
     border: 2px solid #cdcdcd;
     border-color: rgba(0,0,0,.15);
     background-color: white;
 	border-radius: 10px;
-}
+}*/
 
 button.search{
 	margin: 10px 0px 15px 0px;
 	border:none;
 	background: transparent;
+}
+
+select#main_select{
+	width: 200px;
+	height: 40px;
+	background-color: #fdd54f;
+	border-radius: 10px;
+}
+
+option{
+	color: #fdd54f;
+	background-color: #000000;
+}
+option:hover{					/*Not working*/
+	color: #0000;
+	background-color: #fdd54f;
+	
+}
+select#child_select{
+	margin: 0px 10px;
+	width: 100px;
+	height: 40px;
+	background-color: #fdd54f;
+	border-radius: 10px;
+}
+button#filter{
+	background-color: #000000;
+	color: #fdd54f;
 }
