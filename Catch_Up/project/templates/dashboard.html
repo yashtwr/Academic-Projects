@@ -24,89 +24,7 @@
 
 	<!-- </div> -->
 
-	<div class="modal fade" id="pro1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header" style="background-color: black; color: #fdd54f;">
-                        <h4 style="text-align: left;" class="modal-title" id="myModalLabel">Advance Filter</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color: red;">
-                            ×
-                        </button>
-                        
-                    </div>
-                    <div class="modal-body" style="">
-                    <section class="content">
-						<span class="input input--kaede">
-							<input class="input__field input__field--kaede" type="text" id="input-2" />
-							<label class="input__label input__label--kaede" for="input-2">
-								<span class="input__label-content input__label-content--kaede">First Name</span>
-							</label>
-						</span>
-						<span class="input input--kaede">
-							<input class="input__field input__field--kaede" type="text" id="input-4" />
-							<label class="input__label input__label--kaede" for="input-4">
-								<span class="input__label-content input__label-content--kaede">Department</span>
-							</label>
-						</span>
-						<span class="input input--kaede">
-							<input class="input__field input__field--kaede" type="text" id="input-5" />
-							<label class="input__label input__label--kaede" for="input-5">
-								<span class="input__label-content input__label-content--kaede">Course Number</span>
-							</label>
-						</span>
-						<span class="input input--kaede">
-							<input class="input__field input__field--kaede" type="text" id="input-6" />
-							<label class="input__label input__label--kaede" for="input-6">
-								<span class="input__label-content input__label-content--kaede">Company Name</span>
-							</label>
-						</span>
-					</section>
-                    </div>
-                    <div class="modal-footer" style="background-color: black; color: #fdd54f;">
-                        <button type="button" style="background-color: #fdd54f;" class="btn btn-default" data-dismiss="modal">
-                            Search
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
 
-        <script>
-			(function() {
-				// trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
-				if (!String.prototype.trim) {
-					(function() {
-						// Make sure we trim BOM and NBSP
-						var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
-						String.prototype.trim = function() {
-							return this.replace(rtrim, '');
-						};
-					})();
-				}
-
-				[].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {
-					// in case the input is already filled..
-					if( inputEl.value.trim() !== '' ) {
-						classie.add( inputEl.parentNode, 'input--filled' );
-					}
-
-					// events:
-					inputEl.addEventListener( 'focus', onInputFocus );
-					inputEl.addEventListener( 'blur', onInputBlur );
-				} );
-
-				function onInputFocus( ev ) {
-					classie.add( ev.target.parentNode, 'input--filled' );
-				}
-
-				function onInputBlur( ev ) {
-					if( ev.target.value.trim() === '' ) {
-						classie.remove( ev.target.parentNode, 'input--filled' );
-					}
-				}
-			})();
-		</script>
 
 
 
@@ -172,9 +90,132 @@
 	
 <!-- 	<br><br>
  -->
- 	<div class="result">
-		<h1> Display Result</h1>
+
+	<div class="card">
+		<div class="card1" >
+			<h4 class="h2_card" > Jay Soni </h4>
+			<hr class="hr_card" >
+			<table class="table_card">
+				<tr>
+					<td class="td_card col2" ><b>University:</b> University of Waterloo</td>
+					<td class="td_card col1" ><b>Department:</b> MEng</td>
+				</tr>
+			</table>
+			<p calss="p_card" style="text-align: left; padding-left: 17px; margin-bottom: 0px;"><b>Description:</b> I am a performance-driven and enthusiastic individual who thrives in fast-paced environments. I'm looking for a part-time job position in customer service. </p>
+			<p class="p_card" style="text-align: left; padding-left: 17px; margin-bottom: 5px;"><b>Courses: </b>ECE650, ECE651, ECE613 </p>
+		</div>
 	</div>
+
+	<div class="card">
+		<div class="card1" >
+			<h4 class="h2_card" > Jay Soni </h4>
+			<hr class="hr_card" >
+			<table class="table_card">
+				<tr>
+					<td class="td_card col2" ><b>University:</b> University of Waterloo</td>
+					<td class="td_card col1" ><b>Department:</b> MEng</td>
+				</tr>
+			</table>
+			<p calss="p_card" style="text-align: left; padding-left: 17px; margin-bottom: 0px;"><b>Description:</b> I am a performance-driven and enthusiastic individual who thrives in fast-paced environments. I'm looking for a part-time job position in customer service. </p>
+			<p class="p_card" style="text-align: left; padding-left: 17px; margin-bottom: 5px;"><b>Courses: </b>ECE650, ECE651, ECE613 </p>
+		</div>
+	</div>
+	<div class="card">
+		<div class="card1" >
+			<h4 class="h2_card" > Jay Soni </h4>
+			<hr class="hr_card" >
+			<table class="table_card">
+				<tr>
+					<td class="td_card col2" ><b>University:</b> University of Waterloo</td>
+					<td class="td_card col1" ><b>Department:</b> MEng</td>
+				</tr>
+			</table>
+			<p calss="p_card" style="text-align: left; padding-left: 17px; margin-bottom: 0px;"><b>Description:</b> I am a performance-driven and enthusiastic individual who thrives in fast-paced environments. I'm looking for a part-time job position in customer service. </p>
+			<p class="p_card" style="text-align: left; padding-left: 17px; margin-bottom: 5px;"><b>Courses: </b>ECE650, ECE651, ECE613 </p>
+		</div>
+	</div>
+	<div class="card">
+		<div class="card1" >
+			<h4 class="h2_card" > Jay Soni </h4>
+			<hr class="hr_card" >
+			<table class="table_card">
+				<tr>
+					<td class="td_card col2" ><b>University:</b> University of Waterloo</td>
+					<td class="td_card col1" ><b>Department:</b> MEng</td>
+				</tr>
+			</table>
+			<p calss="p_card" style="text-align: left; padding-left: 17px; margin-bottom: 0px;"><b>Description:</b> I am a performance-driven and enthusiastic individual who thrives in fast-paced environments. I'm looking for a part-time job position in customer service. </p>
+			<p class="p_card" style="text-align: left; padding-left: 17px; margin-bottom: 5px;"><b>Courses: </b>ECE650, ECE651, ECE613 </p>
+		</div>
+	</div>
+	<div class="card">
+		<div class="card1" >
+			<h4 class="h2_card" > Jay Soni </h4>
+			<hr class="hr_card" >
+			<table class="table_card">
+				<tr>
+					<td class="td_card col2" ><b>University:</b> University of Waterloo</td>
+					<td class="td_card col1" ><b>Department:</b> MEng</td>
+				</tr>
+			</table>
+			<p calss="p_card" style="text-align: left; padding-left: 17px; margin-bottom: 0px;"><b>Description:</b> I am a performance-driven and enthusiastic individual who thrives in fast-paced environments. I'm looking for a part-time job position in customer service. </p>
+			<p class="p_card" style="text-align: left; padding-left: 17px; margin-bottom: 5px;"><b>Courses: </b>ECE650, ECE651, ECE613 </p>
+		</div>
+	</div>
+	<br><br><br><br><br>
+	</div></div>
+
+
+	<div class="modal fade" id="pro1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: black; color: #fdd54f;">
+                        <h4 style="text-align: left;" class="modal-title" id="myModalLabel">Advance Filter</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color: red;">
+                            ×
+                        </button>
+                        
+                    </div>
+                    <div class="modal-body" style="">
+                    <section class="content">
+						<span class="input input--kaede">
+							<input class="input__field input__field--kaede" type="text" id="input-2" />
+							<label class="input__label input__label--kaede" for="input-2">
+								<span class="input__label-content input__label-content--kaede">First Name</span>
+							</label>
+						</span>
+						<span class="input input--kaede">
+							<input class="input__field input__field--kaede" type="text" id="input-4" />
+							<label class="input__label input__label--kaede" for="input-4">
+								<span class="input__label-content input__label-content--kaede">Department</span>
+							</label>
+						</span>
+						<span class="input input--kaede">
+							<input class="input__field input__field--kaede" type="text" id="input-5" />
+							<label class="input__label input__label--kaede" for="input-5">
+								<span class="input__label-content input__label-content--kaede">Course Number</span>
+							</label>
+						</span>
+						<span class="input input--kaede">
+							<input class="input__field input__field--kaede" type="text" id="input-6" />
+							<label class="input__label input__label--kaede" for="input-6">
+								<span class="input__label-content input__label-content--kaede">Company Name</span>
+							</label>
+						</span>
+					</section>
+                    </div>
+                    <div class="modal-footer" style="background-color: black; color: #fdd54f;">
+                        <button type="button" style="background-color: #fdd54f;" class="btn btn-default" data-dismiss="modal">
+                            Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
 <script src = "../static/js/dashboard.js"></script>
+
+<script src = "../static/js/modal.js"></script>
 <script src = "../static/js/classie.js"></script>
 {% endblock content%}
