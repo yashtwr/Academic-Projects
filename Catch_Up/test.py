@@ -4,6 +4,11 @@ import unittest
 
 
 class FlaskTestCases(unittest.TestCase):
+    def test_home(self):
+        tester = app.test_client(self)
+        response = tester.post('/',follow_redirects=True)
+        self.assertTrue(response, "/login")
+
     def test_signup(self):
         tester = app.test_client(self)
         response = tester.get('/signup', content_type='html/text')
@@ -129,6 +134,13 @@ class FlaskTestCases(unittest.TestCase):
         response = tester.get('/insertCourse', data=dict(courseno=651,department="ECE"))
         self.assertTrue(response, "/profile")
 
+    # def test_update_course_loads(self):
+    #     tester = app.test_client(self)
+    #     tester.post('/login', data=dict(email="admin@uwaterloo00.ca", password="Abcd12345"),
+    #                            follow_redirects=True)
+    #     response = tester.get('/updateCourse', data=dict(Id=1,department="ECE",course_no=650))
+    #     self.assertTrue(response, "/profile")
+
     def test_delete_course_loads(self):
         tester = app.test_client(self)
         tester.post('/login', data=dict(email="admin@uwaterloo00.ca", password="Abcd12345"),
@@ -141,6 +153,13 @@ class FlaskTestCases(unittest.TestCase):
         tester.post('/login', data=dict(email="admin@uwaterloo00.ca", password="Abcd12345"),
                                follow_redirects=True)
         response = tester.get('/insertCertificates', data=dict(certificates="Oracle Java SE 8"))
+        self.assertTrue(response, "/profile")
+
+    def test_update_certificates_loads(self):
+        tester = app.test_client(self)
+        tester.post('/login', data=dict(email="admin@uwaterloo00.ca", password="Abcd12345"),
+                               follow_redirects=True)
+        response = tester.get('/updateCertificates', data=dict(Id=1,certificates="Oracle Java SE 8"))
         self.assertTrue(response, "/profile")
 
     def test_delete_certificates_loads(self):
@@ -185,6 +204,13 @@ class FlaskTestCases(unittest.TestCase):
         response = tester.get('/insertProject', data=dict(project_title="catch-up",project_detail="flask application"))
         self.assertTrue(response, "/profile")
 
+    def test_update_project_loads(self):
+        tester = app.test_client(self)
+        tester.post('/login', data=dict(email="admin@uwaterloo00.ca", password="Abcd12345"),
+                               follow_redirects=True)
+        response = tester.get('updateProject',data=dict(Id=1,project_title="catch-up",project_detail="flask application"))
+        self.assertTrue(response, "/profile")
+
     def test_delete_project_loads(self):
         tester = app.test_client(self)
         tester.post('/login', data=dict(email="admin@uwaterloo00.ca", password="Abcd12345"),
@@ -197,6 +223,13 @@ class FlaskTestCases(unittest.TestCase):
         tester.post('/login', data=dict(email="admin@uwaterloo00.ca", password="Abcd12345"),
                                follow_redirects=True)
         response = tester.get('/insertHobbies', data=dict(hobbies="swim"))
+        self.assertTrue(response, "/profile")
+
+    def test_update_hobbies_loads(self):
+        tester = app.test_client(self)
+        tester.post('/login', data=dict(email="admin@uwaterloo00.ca", password="Abcd12345"),
+                               follow_redirects=True)
+        response = tester.get('/updateHobbies', data=dict(Id=1,hobbies="swim"))
         self.assertTrue(response, "/profile")
 
     def test_delete_hobbies_loads(self):
@@ -212,6 +245,13 @@ class FlaskTestCases(unittest.TestCase):
         tester.post('/login', data=dict(email="admin@uwaterloo00.ca", password="Abcd12345"),
                                follow_redirects=True)
         response = tester.get('/insertAccount', data=dict(platform="LinkedIn",link="http.com"))
+        self.assertTrue(response, "/profile")
+
+    def test_update_account_loads(self):
+        tester = app.test_client(self)
+        tester.post('/login', data=dict(email="admin@uwaterloo00.ca", password="Abcd12345"),
+                               follow_redirects=True)
+        response = tester.get('/updateAccounts', data=dict(Id=1,platform="LinkedIn",link="http.com"))
         self.assertTrue(response, "/profile")
 
     def test_delete_account_loads(self):
