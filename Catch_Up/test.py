@@ -99,7 +99,7 @@ class FlaskTestCases(unittest.TestCase):
         tester.post('/login', data=dict(email="admin@uwaterloo00.ca", password="Abcd12345"),
                                follow_redirects=True)
         response = tester.get('/loadDashboard', content_type='html/text')
-        self.assertTrue(b'Search based on Filters' in response.data)
+        self.assertTrue(b'Advance Filter' in response.data)
 
     def test_logout(self):
         tester = app.test_client(self)
@@ -108,7 +108,118 @@ class FlaskTestCases(unittest.TestCase):
         response = tester.get('/userLogoutSession',follow_redirects=True)
         self.assertTrue(response, "/login")
 
-    
+    def test_profile_setup(self):
+        tester = app.test_client(self)
+        tester.post('/login', data=dict(email="admin@uwaterloo00.ca", password="Abcd12345"),
+                               follow_redirects=True)
+        response = tester.get('/profile', content_type='html/text')
+        self.assertEqual(response.status_code, 200)
+
+    def test_profile_setup_loads(self):
+        tester = app.test_client(self)
+        tester.post('/login', data=dict(email="admin@uwaterloo00.ca", password="Abcd12345"),
+                               follow_redirects=True)
+        response = tester.get('/profile', content_type='html/text')
+        self.assertTrue(b'Profile' in response.data)
+
+    def test_insert_course_loads(self):
+        tester = app.test_client(self)
+        tester.post('/login', data=dict(email="admin@uwaterloo00.ca", password="Abcd12345"),
+                               follow_redirects=True)
+        response = tester.get('/insertCourse', data=dict(courseno=651,department="ECE"))
+        self.assertTrue(response, "/profile")
+
+    def test_delete_course_loads(self):
+        tester = app.test_client(self)
+        tester.post('/login', data=dict(email="admin@uwaterloo00.ca", password="Abcd12345"),
+                               follow_redirects=True)
+        response = tester.get('/deleteCourse',follow_redirects=True)
+        self.assertTrue(response, "/profile")
+
+    def test_insert_certificates_loads(self):
+        tester = app.test_client(self)
+        tester.post('/login', data=dict(email="admin@uwaterloo00.ca", password="Abcd12345"),
+                               follow_redirects=True)
+        response = tester.get('/insertCertificates', data=dict(certificates="Oracle Java SE 8"))
+        self.assertTrue(response, "/profile")
+
+    def test_delete_certificates_loads(self):
+        tester = app.test_client(self)
+        tester.post('/login', data=dict(email="admin@uwaterloo00.ca", password="Abcd12345"),
+                               follow_redirects=True)
+        response = tester.get('/deleteCertificates',follow_redirects=True)
+        self.assertTrue(response, "/profile")
+
+    def test_insert_industry_loads(self):
+        tester = app.test_client(self)
+        tester.post('/login', data=dict(email="admin@uwaterloo00.ca", password="Abcd12345"),
+                               follow_redirects=True)
+        response = tester.get('/insertIndustryExp', data=dict(company_name="CG",designation="SDE",work_description="SDE",no_of_months=24))
+        self.assertTrue(response, "/profile")
+
+    def test_delete_industry_loads(self):
+        tester = app.test_client(self)
+        tester.post('/login', data=dict(email="admin@uwaterloo00.ca", password="Abcd12345"),
+                               follow_redirects=True)
+        response = tester.get('/deleteIndustryExp', follow_redirects=True)
+        self.assertTrue(response, "/profile")
+
+    def test_insert_personal_loads(self):
+        tester = app.test_client(self)
+        tester.post('/login', data=dict(email="admin@uwaterloo00.ca", password="Abcd12345"),
+                               follow_redirects=True)
+        response = tester.get('/insertPersonalInfo', data=dict(firstname="P",lastname="J",contact_email="p@gmail.com",contact_number="12345",description="hi",address="India"))
+        self.assertTrue(response, "/profile")
+
+    # def test_insert_education_loads(self):
+    #     tester = app.test_client(self)
+    #     tester.post('/login', data=dict(email="admin@uwaterloo00.ca", password="Abcd12345"),
+    #                            follow_redirects=True)
+    #     response = tester.get('/insertEducation', data=dict(degree_name="P",start_date=2019,institution_name="college",end_date=2022,cgpa=4.00))
+    #     self.assertTrue(response, "/profile")
+
+    def test_insert_project_loads(self):
+        tester = app.test_client(self)
+        tester.post('/login', data=dict(email="admin@uwaterloo00.ca", password="Abcd12345"),
+                               follow_redirects=True)
+        response = tester.get('/insertProject', data=dict(project_title="catch-up",project_detail="flask application"))
+        self.assertTrue(response, "/profile")
+
+    def test_delete_project_loads(self):
+        tester = app.test_client(self)
+        tester.post('/login', data=dict(email="admin@uwaterloo00.ca", password="Abcd12345"),
+                               follow_redirects=True)
+        response = tester.get('/deleteProject', follow_redirects=True)
+        self.assertTrue(response, "/profile")
+
+    def test_insert_hobbies_loads(self):
+        tester = app.test_client(self)
+        tester.post('/login', data=dict(email="admin@uwaterloo00.ca", password="Abcd12345"),
+                               follow_redirects=True)
+        response = tester.get('/insertHobbies', data=dict(hobbies="swim"))
+        self.assertTrue(response, "/profile")
+
+    def test_delete_hobbies_loads(self):
+        tester = app.test_client(self)
+        tester.post('/login', data=dict(email="admin@uwaterloo00.ca", password="Abcd12345"),
+                               follow_redirects=True)
+        response = tester.get('/deleteHobbies', follow_redirects=True)
+        self.assertTrue(response, "/profile")
+
+
+    def test_insert_account_loads(self):
+        tester = app.test_client(self)
+        tester.post('/login', data=dict(email="admin@uwaterloo00.ca", password="Abcd12345"),
+                               follow_redirects=True)
+        response = tester.get('/insertAccount', data=dict(platform="LinkedIn",link="http.com"))
+        self.assertTrue(response, "/profile")
+
+    def test_delete_account_loads(self):
+        tester = app.test_client(self)
+        tester.post('/login', data=dict(email="admin@uwaterloo00.ca", password="Abcd12345"),
+                               follow_redirects=True)
+        response = tester.get('/deleteAccounts', follow_redirects=True)
+        self.assertTrue(response, "/profile")
 
 
 if __name__ == '__main__':
