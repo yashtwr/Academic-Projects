@@ -198,7 +198,7 @@ def updateCertificates():
 
     certificatesVO.Id = Id
     certificatesVO.certificates = certificates
-    certificatesVO.course_loginId = loginId
+    certificatesVO.certificates_loginId = loginId
     certificatesDAO.upadateCertificates(certificatesVO)
     session['currentPage'] = 'skills'
     return redirect(url_for("userProfile"))
@@ -487,8 +487,8 @@ def updateAccounts():
     loginId = loginDAO.fetchId(loginVO)
 
     Id = request.args.get('Id')
-    platform = request.args.get('platform'+Id)
-    link = request.args.get('link'+Id)
+    platform = request.args.get('platform')
+    link = request.args.get('link')
     print(id, ' ', platform,' ', link)
 
     accountsVO.Id = Id
@@ -515,5 +515,4 @@ def deleteAccounts():
     accountsDAO.deleteAccounts(accountsVO)
     session['currentPage'] = 'acconuts'
     return redirect(url_for("userProfile"))
-
 
