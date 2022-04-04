@@ -26,6 +26,85 @@ from project.com.dao.AccountsDAO import AccountsDAO
 from project import app
 
 
+@app.route('/show_profile', methods=["GET", "POST"])
+def show_profile():
+    try:
+        courseVO = CoursesVO()
+        courseDAO = CoursesDAO()
+        certificatesVO = CertificatesVO()
+        certificatesDAO = CertificatesDAO()
+        industryVO = IndustryVO()
+        industryDAO = IndustryDAO()
+
+        personalVO = PersonalVO()
+        personalDAO = PersonalDAO()
+        signupVO = SignUpVO()
+        signupDAO = SignUpDAO()
+
+        educationVO = EducationVO()
+        educationDAO = EducationDAO()
+
+        projectVO = ProjectVO()
+        projectDAO = ProjectDAO()
+
+        hobbiesVO = HobbiesVO()
+        hobbiesDAO = HobbiesDAO()
+
+        accountsVO = AccountsVO()
+        accountsDAO = AccountsDAO()
+
+        loginVO = LoginVO()
+        loginDAO = LoginDAO()
+
+        loginVO.email = session['login_email']
+        id = loginDAO.fetchId(loginVO)
+
+        courseVO.course_loginId = id
+        lst = courseDAO.fetchCourses(courseVO)
+        courses = [i.as_dict() for i in lst]
+
+        certificatesVO.certificates_loginId = id
+        lst_certi = certificatesDAO.fetchCertificates(CertificatesVO)
+        certificates = [i.as_dict() for i in lst_certi]
+
+        industryVO.industry_loginId = id
+        lst_industry = industryDAO.fetchIndustryExp(industryVO)
+        industryExp = [i.as_dict() for i in lst_industry]
+
+        personalVO.personal_loginId = id
+        lst_personal = personalDAO.fetchPersonal(personalVO)
+        personal = [i.as_dict() for i in lst_personal]
+
+        signupVO.signup_LoginId = id
+        lst_signup = signupDAO.fetchUser(signupVO)
+        signup = [i.as_dict() for i in lst_signup]
+
+        educationVO.education_loginId = id
+        lst_education = educationDAO.fetchEducation(educationVO)
+        education = [i.as_dict() for i in lst_education]
+
+        projectVO.project_loginId = id
+        lst_project = projectDAO.fetchProjects(projectVO)
+        project = [i.as_dict() for i in lst_project]
+
+        hobbiesVO.hobbies_loginId = id
+        lst_hobbies = hobbiesDAO.fetchHobbies(hobbiesVO)
+        hobbies = [i.as_dict() for i in lst_hobbies]
+
+        accountsVO.accounts_loginId = id
+        lst_accounts = accountsDAO.fetchAccounts(accountsVO)
+        accounts = [i.as_dict() for i in lst_accounts]
+
+        if 'currentPage' not in session:
+            session['currentPage'] = 'show_profile'
+
+        return render_template("show_profile.html", title="profileSetup", courses=courses,
+                               certificates=certificates, industryExp=industryExp, signup=signup, personal=personal,
+                               education=education, projects=project, hobbies=hobbies, accounts=accounts)
+    except Exception as ex:
+        print(ex)
+
+
 @app.route('/profile', methods=["GET", "POST"])
 def userProfile():
     try:
