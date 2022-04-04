@@ -9,7 +9,7 @@ from project.com.vo.SkillsVO import SkillsVO
 from project.com.vo.IndustryExpVO import IndustryVO
 from project.com.vo.SignUpVO import SignUpVO
 
-
+from sqlalchemy import func
 class ProfileDAO:
     def getProfileInfo(self, k, loginVO):
 
@@ -38,7 +38,7 @@ class ProfileDAO:
         print(filter_params)
 
         for i in filter_params:
-            base_query = base_query.filter(i[0] == i[1])
+            base_query = base_query.filter(func.lower(i[0]) == func.lower(i[1]))
 
         results = base_query.filter(SignUpVO.signup_LoginId != loginVO.Id).all()
         results=[i[0] for i in results]
