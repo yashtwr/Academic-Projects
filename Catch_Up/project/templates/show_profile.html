@@ -7,14 +7,14 @@
 
 <div class="show" >
     <div class="name_profile" style="margin-top: 1%; justify-content: center; text-align: center;" >
-        
+
         <div class="circle_profile">
             {{ signup[0]['firstname'][0] }}{{ signup[0]['lastname'][0] }}
         </div>
         <div class="cname_profile">
              {{ signup[0]['firstname'] }} {{ signup[0]['lastname'] }}
         </div>
-        
+
     </div>
 </div>
 
@@ -71,15 +71,22 @@
                         <td class="col1"><b>Courses:</b></td>
                         <td class="col2" >
 
-                            {% for i in courses %}
-                                {{i['course_no']}} ,
+                            {% for i in range(courses|length) %}
+                                {% if i == (courses|length) - 1%}
+                                {{ courses[i]['department']}}
+                                {{courses[i]['course_no']}}
+                                {% else %}
+                                {{courses[i]['department']}}
+                                {{courses[i]['course_no']}},
+                                {% endif %}
+
                             {%endfor%}
                         </td>
                     </tr>
                 </table>
             </app-profile-basic-info>
     </div>
-</div>          
+</div>
 
 
 <div class="show1">
@@ -91,8 +98,13 @@
                     <tr>
                         <td class="col1"><b>Skills:</b></td>
                         <td class="col2" >
-                            {% for i in hobbies %}
-                                {{i['hobbies']}} ,
+                            {% for i in range(hobbies|length) %}
+                                {% if i == (hobbies|length) - 1%}
+                                {{hobbies[i]['hobbies']}}
+                                {% else %}
+                                {{hobbies[i]['hobbies']}},
+                                {% endif %}
+
                             {%endfor%}
                         </td>
                     </tr>
@@ -100,8 +112,13 @@
                     <tr>
                         <td class="col1"><b>Certificates:</b></td>
                         <td class="col2" >
-                            {% for i in certificates %}
-                                {{i['certificates']}} ,
+                            {% for i in range(certificates|length) %}
+                                {% if i == (certificates|length) - 1%}
+                                {{certificates[i]['certificates']}}
+                                {% else %}
+                                {{certificates[i]['certificates']}},
+                                {% endif %}
+
                             {%endfor%}
                         </td>
                     </tr>
