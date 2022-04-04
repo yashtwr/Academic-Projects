@@ -18,9 +18,9 @@ class ProfileDAO:
         base_query = db.session.query(*VOs)
         filter_params = []
         for i, j in zip(VOs[1:], k):
-            if i == SkillsVO:
-                base_query = base_query.join(i, SignUpVO.signup_LoginId == SkillsVO.skills_loginId)
-                filter_params.append((i.skills, j.skills))
+            if i == HobbiesVO:
+                base_query = base_query.join(i, SignUpVO.signup_LoginId == HobbiesVO.hobbies_loginId)
+                filter_params.append((i.hobbies, j.hobbies))
 
             elif i == CoursesVO:
                 base_query = base_query.join(i, SignUpVO.signup_LoginId == CoursesVO.course_loginId)
