@@ -198,9 +198,9 @@
            {% for j in range(courses[i]|length) %}
 
            {% if j == (courses[i]|length) - 1%}
-           <span class="value">{{ courses[i][j]['department']}}{{courses[i][j]['course_no']}}</span>
+           <span class="value" id="courses_span">{{ courses[i][j]['department']}}{{courses[i][j]['course_no']}}</span>
            {% else %}
-           <span class="value">{{ courses[i][j]['department']}}{{courses[i][j]['course_no']}},</span>
+           <span class="value" id="courses_span">{{ courses[i][j]['department']}}{{courses[i][j]['course_no']}},</span>
            {% endif %}
 
            {%endfor%}
