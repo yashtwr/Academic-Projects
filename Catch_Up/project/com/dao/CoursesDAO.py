@@ -22,3 +22,6 @@ class CoursesDAO:
         db.session.merge(coursesVO)
         db.session.commit()
 
+    def fetchOtherCourses(self, coursesVO):
+        course_list = db.session.query(CoursesVO).filter(CoursesVO.course_loginId != coursesVO.course_loginId).all()
+        return course_list
