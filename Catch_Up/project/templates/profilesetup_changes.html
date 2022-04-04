@@ -188,7 +188,7 @@
 		<div class="form-group same" id="cgpa">
 			<label for="first" class="same" id="cgpa">CGPA:</label>
 			{% if education %}
-			<input type="number" min="0" step=".01" class="form-control same" id="cgpa" name="cgpa" value="{{'%0.2f'| format(education[0]['cgpa']|float)}}">
+			<input type="number" min="0" max="10" step=".01" class="form-control same" id="cgpa" name="cgpa" value="{{'%0.2f'| format(education[0]['cgpa']|float)}}">
 			{% else %}
 			<input type="number" min="0" value="0" step=".01" class="form-control same" id="cgpa" name="cgpa">
 			{% endif %}
@@ -366,7 +366,7 @@
 						<thead>
 						<tr class="row100 head">
 						<th class="cell100 column11">No.</th>
-						<th class="cell100 column12">Skills/hobbies</th>
+						<th class="cell100 column12">Skills/Hobbies</th>
 						<th class="cell100 column13"></th>
 						<th class="cell100 column14"></th>
 						</tr>
@@ -482,7 +482,7 @@
 <script>openEdu();console.log("this is printed");</script>
 {%elif session['currentPage']== 'experience'%}
 <script>openExp();console.log("this is printed");</script>
-{%elif session['currentPage']== '' %}
+{%elif session['currentPage']== 'skills' %}
 <script>openSkills();console.log("this is printed");</script>
 {%else%}
 <script>openLA();console.log("this is printed");</script>
