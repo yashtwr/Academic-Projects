@@ -78,52 +78,7 @@
         </div>
 
 	</form>
-        <script>
-
-
-            <!--var form = document.getElementById("form-id");-->
-            <!--form.onsubmit = function(){-->
-                <!--var input = document.getElementById("search").value.length;-->
-                <!--var ip2 = document.getElementById("input-2").value.length;-->
-                 <!--var ip4 = document.getElementById("input-4").value.length;-->
-                <!--var ip5 = document.getElementById("input-5").value.length;-->
-                <!--var ip6 = document.getElementById("input-6").value.length;-->
-                <!--finalLength = input+ip2+ip4+ip5+ip6;-->
-
-                <!--console.log(finalLength);-->
-                <!--if(finalLength){-->
-                    <!--return true;-->
-                <!--}-->
-
-                <!--return false;-->
-            <!--}-->
-            function func(){
-
-                var form = document.getElementById("form-id");
-                 var input = document.getElementById("search").value.length;
-                var ip2 = document.getElementById("input-2").value.length;
-                 var ip4 = document.getElementById("input-4").value.length;
-                var ip5 = document.getElementById("input-5").value.length;
-                var ip6 = document.getElementById("input-6").value.length;
-                finalLength = input+ip2+ip4+ip5+ip6;
-
-                if(finalLength){
-                    form.submit();
-                }
-
-            }
-
-                document.getElementById('search').onkeypress = function(e){
-                if (!e) e = window.event;
-                var keyCode = e.code || e.key;
-                if (keyCode == 'Enter'){
-                  // Enter pressed
-                  func();
-                }
-              }
-
-        </script>
-        <script>
+	        <script>
 			(function() {
 				// trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
 				if (!String.prototype.trim) {
@@ -160,75 +115,57 @@
 		</script>
 
 
+        <script>
 
-<!-- 	<div class="filter">
-		<br/>
-		<h4>Search based on Filters</h6>
-		
-		<select id="main_select" onchange="giveSelection(this.value)">
-			<option selected>Select your interest</option>
-			<option value="courses">Courses</option>
-			<option value="department">Department</option>
-			<option value="skills">Skills</option>
-			<option value="hobbies">Hobbies</option>
-			<option value="Experience">Experience</option>
-			
-		</select>
-		<select id="child_select">
-			<option data-option="courses">ECE651</option>
-			<option data-option="courses">ECE650</option>
-			<option data-option="courses">ECE659</option>
-			<option data-option="courses">ECE613</option>
-			<option data-option="courses">ECE606</option>
-			<option data-option="courses">ECE657</option>
-			<option data-option="courses">ECE657a</option>
-			<option data-option="courses">MSCI 718</option>
-			<option data-option="courses">BE 600</option>
-			<option data-option="courses">BE 602</option>
-			<option data-option="courses">Come again to see more</option>
 
-			<option data-option="department">ECE</option>
-			<option data-option="department">BE</option>
-			<option data-option="department">EME</option>
-			<option data-option="department">Phy</option>
-			<option data-option="department">CS</option>
-			<option data-option="department">Arts</option>
-			<option data-option="department">Psyc</option>
-			<option data-option="department">Astr</option>
-			<option data-option="department">Chem</option>
-			<option data-option="department">SE</option>
-			
-			<option data-option="skills">C</option>
-			<option data-option="skills">C++</option>
-			<option data-option="skills">C#</option>
-			<option data-option="skills">Java</option>
-			<option data-option="skills">Python</option>
-			<option data-option="skills">React</option>
-			<option data-option="skills">Node JS</option>
-			<option data-option="skills">AWS</option>
-			
-			<option data-option="hobbies">Coding</option>
-			<option data-option="hobbies">Reading</option>
-			<option data-option="hobbies">Swimming</option>
-			<option data-option="hobbies">Soccer</option>
-			
-			<option data-option="Experience">1 year</option>
-			<option data-option="Experience">Under 3 years</option>
-			<option data-option="Experience">3+ years</option>
-			
-		</select>
-	<button type="submit" id="filter" class="btn btn-primary">Apply</button>
-	</div>
- -->	<!-- </form> -->
-	
-<!-- 	<br><br>
- -->
+            // <!--var form = document.getElementById("form-id");-->
+            // <!--form.onsubmit = function(){-->
+            //     <!--var input = document.getElementById("search").value.length;-->
+            //     <!--var ip2 = document.getElementById("input-2").value.length;-->
+            //      <!--var ip4 = document.getElementById("input-4").value.length;-->
+            //     <!--var ip5 = document.getElementById("input-5").value.length;-->
+            //     <!--var ip6 = document.getElementById("input-6").value.length;-->
+            //     <!--finalLength = input+ip2+ip4+ip5+ip6;-->
+
+            //     <!--console.log(finalLength);-->
+            //     <!--if(finalLength){-->
+            //         <!--return true;-->
+            //     <!--}-->
+
+            //     <!--return false;-->
+            // <!--}-->
+            function func(){
+
+                var form = document.getElementById("form-id");
+                 var input = document.getElementById("search").value.length;
+                var ip2 = document.getElementById("input-2").value.length;
+                 var ip4 = document.getElementById("input-4").value.length;
+                var ip5 = document.getElementById("input-5").value.length;
+                var ip6 = document.getElementById("input-6").value.length;
+                finalLength = input+ip2+ip4+ip5+ip6;
+
+                if(finalLength){
+                    form.submit();
+                }
+
+            }
+
+                document.getElementById('search').onkeypress = function(e){
+                if (!e) e = window.event;
+                var keyCode = e.code || e.key;
+                if (keyCode == 'Enter'){
+                  // Enter pressed
+                  func();
+                }
+              }
+
+        </script>
 {% if results %}
 <div class="result" style="padding:0px 0px 0px 20.6%; text-align:center;" >
 		<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500" rel="stylesheet">
 
 {% for i in range(results|length) %}
-<div class="card" style="margin: 10px 0px; text-align: center;" onclick="window.location.href = '/showProfile?id={{results[i][0]['signup_loginId']}}';">
+<div class="card" style="margin: 10px 0px; text-align: center;" onclick="window.open('/showProfile?id={{results[i][0]['signup_loginId']}}', '_blank');">
 
    <div class="card-details">
       <div class="name">{{ results[i][0]['firstname'] }} {{ results[i][0]['lastname'] }}</div>
@@ -270,7 +207,9 @@
       </div>
     </div>
 </div>
+
 {% endfor %}
+<br><br><br><br>
 </div>
 
  {%else%}
