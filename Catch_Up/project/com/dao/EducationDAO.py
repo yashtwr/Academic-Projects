@@ -19,3 +19,9 @@ class EducationDAO:
         education_list.cgpa = educationVO.cgpa
         education_list.education_loginId = educationVO.education_loginId
         db.session.commit()
+
+    def fetchUserInfo(self, educationVO):
+        edu_list = EducationVO.query.filter(EducationVO.education_loginId != educationVO.education_loginId).all()
+        return edu_list
+
+
