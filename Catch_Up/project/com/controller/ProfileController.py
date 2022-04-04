@@ -64,7 +64,7 @@ def userProfile():
         courses = [i.as_dict() for i in lst]
 
         certificatesVO.certificates_loginId = id
-        lst_certi = certificatesDAO.fetchCertificates(CertificatesVO)
+        lst_certi = certificatesDAO.fetchCertificates(certificatesVO)
         certificates = [i.as_dict() for i in lst_certi]
 
         industryVO.industry_loginId = id
