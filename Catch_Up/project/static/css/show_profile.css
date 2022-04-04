@@ -1,9 +1,160 @@
-div.show {
-    padding: 0px;
-    margin-left: 0px;
-    margin-right: 1px;
+.show {
+    /*padding: 0px;*/
+    /*margin-left: 0px;*/
+    margin-top: 3%;
+    /*margin-bottom: 3%;*/
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    /*margin-right: 1px;*/
+    /*margin-top: 5%;*/
 }
 
+.name_profile {
+    
+    height: 100px;
+    width: 80%;
+    background-color: #000;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    /*margin-top: 10%;*/
+    /*margin-right: 20%;*/
+    /*box-shadow: 1px 1px #d0b4ef , 2px 2px #be33da, 3px 3px #fdd54f,  4px 4px #e4b429 ;*/
+    padding: 10px;
+}
+.circle_profile {
+    background-color: #fdd54f;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 90px; 
+    height: 80px;
+    border-radius: 50%;
+    padding: 10px 10px;
+    color: #000;
+    font-size: 33px;
+    font-family: Poppins, sans-serif;
+    line-height: 1.8em;
+}
+
+.cname_profile {
+    height: 100%;
+    margin-top: -14px;
+    margin-left: 20px;
+    font-size: 35px;
+    font-family: Poppins, sans-serif;
+    line-height: 3em;
+    color: #fdd54f;
+    flex-direction: row; 
+    /*box-sizing: border-box; */
+    display: flex; 
+    flex: 1 1 calc(100% - 100px); 
+    /*padding-bottom: 50px;*/
+    /*margin-bottom: 50px;*/
+    min-width: calc(100% - 112px);
+}
+
+
+
+
+.show1 {
+    margin-top: 1%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    
+}
+.bg_profile {
+
+    border-color: black;
+    border: 1px solid;
+    width: 80%;
+    margin: 0px;
+    display: flex;
+    flex-direction: row;
+    background-color: #fdd54f;
+    border-radius: 20px;
+}
+
+
+.title_profile {
+    color: black;
+    padding: 10px;
+    font-family: Inter, sans-serif;
+    font-size: 20px;
+    line-height: 130%;
+}
+
+hr{
+    border-color: black;
+    border-width: 3px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+
+}
+td {
+  /*max-width: 100px;*/
+ overflow: hidden;
+ /*text-overflow: ellipsis;*/
+ /*white-space: nowrap;*/
+
+
+
+ /*display: -webkit-box;*/
+  /*-webkit-line-clamp: 3;*/
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
+.col1{
+    padding-left: 10px;
+    padding-bottom: 5px;
+    width: 200px;
+    text-align: left;
+}
+.col2{
+    width:800px;
+    text-align: left;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 h1[_ngcontent-rrr-c140] {
     font-family: Poppins, sans-serif;
     font-size: 93px;
@@ -70,12 +221,6 @@ h6[_ngcontent-rrr-c140] b[_ngcontent-rrr-c140],
     font-weight: 700
 }
 
-.text-subtitle-1[_ngcontent-rrr-c140] {
-    font-family: Inter, sans-serif;
-    font-size: 15px;
-    line-height: 130%
-}
-
 .text-subtitle-2[_ngcontent-rrr-c140] {
     font-family: Inter, sans-serif;
     font-size: 13px;
@@ -121,17 +266,6 @@ em[_ngcontent-rrr-c140] {
     font-style: italic
 }
 
-.text-h4[_ngcontent-rrr-c140] {
-    font-family: Poppins, sans-serif;
-    font-size: 33px;
-    line-height: 1.3em
-}
-
-html,
-body {
-    width: 100%;
-    height: 100%
-}
 
 h1,
 h2,
@@ -164,8 +298,6 @@ img {
     border-style: none
 }
 
-html,
-body,
 div,
 h6,
 p,
@@ -196,10 +328,6 @@ section {
     padding-right: 8px
 }
 
-.bg-color-teal-100 {
-    background-color: #000;
-    color: #fdd54f;
-}
 
 .u-textTruncate {
     overflow: hidden;
@@ -213,8 +341,8 @@ section {
 }
 
 .bg-color-white {
-    background-color: #fdd54f;
-    color: #000;
+    background-color: #000;
+    color: #fdd54f;
 }
 
 a {
@@ -224,9 +352,6 @@ a {
     text-decoration: none
 }
 
-.u-display-block {
-    display: block
-}
 
 h6,
 .text-heading-6 {
@@ -236,13 +361,9 @@ h6,
 }
 
 .mat-elevation-z1 {
-    box-shadow: 0 2px 1px -1px #0003, 0 1px 1px #00000024, 0 1px 3px #0000001f
+    box-shadow: 0 2px 1px -1px #0003, 0 1px 1px #00000024, 0 1px 3px #0000001f;
 }
 
-.u-margin-center {
-    margin-left: auto;
-    margin-right: auto
-}
 
 .u-margin-16 {
     margin: 16px
@@ -261,34 +382,11 @@ h6,
     padding: 16px
 }
 
-.u-padding-0-16 {
-    padding-left: 16px;
-    padding-right: 16px
-}
 
 .u-padding-16-0 {
     padding-top: 16px;
     padding-bottom: 16px
 }
 
-.u-padding-24-0 {
-    padding-top: 24px;
-    padding-bottom: 24px
-}
 
-.u-paddingTop-32 {
-    padding-top: 32px
-}
-
-html {
-    background-color: #ecf0f1;
-    height: 100%
-}
-
-body {
-    background-color: #ecf0f1;
-    color: #191919;
-    font-family: Inter, sans-serif;
-    font-size: 13px;
-    line-height: 150%
-}
+*/
