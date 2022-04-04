@@ -25,20 +25,37 @@
                 <hr>
                 <table>
                     <tr>
-                        <td class="col1"><b>About Me:</b></td>
-                        <td class="col2">{{ personal[0]['description']}}</td>
+                        <td class="col1"><b>Personal Email:</b></td>
+                        {% if personal[0]['contact_email']%}
+                        <td class="col2"><a href="{{personal[0]['contact_email']}}">{{ personal[0]['contact_email']}}</td>
+                        {% else %}
+                        <td class="col2"> Not Provided </td>
+                        {% endif %}
                     </tr>
                     <tr>
                         <td class="col1"><b>Contact Number:</b></td>
-                        <td class="col2">{{ personal[0]['contact_number']}}</td>
-                    </tr>
-                    <tr>
-                        <td class="col1"><b>Personal Email:</b></td>
-                        <td class="col2"><a href="{{personal[0]['contact_email']}}">{{ personal[0]['contact_email']}}</td>
+                        {% if personal[0]['contact_number']%}
+                        <td class="col2"> {{personal[0]['contact_number']}} </td>
+                        {% else %}
+                        <td class="col2"> Not Provided </td>
+                        {% endif %}
+                        
                     </tr>
                     <tr>
                         <td class="col1"><b>Address:</b></td>
-                        <td class="col2">{{ personal[0]['address']}}</td>
+                        {% if personal[0]['address']%}
+                            <td class="col2">{{ personal[0]['address']}}</td>
+                        {% else %}
+                            <td class="col2"> Not Provided </td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+                        <td class="col1"><b>About Me:</b></td>
+                        {% if personal[0]['description']%}
+                            <td class="col2">{{ personal[0]['description']}}</td>
+                        {% else %}
+                            <td class="col2"> Not Provided </td>
+                        {% endif %}
                     </tr>
                 </table>
             </app-profile-basic-info>
@@ -53,24 +70,33 @@
                 <table>
                     <tr>
                         <td class="col1" ><b>Degree:</b></td>
-                        <td class="col2" >{{ education[0]['degree_name']}}</td>
+                        {% if education %}
+                            <td class="col2" >{{ education[0]['degree_name']}}</td>
+                        {% else %}
+                            <td class="col2"> Not Provided </td>
+                        {% endif %}
                     </tr>
                     <tr>
-                        <td class="col1"><b>Start Year:</b></td>
-                        <td class="col2" >{{ education[0]['start_date']}}</td>
-                    </tr>
-                    <tr>
-                        <td class="col1"><b>Expected End Year:</b></td>
-                        <td class="col2" >{{ education[0]['end_date']}}</td>
+                        <td class="col1"><b>Duration:</b></td>
+                        {% if education %}
+                            <td class="col2" >{{ education[0]['start_date']}} - {{ education[0]['end_date']}}</td>
+                        {% else %}
+                            <td class="col2"> Not Provided </td>
+                        {% endif %}
                     </tr>
                     <tr>
                         <td class="col1"><b>CGPA:</b></td>
-                        <td class="col2" >{{'%0.2f'| format(education[0]['cgpa']|float)}}</td>
+                        {% if education %}
+                            <td class="col2" >{{'%0.2f'| format(education[0]['cgpa']|float)}}</td>
+                        {% else %}
+                            <td class="col2"> Not Provided </td>
+                        {% endif %}
                     </tr>
                     <tr>
                         <td class="col1"><b>Courses:</b></td>
-                        <td class="col2" >
 
+                        <td class="col2" >
+                            {% if courses %}
                             {% for i in range(courses|length) %}
                                 {% if i == (courses|length) - 1%}
                                 {{ courses[i]['department']}}
@@ -81,6 +107,9 @@
                                 {% endif %}
 
                             {%endfor%}
+                            {% else %}
+                                Not Provided
+                            {% endif %}
                         </td>
                     </tr>
                 </table>
@@ -96,30 +125,40 @@
                 <hr>
                 <table>
                     <tr>
-                        <td class="col1"><b>Skills:</b></td>
-                        <td class="col2" >
-                            {% for i in range(hobbies|length) %}
-                                {% if i == (hobbies|length) - 1%}
-                                {{hobbies[i]['hobbies']}}
-                                {% else %}
-                                {{hobbies[i]['hobbies']}},
-                                {% endif %}
 
-                            {%endfor%}
+                        <td class="col1"><b>Skills/Hobbies:</b></td>
+                        <td class="col2" >
+                            {% if hobbies %}
+                                {% for i in range(hobbies|length) %}
+                                    {% if i == (hobbies|length) - 1%}
+                                    {{hobbies[i]['hobbies']}}
+                                    {% else %}
+                                    {{hobbies[i]['hobbies']}},
+                                    {% endif %}
+
+                                {%endfor%}
+                            {% else %}
+                                Not Provided
+                            {% endif %}
                         </td>
                     </tr>
 
                     <tr>
                         <td class="col1"><b>Certificates:</b></td>
                         <td class="col2" >
-                            {% for i in range(certificates|length) %}
-                                {% if i == (certificates|length) - 1%}
-                                {{certificates[i]['certificates']}}
-                                {% else %}
-                                {{certificates[i]['certificates']}},
-                                {% endif %}
+                            {% if certificates %}
+                                {% for i in range(certificates|length) %}
+                                    {% if i == (certificates|length) - 1%}
+                                    {{certificates[i]['certificates']}}
+                                    {% else %}
+                                    {{certificates[i]['certificates']}},
+                                    {% endif %}
+                                {%endfor%}
+                            {% else %}
+                                Not Provided
+                            {% endif %}
 
-                            {%endfor%}
+                            
                         </td>
                     </tr>
                 </table>
@@ -135,16 +174,20 @@
                 <hr>
 
                 <table>
+                {% if projects%}
+                    {%for i in projects%}
 
-                {%for i in projects%}
-
-                    <tr>
-                        <td class="col1"><b>{{ i['project_title'] }}:</b></td>
-                        <td class="col2" >
-                            {{ i['project_detail'] }}
-                        </td>
-                    </tr>
-                {%endfor%}
+                        <tr>
+                            <td class="col1"><b>{{ i['project_title'] }}:</b></td>
+                            <td class="col2" >
+                                {{ i['project_detail'] }}
+                            </td>
+                        </tr>
+                    {%endfor%}
+                {% else %}
+                    <td class="col1"> <b>Projects:</b> </td>
+                    <td class="col2"> None </td>
+                {% endif %}
 
                 </table>
             </app-profile-basic-info>
@@ -160,25 +203,42 @@
                     <tr>
                         <td class="col1"><b>Company Name:</b></td>
                         <td class="col2" >
-                            {{industryExp[0]['company_name']}}
+                            {% if industryExp %}
+                                {{industryExp[0]['company_name']}}
+                            }
+                            {% else %}
+                                Not Provided
+                            {% endif %}
                         </td>
                     </tr>
                     <tr>
                         <td class="col1"><b>Designation:</b></td>
                         <td class="col2" >
-                            {{industryExp[0]['designation'] }}
+                            {% if industryExp%}
+                                {{industryExp[0]['designation'] }}
+                            {% else %}
+                                Not Provided
+                            {% endif %}
                         </td>
                     </tr>
                     <tr>
                         <td class="col1"><b>Work Description:</b></td>
                         <td class="col2" >
-                            {{industryExp[0]['work_description']}}
+                            {% if industryExp%}
+                                {{industryExp[0]['work_description']}}
+                            {% else %}
+                                Not Provided
+                            {% endif %}
                         </td>
                     </tr>
                     <tr>
                         <td class="col1"><b>Number of Months:</b></td>
                         <td class="col2" >
-                            {{industryExp[0]['no_of_months']}}
+                            {% if industryExp%}
+                                {{industryExp[0]['no_of_months']}}
+                            {% else %}
+                                Not Provided
+                            {% endif %}
                         </td>
                     </tr>
                 </table>
@@ -192,7 +252,7 @@
                 <hr>
 
                 <table>
-
+                {% if accounts %}
                 {%for i in accounts%}
 
                     <tr>
@@ -202,6 +262,10 @@
                         </td>
                     </tr>
                 {%endfor%}
+                            {% else %}
+                            <td class="col1"><b>Linked Accounts: </b> </td>
+                                <td class="col2"> None </td>
+                            {% endif %}
 
                 </table>
             </app-profile-basic-info>
