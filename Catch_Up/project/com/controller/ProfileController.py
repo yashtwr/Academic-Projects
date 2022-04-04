@@ -534,13 +534,13 @@ def searchProfile():
         course_no = request.form['course_no']
         department = request.form['department']
         company_name = request.form['company_name']
-        skillsVO = SkillsVO()
+        hobbiesVO = HobbiesVO()
         courseVO = CoursesVO()
         industryVO = IndustryVO()
         VOs = []
         if skills:
-            skillsVO.skills = skills
-            VOs.append(skillsVO)
+            hobbiesVO.hobbies = skills
+            VOs.append(hobbiesVO)
         if course_no or department:
             courseVO.course_no= course_no
             if department:
@@ -561,9 +561,9 @@ def searchProfile():
         filterresults = [i.as_dict() for i in filterresults]
         ids = [i['signup_loginId'] for i in filterresults]
         resultIds += ids
-        print('HERE ++++++++++++ ', resultIds)
     results = []
     courses = []
+    resultIds = set(resultIds)
     for i in resultIds:
         signupVO = SignUpVO()
         signupDAO = SignUpDAO()
