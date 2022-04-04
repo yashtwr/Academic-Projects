@@ -1,155 +1,202 @@
-{% extends "layout.html" %} {% block content %}
+{% extends "dashboard_layout.html" %}
+ {% block content %}
 
 <link rel="stylesheet" href="../static/css/show_profile.css">
+<!-- <link rel="stylesheet" href="../static/css/dashboard.css"> -->
 
 
-<div class="show">
-
-    <div fxhide="true">
-        <div class="ng-star-inserted">
-            <div class="ng-star-inserted" style="height: 60px;"></div>
+<div class="show" >
+    <div class="name_profile" style="margin-top: 1%; justify-content: center; text-align: center;" >
+        
+        <div class="circle_profile">
+            {{ signup[0]['firstname'][0] }}{{ signup[0]['lastname'][0] }}
         </div>
+        <div class="cname_profile">
+             {{ signup[0]['firstname'] }} {{ signup[0]['lastname'] }}
+        </div>
+        
     </div>
+</div>
 
-    <div class="bg-color-white mat-elevation-z1 ng-tns-c400-75">
-        <app-profile-intro class="u-paddingTop-32 u-display-block u-margin-center ng-tns-c400-75">
-            <div fxlayout.gt-xs="row" fxlayout="column" fxlayoutalign="start center" class="u-padding-0-16" style="flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
-                <app-avatar-account class="u-display-block">
-                    <div _ngcontent-rrr-c140="" fxlayout="row" fxlayoutalign="center center" style="flex-direction: row; box-sizing: border-box; display: flex; place-content: center; align-items: center; width: 96px; height: 96px;">
-                        <div _ngcontent-rrr-c140="" fxlayout="row" fxlayoutalign="center center" class="bg-color-teal-100 ng-star-inserted text-h4" style="flex-direction: row; box-sizing: border-box; display: flex; place-content: center; align-items: center; width: 100%; height: 100%; border-radius: 50%;">
-                            P
-                        </div>
-                    </div>
-                </app-avatar-account>
-                <div fxflex="calc(100% - 112px)" fxlayout.gt-xs="row" fxlayout="column" style="flex-direction: row; box-sizing: border-box; display: flex; flex: 1 1 calc(100% - 112px); min-width: calc(100% - 112px);">
-                    <h6> {{ signup[0]['firstname'] }} {{ signup[0]['lastname'] }}</h6>
-                </div>
-            </div>
-        </app-profile-intro>
+<div class="show1">
+    <div  class="bg_profile">
+            <app-profile-basic-info style="width: 100%;">
+                <p class="title_profile" style="margin-bottom: 0px;"><b>Basic Information</b></p>
+                <hr>
+                <table>
+                    <tr>
+                        <td class="col1"><b>About Me:</b></td>
+                        <td class="col2">{{ personal[0]['description']}}</td>
+                    </tr>
+                    <tr>
+                        <td class="col1"><b>Contact Number:</b></td>
+                        <td class="col2">{{ personal[0]['contact_number']}}</td>
+                    </tr>
+                    <tr>
+                        <td class="col1"><b>Personal Email:</b></td>
+                        <td class="col2"><a href="{{personal[0]['contact_email']}}">{{ personal[0]['contact_email']}}</td>
+                    </tr>
+                    <tr>
+                        <td class="col1"><b>Address:</b></td>
+                        <td class="col2">{{ personal[0]['address']}}</td>
+                    </tr>
+                </table>
+            </app-profile-basic-info>
     </div>
+</div>
 
-    <div fxlayout.gt-sm="row" class="u-padding-24-0 u-margin-center ng-tns-c400-75" style="max-width: 800px; width: 95vw; flex-direction: row;">
-        <app-profile-group-item class="bg-color-white mat-elevation-z1 u-marginBottom-16 u-display-block ng-tns-c400-75 ng-star-inserted">
-            <app-profile-basic-info class="bg-color-white u-padding-16 mat-elevation-z1 u-display-block ng-tns-c299-24">
-                <p class="text-subtitle-1 u-marginBottom-8"><b>Basic Information</b></p>
-                <div fxlayout="row" fxlayoutalign="start center" style="margin-bottom: 4px; flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
-                    <p class="u-paddingRight-8" style="color: #717171;">About Me:</p>
-                    <p class="u-textTruncate"> {{ personal[0]['description']}}</p>
-                </div>
-                <div fxlayout="row" fxlayoutalign="start center" style="margin-bottom: 4px; flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
-                    <p class="u-paddingRight-8" style="color: #717171;">Contact Number:</p>
-                    <p class="u-textTruncate"> {{ personal[0]['contact_number'] }}</p>
-                </div>
-                <div fxlayout="row" fxlayoutalign="start center" style="margin-bottom: 4px; flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
-                    <p class="u-paddingRight-8" style="color: #717171;">Personal Email:</p>
-                    <p class="u-textTruncate">{{ personal[0]['contact_email'] }}</p>
-                </div>
-                <div fxlayout="row" fxlayoutalign="start center" style="margin-bottom: 4px; flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
-                    <p class="u-paddingRight-8" style="color: #717171;">Address:</p>
-                    <p class="u-textTruncate"> {{ personal[0]['address'] }}</p>
-                </div>
+<div class="show1">
+    <div  class="bg_profile" >
+            <app-profile-basic-info  style="width: 100%;">
+                <p class="title_profile" style="margin-bottom: 0px;"><b>Education Information</b></p>
+                <hr>
+                <table>
+                    <tr>
+                        <td class="col1" ><b>Degree:</b></td>
+                        <td class="col2" >{{ education[0]['degree_name']}}</td>
+                    </tr>
+                    <tr>
+                        <td class="col1"><b>Start Year:</b></td>
+                        <td class="col2" >{{ education[0]['start_date']}}</td>
+                    </tr>
+                    <tr>
+                        <td class="col1"><b>Expected End Year:</b></td>
+                        <td class="col2" >{{ education[0]['end_date']}}</td>
+                    </tr>
+                    <tr>
+                        <td class="col1"><b>CGPA:</b></td>
+                        <td class="col2" >{{'%0.2f'| format(education[0]['cgpa']|float)}}</td>
+                    </tr>
+                    <tr>
+                        <td class="col1"><b>Courses:</b></td>
+                        <td class="col2" >
 
-
-                <div class="u-borderTop-grey100 u-padding-16-0 ng-tns-c298-3 ng-star-inserted"></div>
-                <p class="text-subtitle-1 u-marginBottom-8"><b>Linked Accounts</b></p>
-                {%for i in accounts%}
-                <div fxlayout="row" fxlayoutalign="start center" style="margin-bottom: 4px; flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
-                    <p class="u-paddingRight-8" style="color: #717171;">{{i['platform']}} : </p>
-                    <p class="u-textTruncate"> {{ i['link'] }}</p>
-                </div>
-                {% endfor %}
-
-                <div class="u-borderTop-grey100 u-padding-16-0 ng-tns-c298-3 ng-star-inserted"></div>
-                <p class="text-subtitle-1 u-marginBottom-8"><b>Hobbies</b></p>
-
-                <div fxlayout="row" fxlayoutalign="start center" style="margin-bottom: 4px; flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
-                    <p class="u-paddingRight-8" style="color: #717171;">Hobbies:</p>
-                    {% for i in hobbies %}
-                    <p class="u-textTruncate"> {{i['hobbies']}} ,</p>
-                    {%endfor%}
-                </div>
+                            {% for i in courses %}
+                                {{i['course_no']}} ,
+                            {%endfor%}
+                        </td>
+                    </tr>
+                </table>
+            </app-profile-basic-info>
+    </div>
+</div>          
 
 
-                <div class="u-borderTop-grey100 u-padding-16-0 ng-tns-c298-3 ng-star-inserted"></div>
-                <p class="text-subtitle-1 u-marginBottom-8"><b>Education</b></p>
-                <div fxlayout="row" fxlayoutalign="start center" style="margin-bottom: 4px; flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
-                    <p class="u-textTruncate"> {{ education[0]['degree_name'] }}, {{ education[0]['institution_name'] }}</p>
-                </div>
-                <div fxlayout="row" fxlayoutalign="start center" style="margin-bottom: 4px; flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
-                     <p class="u-paddingRight-8" style="color: #717171;">Start Date:</p>
-                    <!-- add for loop  -->
-                    <p class="u-textTruncate"> {{ education[0]['start_date'] }} </p>
-                </div>
-                <div fxlayout="row" fxlayoutalign="start center" style="margin-bottom: 4px; flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
-                     <p class="u-paddingRight-8" style="color: #717171;">End Date:</p>
-                    <!-- add for loop  -->
-                    <p class="u-textTruncate"> {{ education[0]['end_date'] }} </p>
-                </div>
-                <div fxlayout="row" fxlayoutalign="start center" style="margin-bottom: 4px; flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
-                     <p class="u-paddingRight-8" style="color: #717171;">CGPA :</p>
-                    <!-- add for loop  -->
-                    <p class="u-textTruncate"> {{ education[0]['cgpa'] }} </p>
-                </div>
+<div class="show1">
+    <div  class="bg_profile">
+            <app-profile-basic-info style="width: 100%;">
+                <p class="title_profile" style="margin-bottom: 0px;"><b>Skills</b></p>
+                <hr>
+                <table>
+                    <tr>
+                        <td class="col1"><b>Skills:</b></td>
+                        <td class="col2" >
+                            {% for i in hobbies %}
+                                {{i['hobbies']}} ,
+                            {%endfor%}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="col1"><b>Certificates:</b></td>
+                        <td class="col2" >
+                            {% for i in certificates %}
+                                {{i['certificates']}} ,
+                            {%endfor%}
+                        </td>
+                    </tr>
+                </table>
+            </app-profile-basic-info>
+    </div>
+</div>
 
 
-                <div fxlayout="row" fxlayoutalign="start center" style="margin-bottom: 4px; flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
-                    <p class="u-paddingRight-8" style="color: #717171;">Courses:</p>
-                    <!-- add for loop  -->
-                    {%for i in courses%}
-                    <p class="u-textTruncate"> {{ i['department'] }} {{ i['course_no'] }} ,</p>
-                    {%endfor%}
-                </div>
+<div class="show1">
+    <div  class="bg_profile">
+            <app-profile-basic-info style="width: 100%;">
+                <p class="title_profile" style="margin-bottom: 0px;"><b>Projects</b></p>
+                <hr>
 
-
-                <div fxlayout="row" fxlayoutalign="start center" style="margin-bottom: 4px; flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
-                    <p class="u-paddingRight-8" style="color: #717171;">Certificates :</p>
-                    <!-- add for loop  -->
-                    {% for i in certificates%}
-
-                    <p class="u-textTruncate"> {{ i['certificates'] }} ,</p>
-                    {% endfor%}
-                </div>
-
-                <div class="u-borderTop-grey100 u-padding-16-0 ng-tns-c298-3 ng-star-inserted"></div>
-
-
-
-                <p class="text-subtitle-1 u-marginBottom-8"><b>Projects</b></p>
+                <table>
 
                 {%for i in projects%}
-                <div fxlayout="row" fxlayoutalign="start center" style="margin-bottom: 4px; flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
-                    <!-- add for loop  -->
-                    <p class="u-paddingRight-8" style="color: #717171;">{{ i['project_title'] }}:</p>
-                    <p class="u-textTruncate"> {{ i['project_detail'] }}</p>
-                </div>
+
+                    <tr>
+                        <td class="col1"><b>{{ i['project_title'] }}:</b></td>
+                        <td class="col2" >
+                            {{ i['project_detail'] }}
+                        </td>
+                    </tr>
                 {%endfor%}
-                <div class="u-borderTop-grey100 u-padding-16-0 ng-tns-c298-3 ng-star-inserted"></div>
 
-
-                <!-- add for loop  -->
-                <p class="text-subtitle-1 u-marginBottom-8"><b>Work Experience</b></p>
-                <div fxlayout="row" fxlayoutalign="start center" style="margin-bottom: 4px; flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
-                    <p class="u-paddingRight-8" style="color: #717171;">Company Name :</p>
-                    <p class="u-textTruncate"> {{industryExp[0]['company_name']}}</p>
-                </div>
-                <div fxlayout="row" fxlayoutalign="start center" style="margin-bottom: 4px; flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
-                    <p class="u-paddingRight-8" style="color: #717171;">Designation:</p>
-                    <p class="u-textTruncate"> {{industryExp[0]['designation'] }}</p>
-                </div>
-                <div fxlayout="row" fxlayoutalign="start center" style="margin-bottom: 4px; flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
-                    <p class="u-paddingRight-8" style="color: #717171;">Work Description:</p>
-                    <p class="u-textTruncate"> {{ industryExp[0]['work_description']}}</p>
-                </div>
-                <div fxlayout="row" fxlayoutalign="start center" style="margin-bottom: 4px; flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center;">
-                    <p class="u-paddingRight-8" style="color: #717171;">No of Months:</p>
-                    <p class="u-textTruncate"> {{industryExp[0]['no_of_months'] }}</p>
-                </div>
-                <div class="u-borderTop-grey100 u-padding-16-0 ng-tns-c298-3 ng-star-inserted"></div>
+                </table>
             </app-profile-basic-info>
-        </app-profile-group-item>
     </div>
-
 </div>
+
+<div class="show1">
+    <div  class="bg_profile">
+            <app-profile-basic-info style="width: 100%;">
+                <p class="title_profile" style="margin-bottom: 0px;"><b>Work Experience</b></p>
+                <hr>
+                <table>
+                    <tr>
+                        <td class="col1"><b>Company Name:</b></td>
+                        <td class="col2" >
+                            {{industryExp[0]['company_name']}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1"><b>Designation:</b></td>
+                        <td class="col2" >
+                            {{industryExp[0]['designation'] }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1"><b>Work Description:</b></td>
+                        <td class="col2" >
+                            {{industryExp[0]['work_description']}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1"><b>Number of Months:</b></td>
+                        <td class="col2" >
+                            {{industryExp[0]['no_of_months']}}
+                        </td>
+                    </tr>
+                </table>
+            </app-profile-basic-info>
+    </div>
+</div>
+<div class="show1">
+    <div  class="bg_profile">
+            <app-profile-basic-info style="width: 100%;">
+                <p class="title_profile" style="margin-bottom: 0px;"><b>Linked Accounts</b></p>
+                <hr>
+
+                <table>
+
+                {%for i in accounts%}
+
+                    <tr>
+                        <td class="col1"><b>{{i['platform']}}:</b></td>
+                        <td class="col2" >
+                            <a href="{{i['link']}}">{{ i['link'] }}</a>
+                        </td>
+                    </tr>
+                {%endfor%}
+
+                </table>
+            </app-profile-basic-info>
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
 
 
 {% endblock content %}
