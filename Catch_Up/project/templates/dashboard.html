@@ -299,7 +299,7 @@ svg {
 
    <div class="card-details">
       <div class="name">{{ results[i][0]['firstname'] }} {{ results[i][0]['lastname'] }}</div>
-      <div class="occupation">{{ results[i][0]['category'] }}</div>
+      <div class="occupation">{{ (results[i][0]['category']).capitalize() }}</div>
 
       <div class="card-about">
          <div class="item">
