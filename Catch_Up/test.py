@@ -134,12 +134,6 @@ class FlaskTestCases(unittest.TestCase):
         response = tester.get('/insertCourse', data=dict(courseno=651,department="ECE"))
         self.assertTrue(response, "/profile")
 
-    # def test_update_course_loads(self):
-    #     tester = app.test_client(self)
-    #     tester.post('/login', data=dict(email="admin@uwaterloo00.ca", password="Abcd12345"),
-    #                            follow_redirects=True)
-    #     response = tester.get('/updateCourse', data=dict(Id=1,department="ECE",course_no=650))
-    #     self.assertTrue(response, "/profile")
 
     def test_delete_course_loads(self):
         tester = app.test_client(self)
@@ -190,12 +184,12 @@ class FlaskTestCases(unittest.TestCase):
         response = tester.get('/insertPersonalInfo', data=dict(firstname="P",lastname="J",contact_email="p@gmail.com",contact_number="12345",description="hi",address="India"))
         self.assertTrue(response, "/profile")
 
-    # def test_insert_education_loads(self):
-    #     tester = app.test_client(self)
-    #     tester.post('/login', data=dict(email="admin@uwaterloo00.ca", password="Abcd12345"),
-    #                            follow_redirects=True)
-    #     response = tester.get('/insertEducation', data=dict(degree_name="P",start_date=2019,institution_name="college",end_date=2022,cgpa=4.00))
-    #     self.assertTrue(response, "/profile")
+    def test_insert_education_loads(self):
+        tester = app.test_client(self)
+        tester.post('/login', data=dict(email="admin@uwaterloo00.ca", password="Abcd12345"),
+                               follow_redirects=True)
+        response = tester.get('/insertEducation', data=dict(Id=1,degree_name="bachelors",start_date=2019,institution_name="college",end_date=2022,cgpa=4))
+        self.assertTrue(response, "/profile")
 
     def test_insert_project_loads(self):
         tester = app.test_client(self)
