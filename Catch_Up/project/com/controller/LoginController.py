@@ -49,12 +49,7 @@ def login():
     else:
         return redirect(url_for('loadDashboard'))
 
-@app.route('/loadDashboard', methods=["GET", "POST"])
-def loadDashboard():
-    if userLoginSession():
-        return render_template("dashboard.html", email=session['login_email'])
-    else:
-        return redirect(url_for('userLogin'))
+
 
 
 @app.route('/userLoginSession')
