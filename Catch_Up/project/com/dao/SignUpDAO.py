@@ -1,7 +1,7 @@
 from project import db
 
 from project.com.vo.SignUpVO import SignUpVO
-
+from sqlalchemy import func
 
 class SignUpDAO:
     def insertUser(self, signupVO):
@@ -20,6 +20,6 @@ class SignUpDAO:
 
     def fetchByName(self, signupVO):
         # signup_list = db.session.query(SignUpVO).filter(SignUpVO.firstname == signupVO.firstname)
-        signup_list = SignUpVO.query.filter_by(firstname=signupVO.firstname).all()
+        signup_list = db.session.query(SignUpVO).filter(func.lower(SignUpVO.firstname)==func.lower(signupVO.firstname)).all()
         print(signup_list)
         return signup_list
