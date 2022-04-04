@@ -200,7 +200,7 @@ body {
    /*border-radius: 0.75rem;
    box-shadow:  0 22px 70px 4px rgba(0,0,0,0.56), 0 0 0 1px rgba(0, 0, 0, 0.3);
    */
-   background: black;
+   background: #fdd54f;
    
    display: grid;
    grid-template-columns: 100% auto;
@@ -210,7 +210,7 @@ body {
    
    will-change: transform;
    transition: transform 0.25s cubic-bezier(0.4, 0.0, 0.2, 1);
-   
+   <!--opacity: 0.8;-->
 
 
   
@@ -228,6 +228,7 @@ body {
 
 .name {
    font-size: 1.25rem;
+   color:black;
 }
 
 .occupation {
@@ -303,13 +304,13 @@ svg {
 
       <div class="card-about">
          <div class="item">
-			 <div class="label" style="color: #fdd54f;">Degree&nbsp; </div>
-            <div class="value">{{results[i][2]['degree_name']}}</div>
+			 <div class="label" style="color: #ff1ead;">Degree&nbsp; </div>
+            <div class="value" style="color: black;">{{results[i][2]['degree_name']}}</div>
 
          </div>
          <div class="item">
-			 <div class="label" style="color: #fdd54f;">Institute&nbsp; </div>
-            <div class="value">{{results[i][2]['institution_name']}}</div>
+			 <div class="label" style="color: #ff1ead;">Institute&nbsp; </div>
+            <div class="value" style="color: black;">{{results[i][2]['institution_name']}}</div>
 
          </div>
          <!--<div class="item">-->
@@ -318,12 +319,12 @@ svg {
          <!--</div>-->
       </div>
       <div class="skills">
-		  <span class="label" style="color: #fdd54f;">Description</span>
-         <span class="value">{{results[i][1]['description']}}</span>
+		  <span class="label" style="color: #ff1ead;">Description</span>
+         <span class="value" style="color: black;">{{results[i][1]['description']}}</span>
 
 	  </div>
 	   <div class="item">
-         <span class="label" style="color: #fdd54f;">Courses &nbsp; </span>
+         <span class="label" style="color: #ff1ead;">Courses &nbsp; </span>
 
            {% for j in range(courses[i]|length) %}
 
